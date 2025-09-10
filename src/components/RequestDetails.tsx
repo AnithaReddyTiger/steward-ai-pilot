@@ -80,9 +80,9 @@ export const RequestDetails = ({ request, onBack }: RequestDetailsProps) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             {/* Request Overview */}
             <Card>
               <CardHeader>
@@ -166,7 +166,7 @@ export const RequestDetails = ({ request, onBack }: RequestDetailsProps) => {
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* Right Sidebar */}
           <div className="space-y-6">
             {/* Action Panel */}
             <Card>
