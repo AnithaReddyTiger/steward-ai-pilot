@@ -79,6 +79,84 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
     }
   ];
 
+  const performAllSearches = async () => {
+    // Set all sources to searching status
+    const updatedResults = { ...searchResults };
+    Object.keys(updatedResults).forEach(sourceId => {
+      updatedResults[sourceId] = { ...updatedResults[sourceId], status: "searching" };
+    });
+    setSearchResults(updatedResults);
+
+    // Simulate search delay for all sources
+    setTimeout(() => {
+      // Mock search results
+      const mockResults = {
+        nppes: {
+          status: "found" as const,
+          data: {
+            npi: request.npi,
+            name: "John Doe, RN",
+            specialty: "Registered Nurse",
+            address: "123 Healthcare Blvd, Medical City, MC 12345",
+            lastUpdated: "2024-01-10"
+          },
+          notes: "Found active NPI record with current information"
+        },
+        doximity: {
+          status: "found" as const,
+          data: {
+            profile: "Active physician profile found",
+            specialty: "Registered Nurse", 
+            education: "State University School of Nursing",
+            affiliations: "Medical Center Hospital"
+          },
+          notes: "Professional profile confirms specialty as Registered Nurse"
+        },
+        webmd: {
+          status: "not_found" as const,
+          notes: "No profile found in WebMD directory"
+        },
+        nursys: {
+          status: "found" as const,
+          data: {
+            license: "Active",
+            licenseNumber: "RN123456",
+            expirationDate: "2025-06-30",
+            state: "Medical State",
+            disciplinaryActions: "None"
+          },
+          notes: "Current nursing license verified, expires June 2025"
+        },
+        google: {
+          status: "found" as const,
+          data: {
+            results: [
+              "Medical Center Hospital staff directory",
+              "State nursing board website",
+              "Professional association listing"
+            ]
+          },
+          notes: "Multiple sources confirm employment and credentials"
+        }
+      };
+
+      // Update all search results at once
+      const finalResults = { ...searchResults };
+      Object.keys(mockResults).forEach(sourceId => {
+        finalResults[sourceId] = {
+          ...finalResults[sourceId],
+          ...mockResults[sourceId as keyof typeof mockResults]
+        };
+      });
+      setSearchResults(finalResults);
+
+      toast({
+        title: "Investigation Completed",
+        description: "All external sources have been searched successfully",
+      });
+    }, 2000);
+  };
+
   const performSearch = async (sourceId: string) => {
     setSearchResults(prev => ({
       ...prev,
@@ -87,7 +165,6 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
 
     // Simulate search delay
     setTimeout(() => {
-      // Mock search results
       const mockResults = {
         nppes: {
           status: "found" as const,
@@ -182,30 +259,15 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
 
   return (
     <div className="space-y-6">
-      {/* Search Strategy */}
+      {/* Investigation Control */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">External Search Strategy</CardTitle>
+          <CardTitle className="text-lg">External Investigation</CardTitle>
           <CardDescription>
-            Corroborate findings using multiple trusted healthcare data sources
+            Search multiple trusted healthcare data sources to corroborate findings
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="bg-medical-blue-light p-4 rounded-md border border-medical-blue/20">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-medical-blue mt-0.5" />
-              <div>
-                <h4 className="font-medium text-medical-blue">Search Guidelines</h4>
-                <ul className="text-sm text-muted-foreground mt-2 space-y-1">
-                  <li>• Start with NPI-based searches for most reliable results</li>
-                  <li>• Use Name + Address combinations for verification</li>
-                  <li>• Cross-reference findings across multiple sources</li>
-                  <li>• Focus on trusted healthcare websites and databases</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h4 className="font-medium mb-2">Primary Identifiers</h4>
@@ -222,6 +284,17 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
                 {request.requestType === "address_update" && "Validate current practice addresses"}
               </div>
             </div>
+          </div>
+          
+          <div className="flex justify-center pt-4">
+            <Button
+              onClick={performAllSearches}
+              disabled={Object.values(searchResults).some(r => r.status === "searching")}
+              className="px-8 py-2"
+            >
+              <Search className="h-4 w-4 mr-2" />
+              {Object.values(searchResults).some(r => r.status === "searching") ? "Investigating..." : "Start Investigation"}
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -255,15 +328,6 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
                 </div>
                 
                 <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => performSearch(source.id)}
-                    disabled={searchResults[source.id].status === "searching"}
-                  >
-                    <Search className="h-4 w-4 mr-1" />
-                    {searchResults[source.id].status === "searching" ? "Searching..." : "Search"}
-                  </Button>
                   {searchResults[source.id].url && (
                     <Button
                       variant="ghost"
