@@ -1,16 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { User, Settings, LogOut, Bell, ChevronDown } from "lucide-react";
-
 interface StewardProfile {
   id: string;
   name: string;
@@ -22,7 +14,6 @@ interface StewardProfile {
   completedToday: number;
   certifications: string[];
 }
-
 const mockStewardProfile: StewardProfile = {
   id: "ST001",
   name: "Dr. Sarah Chen",
@@ -30,13 +21,11 @@ const mockStewardProfile: StewardProfile = {
   role: "Senior Healthcare Steward",
   department: "Provider Data Management",
   workload: 2,
-  completedToday: 1,
+  completedToday: 8,
   certifications: ["RHIA", "CCS", "CHPS"]
 };
-
 export const StewardshipTopBar = () => {
-  return (
-    <div className="bg-card border-b border-border shadow-sm">
+  return <div className="bg-card border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Left side - Logo and Title */}
@@ -55,18 +44,16 @@ export const StewardshipTopBar = () => {
           {/* Center - Current Workload Stats */}
           <div className="hidden lg:flex items-center space-x-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary">{mockStewardProfile.workload}</div>
-              <div className="text-xs text-muted-foreground">Pending</div>
+              
+              
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-success">{mockStewardProfile.completedToday}</div>
-              <div className="text-xs text-muted-foreground">Completed Today</div>
+              
+              
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-warning">
-                {Math.round((mockStewardProfile.completedToday / (mockStewardProfile.workload + mockStewardProfile.completedToday)) * 100)}%
-              </div>
-              <div className="text-xs text-muted-foreground">Efficiency</div>
+              
+              
             </div>
           </div>
 
@@ -118,11 +105,9 @@ export const StewardshipTopBar = () => {
                     <div className="space-y-2">
                       <div className="text-xs font-medium text-muted-foreground">Certifications</div>
                       <div className="flex flex-wrap gap-1">
-                        {mockStewardProfile.certifications.map((cert) => (
-                          <Badge key={cert} variant="secondary" className="text-xs">
+                        {mockStewardProfile.certifications.map(cert => <Badge key={cert} variant="secondary" className="text-xs">
                             {cert}
-                          </Badge>
-                        ))}
+                          </Badge>)}
                       </div>
                     </div>
 
@@ -138,7 +123,7 @@ export const StewardshipTopBar = () => {
                       </div>
                       <div>
                         <div className="text-lg font-bold text-warning">
-                          {Math.round((mockStewardProfile.completedToday / (mockStewardProfile.workload + mockStewardProfile.completedToday)) * 100)}%
+                          {Math.round(mockStewardProfile.completedToday / (mockStewardProfile.workload + mockStewardProfile.completedToday) * 100)}%
                         </div>
                         <div className="text-xs text-muted-foreground">Efficiency</div>
                       </div>
@@ -164,6 +149,5 @@ export const StewardshipTopBar = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
