@@ -107,22 +107,7 @@ export const StewardshipTopBar = () => {
                     </div>
 
                     {/* Today's Stats */}
-                    <div className="grid grid-cols-3 gap-4 text-center">
-                      <div>
-                        <div className="text-lg font-bold text-primary">{mockStewardProfile.workload}</div>
-                        <div className="text-xs text-muted-foreground">Pending</div>
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold text-success">{mockStewardProfile.completedToday}</div>
-                        <div className="text-xs text-muted-foreground">Completed</div>
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold text-warning">
-                          {Math.round(mockStewardProfile.completedToday / (mockStewardProfile.workload + mockStewardProfile.completedToday) * 100)}%
-                        </div>
-                        <div className="text-xs text-muted-foreground">Efficiency</div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
