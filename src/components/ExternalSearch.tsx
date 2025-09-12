@@ -279,7 +279,52 @@ export const ExternalSearch = ({
   };
   return <div className="space-y-6">
       {/* NPI Profile Information */}
-      {npiProfile}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg flex items-center gap-2">
+            <User className="h-4 w-4" />
+            Profile Information
+          </CardTitle>
+          <CardDescription>Provider context for investigation</CardDescription>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {npiProfile ? (
+            <>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Full Name:</span>
+                  <span className="font-medium">{npiProfile.formattedName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">NPI Number:</span>
+                  <span className="font-medium">{npiProfile.npi}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Specialty:</span>
+                  <span className="font-medium">{npiProfile.specialty}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Profile Status:</span>
+                  <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"}>
+                    {npiProfile.profileStatus}
+                  </Badge>
+                </div>
+              </div>
+              <div className="space-y-1 text-sm bg-muted p-3 rounded-md">
+                <p className="font-medium">{npiProfile.addrLine1}</p>
+                {npiProfile.addrLine2 && <p>{npiProfile.addrLine2}</p>}
+                {npiProfile.addrLine3 && <p>{npiProfile.addrLine3}</p>}
+                <p>{npiProfile.city}, {npiProfile.state} {npiProfile.zipCode}</p>
+                <p className="text-muted-foreground">{npiProfile.country}</p>
+              </div>
+            </>
+          ) : (
+            <div className="text-sm text-muted-foreground">
+              No profile information found for NPI {request.npi}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Investigation Control */}
       <Card>
