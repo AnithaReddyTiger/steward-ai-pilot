@@ -29,7 +29,7 @@ const mockStewardProfile: StewardProfile = {
   email: "sarah.chen@healthcare.org",
   role: "Senior Healthcare Steward",
   department: "Provider Data Management",
-  workload: 12,
+  workload: 2,
   completedToday: 8,
   certifications: ["RHIA", "CCS", "CHPS"]
 };
