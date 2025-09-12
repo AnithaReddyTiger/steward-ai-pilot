@@ -30,7 +30,7 @@ const mockStewardProfile: StewardProfile = {
   role: "Senior Healthcare Steward",
   department: "Provider Data Management",
   workload: 2,
-  completedToday: 8,
+  completedToday: 1,
   certifications: ["RHIA", "CCS", "CHPS"]
 };
 
