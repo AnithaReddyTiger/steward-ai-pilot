@@ -57,22 +57,22 @@ export const npiProfiles: Record<string, NPIProfile> = {
     licenseStartDate: "",
     licenseExpirationDate: ""
   },
-  "1234567890": {
-    npi: "1234567890",
-    formattedName: "Marina Hossein Nejad",
-    addrLine1: "1201 W 38th St",
+  "1780827816": {
+    npi: "1780827816",
+    formattedName: "Jessy Pattaniyil",
+    addrLine1:"3223 N Broad St",
     addrLine2: "",
     addrLine3: "",
-    city: "Austin",
-    state: "TX",
-    zipCode: "78705",
+    city: "Philadelphia",
+    state: "PA",
+    zipCode: "19140",
     country: "United States",
     specialty: "Nurse Practitioner",
     profileStatus: "Active",
-    licenseState: "TX",
-    licenseType: "NP",
-    licenseNumber: "638707",
-    licenseStatus: "",
+    licenseState: "",
+    licenseType: "",
+    licenseNumber: "",
+    licenseStatus: "A",
     licenseStartDate: "",
     licenseExpirationDate: ""
   }
