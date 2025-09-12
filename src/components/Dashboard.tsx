@@ -29,7 +29,7 @@ const mockRequests: StewardshipRequest[] = [{
   requestType: "specialty_update",
   submittedDate: "2024-01-15T10:30:00Z",
   priority: "high",
-  currentValue: "Medical Assistant",
+  currentValue: "Doctor of Medicine",
   proposedValue: "Registered Nurse"
 }, {
   id: "2",
