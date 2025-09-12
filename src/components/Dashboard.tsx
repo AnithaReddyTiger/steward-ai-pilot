@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { RequestDetails } from "./RequestDetails";
+import { StewardshipTopBar } from "./StewardshipTopBar";
 import { Search, Filter, FileText, UserCheck, Clock, CheckCircle, XCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -100,8 +101,9 @@ export const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background">
+      <StewardshipTopBar />
+      <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-foreground">Healthcare Stewardship Dashboard</h1>
