@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RequestDetails } from "./RequestDetails";
 import { StewardshipTopBar } from "./StewardshipTopBar";
-import { Search, Filter, FileText, UserCheck, Clock, CheckCircle, XCircle } from "lucide-react";
+import { InformaticaIntegration } from "./InformaticaIntegration";
+import { Search, Filter, FileText, UserCheck, Clock, CheckCircle, XCircle, Database } from "lucide-react";
 import { Input } from "@/components/ui/input";
 interface StewardshipRequest {
   id: string;
@@ -54,6 +56,7 @@ export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState("requests");
   const filteredRequests = mockRequests.filter(request => {
     const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
@@ -103,11 +106,25 @@ export const Dashboard = () => {
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          
           <p className="text-muted-foreground">
             Manage and validate healthcare provider information requests
           </p>
         </div>
+
+        {/* Main Tabs */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <TabsList>
+            <TabsTrigger value="requests" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              Stewardship Requests
+            </TabsTrigger>
+            <TabsTrigger value="integrations" className="flex items-center gap-2">
+              <Database className="h-4 w-4" />
+              Integrations
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="requests" className="space-y-6">
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -223,6 +240,12 @@ export const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+          </TabsContent>
+
+          <TabsContent value="integrations">
+            <InformaticaIntegration />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>;
 };
