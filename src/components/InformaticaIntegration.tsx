@@ -139,7 +139,7 @@ export const InformaticaIntegration = () => {
             Informatica API Integration
           </CardTitle>
           <CardDescription>
-            Connect to Informatica API for real-time stewardship request streaming
+            Connect to Informatica API for real-time MDM data
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
