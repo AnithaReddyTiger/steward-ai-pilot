@@ -116,10 +116,10 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "John Doe, RN",
+            name: "AMINATA AW NP",
             specialty: "Registered Nurse",
-            address: "123 Healthcare Blvd, Medical City, MC 12345",
-            lastUpdated: "2024-01-10"
+            address: "PO BOX 6282, SHERIDAN, WY 82801-1682",
+            lastUpdated: "2022-11-03"
           },
           notes: "Found active NPI record with current information"
         },
@@ -128,8 +128,8 @@ export const ExternalSearch = ({
           data: {
             profile: "Active physician profile found",
             specialty: "Registered Nurse",
-            education: "State University School of Nursing",
-            affiliations: "Medical Center Hospital"
+            education: "Texas Tech University Health Sciences Center",
+            affiliations: "Cheyenne Regional Medical Center"
           },
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
@@ -141,12 +141,12 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "RN123456",
+            licenseNumber: "27748",
             expirationDate: "2025-06-30",
-            state: "Medical State",
+            state: "WYOMING",
             disciplinaryActions: "None"
           },
-          notes: "Current nursing license verified, expires June 2025"
+          notes: "HCP has ‘RN’ license active, expiring on 12/31/2026."
         },
         google: {
           status: "found" as const,
