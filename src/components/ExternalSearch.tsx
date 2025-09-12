@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Search, ExternalLink, Globe, Database, MapPin, FileText, Building, AlertCircle, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getNPIProfile } from "@/data/npiProfiles";
-
 interface ExternalSearchProps {
   request: {
     npi: string;
@@ -15,7 +14,6 @@ interface ExternalSearchProps {
     description: string;
   };
 }
-
 interface SearchResult {
   source: string;
   url: string;
@@ -23,71 +21,90 @@ interface SearchResult {
   data?: any;
   notes?: string;
 }
-
-export const ExternalSearch = ({ request }: ExternalSearchProps) => {
+export const ExternalSearch = ({
+  request
+}: ExternalSearchProps) => {
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>({
-    nppes: { source: "NPPES NPI Registry", url: "https://npiregistry.cms.hhs.gov/search", status: "not_found" },
-    doximity: { source: "Doximity", url: "https://www.doximity.com/", status: "not_found" },
-    webmd: { source: "WebMD", url: "https://doctor.webmd.com/", status: "not_found" },
-    nursys: { source: "Nursys", url: "https://www.nursys.com/LQC/LQCSearch.aspx", status: "not_found" },
-    google: { source: "Google Search", url: "", status: "not_found" }
+    nppes: {
+      source: "NPPES NPI Registry",
+      url: "https://npiregistry.cms.hhs.gov/search",
+      status: "not_found"
+    },
+    doximity: {
+      source: "Doximity",
+      url: "https://www.doximity.com/",
+      status: "not_found"
+    },
+    webmd: {
+      source: "WebMD",
+      url: "https://doctor.webmd.com/",
+      status: "not_found"
+    },
+    nursys: {
+      source: "Nursys",
+      url: "https://www.nursys.com/LQC/LQCSearch.aspx",
+      status: "not_found"
+    },
+    google: {
+      source: "Google Search",
+      url: "",
+      status: "not_found"
+    }
   });
-  
   const [searchNotes, setSearchNotes] = useState("");
   const [customSearchUrl, setCustomSearchUrl] = useState("");
-  const { toast } = useToast();
-  
+  const {
+    toast
+  } = useToast();
+
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
-
-  const searchSources = [
-    {
-      id: "nppes",
-      name: "NPPES NPI Registry",
-      description: "Official CMS NPI database search",
-      icon: <Database className="h-4 w-4" />,
-      searchType: "NPI",
-      recommended: true
-    },
-    {
-      id: "doximity", 
-      name: "Doximity",
-      description: "Professional medical network",
-      icon: <Building className="h-4 w-4" />,
-      searchType: "Name + Location",
-      recommended: true
-    },
-    {
-      id: "webmd",
-      name: "WebMD Doctor Directory", 
-      description: "Healthcare provider directory",
-      icon: <FileText className="h-4 w-4" />,
-      searchType: "Name + Location",
-      recommended: false
-    },
-    {
-      id: "nursys",
-      name: "Nursys License Verification",
-      description: "Nursing license verification system",
-      icon: <FileText className="h-4 w-4" />,
-      searchType: "License Verification",
-      recommended: request.requestType === "license_verification"
-    },
-    {
-      id: "google",
-      name: "Google Search",
-      description: "General web search for provider information",
-      icon: <Globe className="h-4 w-4" />,
-      searchType: "Name + City + State",
-      recommended: false
-    }
-  ];
-
+  const searchSources = [{
+    id: "nppes",
+    name: "NPPES NPI Registry",
+    description: "Official CMS NPI database search",
+    icon: <Database className="h-4 w-4" />,
+    searchType: "NPI",
+    recommended: true
+  }, {
+    id: "doximity",
+    name: "Doximity",
+    description: "Professional medical network",
+    icon: <Building className="h-4 w-4" />,
+    searchType: "Name + Location",
+    recommended: true
+  }, {
+    id: "webmd",
+    name: "WebMD Doctor Directory",
+    description: "Healthcare provider directory",
+    icon: <FileText className="h-4 w-4" />,
+    searchType: "Name + Location",
+    recommended: false
+  }, {
+    id: "nursys",
+    name: "Nursys License Verification",
+    description: "Nursing license verification system",
+    icon: <FileText className="h-4 w-4" />,
+    searchType: "License Verification",
+    recommended: request.requestType === "license_verification"
+  }, {
+    id: "google",
+    name: "Google Search",
+    description: "General web search for provider information",
+    icon: <Globe className="h-4 w-4" />,
+    searchType: "Name + City + State",
+    recommended: false
+  }];
   const performAllSearches = async () => {
     // Set all sources to searching status
-    const updatedResults = { ...searchResults };
+    const updatedResults = {
+      ...searchResults
+    };
     Object.keys(updatedResults).forEach(sourceId => {
-      updatedResults[sourceId] = { ...updatedResults[sourceId], status: "searching" };
+      updatedResults[sourceId] = {
+        ...updatedResults[sourceId],
+        status: "searching"
+      };
     });
     setSearchResults(updatedResults);
 
@@ -110,7 +127,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
           status: "found" as const,
           data: {
             profile: "Active physician profile found",
-            specialty: "Registered Nurse", 
+            specialty: "Registered Nurse",
             education: "State University School of Nursing",
             affiliations: "Medical Center Hospital"
           },
@@ -134,18 +151,16 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
         google: {
           status: "found" as const,
           data: {
-            results: [
-              "Medical Center Hospital staff directory",
-              "State nursing board website",
-              "Professional association listing"
-            ]
+            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
       };
 
       // Update all search results at once
-      const finalResults = { ...searchResults };
+      const finalResults = {
+        ...searchResults
+      };
       Object.keys(mockResults).forEach(sourceId => {
         finalResults[sourceId] = {
           ...finalResults[sourceId],
@@ -153,18 +168,19 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
         };
       });
       setSearchResults(finalResults);
-
       toast({
         title: "Investigation Completed",
-        description: "All external sources have been searched successfully",
+        description: "All external sources have been searched successfully"
       });
     }, 2000);
   };
-
   const performSearch = async (sourceId: string) => {
     setSearchResults(prev => ({
       ...prev,
-      [sourceId]: { ...prev[sourceId], status: "searching" }
+      [sourceId]: {
+        ...prev[sourceId],
+        status: "searching"
+      }
     }));
 
     // Simulate search delay
@@ -185,7 +201,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
           status: "found" as const,
           data: {
             profile: "Active physician profile found",
-            specialty: "Registered Nurse", 
+            specialty: "Registered Nurse",
             education: "State University School of Nursing",
             affiliations: "Medical Center Hospital"
           },
@@ -209,121 +225,61 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
         google: {
           status: "found" as const,
           data: {
-            results: [
-              "Medical Center Hospital staff directory",
-              "State nursing board website",
-              "Professional association listing"
-            ]
+            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
       };
-
       setSearchResults(prev => ({
         ...prev,
-        [sourceId]: { 
-          ...prev[sourceId], 
+        [sourceId]: {
+          ...prev[sourceId],
           ...mockResults[sourceId as keyof typeof mockResults]
         }
       }));
-
       toast({
         title: "Search Completed",
-        description: `Search completed for ${searchSources.find(s => s.id === sourceId)?.name}`,
+        description: `Search completed for ${searchSources.find(s => s.id === sourceId)?.name}`
       });
     }, 2000);
   };
-
   const openExternalSearch = (sourceId: string) => {
     const source = searchSources.find(s => s.id === sourceId);
     if (source && searchResults[sourceId].url) {
       window.open(searchResults[sourceId].url, '_blank');
     }
   };
-
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "found": return <div className="w-2 h-2 bg-success rounded-full"></div>;
-      case "not_found": return <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>;
-      case "searching": return <div className="w-2 h-2 bg-warning rounded-full animate-pulse"></div>;
-      case "error": return <div className="w-2 h-2 bg-destructive rounded-full"></div>;
-      default: return <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>;
+      case "found":
+        return <div className="w-2 h-2 bg-success rounded-full"></div>;
+      case "not_found":
+        return <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>;
+      case "searching":
+        return <div className="w-2 h-2 bg-warning rounded-full animate-pulse"></div>;
+      case "error":
+        return <div className="w-2 h-2 bg-destructive rounded-full"></div>;
+      default:
+        return <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>;
     }
   };
-
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "found": return <Badge variant="approved" className="text-xs">Found</Badge>;
-      case "not_found": return <Badge variant="outline" className="text-xs">Not Found</Badge>;
-      case "searching": return <Badge variant="pending" className="text-xs">Searching...</Badge>;
-      case "error": return <Badge variant="rejected" className="text-xs">Error</Badge>;
-      default: return <Badge variant="outline" className="text-xs">Not Started</Badge>;
+      case "found":
+        return <Badge variant="approved" className="text-xs">Found</Badge>;
+      case "not_found":
+        return <Badge variant="outline" className="text-xs">Not Found</Badge>;
+      case "searching":
+        return <Badge variant="pending" className="text-xs">Searching...</Badge>;
+      case "error":
+        return <Badge variant="rejected" className="text-xs">Error</Badge>;
+      default:
+        return <Badge variant="outline" className="text-xs">Not Started</Badge>;
     }
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* NPI Profile Information */}
-      {npiProfile && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <User className="h-5 w-5" />
-              Provider Profile Information
-            </CardTitle>
-            <CardDescription>
-              Official NPI registry data for {npiProfile.formattedName}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div>
-                <h4 className="font-medium mb-2">Provider Details</h4>
-                <div className="space-y-1 text-sm">
-                  <p><span className="font-medium">Name:</span> {npiProfile.formattedName}</p>
-                  <p><span className="font-medium">NPI:</span> {npiProfile.npi}</p>
-                  <p><span className="font-medium">Specialty:</span> {npiProfile.specialty}</p>
-                  <p><span className="font-medium">Status:</span> 
-                    <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"} className="ml-2">
-                      {npiProfile.profileStatus}
-                    </Badge>
-                  </p>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="font-medium mb-2">Practice Address</h4>
-                <div className="space-y-1 text-sm">
-                  <p>{npiProfile.addrLine1}</p>
-                  {npiProfile.addrLine2 && <p>{npiProfile.addrLine2}</p>}
-                  {npiProfile.addrLine3 && <p>{npiProfile.addrLine3}</p>}
-                  <p>{npiProfile.city}, {npiProfile.state} {npiProfile.zipCode}</p>
-                  <p>{npiProfile.country}</p>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="font-medium mb-2">License Information</h4>
-                <div className="space-y-1 text-sm">
-                  <p><span className="font-medium">State:</span> {npiProfile.licenseState}</p>
-                  <p><span className="font-medium">Type:</span> {npiProfile.licenseType}</p>
-                  <p><span className="font-medium">Number:</span> {npiProfile.licenseNumber}</p>
-                  {npiProfile.licenseStatus && (
-                    <p><span className="font-medium">Status:</span> 
-                      <Badge variant={npiProfile.licenseStatus === "A" ? "approved" : "outline"} className="ml-2">
-                        {npiProfile.licenseStatus === "A" ? "Active" : npiProfile.licenseStatus}
-                      </Badge>
-                    </p>
-                  )}
-                  {npiProfile.licenseExpirationDate && (
-                    <p><span className="font-medium">Expires:</span> {npiProfile.licenseExpirationDate}</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      {npiProfile}
 
       {/* Investigation Control */}
       <Card>
@@ -353,11 +309,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
           </div>
           
           <div className="flex justify-center pt-4">
-            <Button
-              onClick={performAllSearches}
-              disabled={Object.values(searchResults).some(r => r.status === "searching")}
-              className="px-8 py-2"
-            >
+            <Button onClick={performAllSearches} disabled={Object.values(searchResults).some(r => r.status === "searching")} className="px-8 py-2">
               <Search className="h-4 w-4 mr-2" />
               {Object.values(searchResults).some(r => r.status === "searching") ? "Investigating..." : "Start Investigation"}
             </Button>
@@ -369,8 +321,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">External Data Sources</h3>
         
-        {searchSources.map((source) => (
-          <Card key={source.id} className="transition-all hover:shadow-md">
+        {searchSources.map(source => <Card key={source.id} className="transition-all hover:shadow-md">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3 flex-1">
@@ -381,9 +332,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-1">
                       <h4 className="font-medium">{source.name}</h4>
-                      {source.recommended && (
-                        <Badge variant="medical" className="text-xs">Recommended</Badge>
-                      )}
+                      {source.recommended && <Badge variant="medical" className="text-xs">Recommended</Badge>}
                       {getStatusBadge(searchResults[source.id].status)}
                     </div>
                     <p className="text-sm text-muted-foreground">{source.description}</p>
@@ -394,42 +343,29 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
                 </div>
                 
                 <div className="flex gap-2">
-                  {searchResults[source.id].url && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => openExternalSearch(source.id)}
-                    >
+                  {searchResults[source.id].url && <Button variant="ghost" size="sm" onClick={() => openExternalSearch(source.id)}>
                       <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  )}
+                    </Button>}
                 </div>
               </div>
 
               {/* Search Results */}
-              {searchResults[source.id].status === "found" && searchResults[source.id].data && (
-                <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+              {searchResults[source.id].status === "found" && searchResults[source.id].data && <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                   <h5 className="font-medium text-success mb-2">Search Results</h5>
                   <div className="text-sm space-y-1">
-                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => (
-                      <div key={key} className="flex justify-between">
+                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => <div key={key} className="flex justify-between">
                         <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
                         <span className="font-medium">{String(value)}</span>
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
-                </div>
-              )}
+                </div>}
 
               {/* Search Notes */}
-              {searchResults[source.id].notes && (
-                <div className="mt-3 text-xs text-muted-foreground">
+              {searchResults[source.id].notes && <div className="mt-3 text-xs text-muted-foreground">
                   <span className="font-medium">Notes:</span> {searchResults[source.id].notes}
-                </div>
-              )}
+                </div>}
             </CardContent>
-          </Card>
-        ))}
+          </Card>)}
       </div>
 
       {/* Custom Search */}
@@ -440,12 +376,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex gap-2">
-            <Input
-              placeholder="Enter custom search URL..."
-              value={customSearchUrl}
-              onChange={(e) => setCustomSearchUrl(e.target.value)}
-              className="flex-1"
-            />
+            <Input placeholder="Enter custom search URL..." value={customSearchUrl} onChange={e => setCustomSearchUrl(e.target.value)} className="flex-1" />
             <Button variant="outline" onClick={() => window.open(customSearchUrl, '_blank')}>
               <ExternalLink className="h-4 w-4 mr-1" />
               Open
@@ -454,12 +385,7 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
 
           <div>
             <label className="text-sm font-medium mb-2 block">Investigation Notes</label>
-            <Textarea
-              placeholder="Document your external search findings, cross-references, and verification steps..."
-              value={searchNotes}
-              onChange={(e) => setSearchNotes(e.target.value)}
-              className="min-h-[120px]"
-            />
+            <Textarea placeholder="Document your external search findings, cross-references, and verification steps..." value={searchNotes} onChange={e => setSearchNotes(e.target.value)} className="min-h-[120px]" />
           </div>
         </CardContent>
       </Card>
@@ -501,13 +427,10 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
             <p className="font-medium mb-1">Recommendation:</p>
             <p>
               Based on search results, the information appears to be 
-              {Object.values(searchResults).filter(r => r.status === "found").length >= 2 
-                ? " consistent across multiple sources and can be verified." 
-                : " limited. Additional investigation may be required."}
+              {Object.values(searchResults).filter(r => r.status === "found").length >= 2 ? " consistent across multiple sources and can be verified." : " limited. Additional investigation may be required."}
             </p>
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
