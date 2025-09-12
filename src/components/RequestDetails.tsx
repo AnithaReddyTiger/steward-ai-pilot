@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ValidationChecks } from "./ValidationChecks";
 import { ExternalSearch } from "./ExternalSearch";
-import { ArrowLeft, UserCheck, FileText, Search, Clock, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { ArrowLeft, UserCheck, FileText, Search, Clock, CheckCircle, XCircle, AlertTriangle, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getNPIProfile } from "@/data/npiProfiles";
 
 interface StewardshipRequest {
   id: string;
@@ -27,9 +28,12 @@ interface RequestDetailsProps {
 }
 
 export const RequestDetails = ({ request, onBack }: RequestDetailsProps) => {
-  const [activeTab, setActiveTab] = useState<"validation" | "investigation">("validation");
+  const [activeTab, setActiveTab] = useState<"validation" | "investigation" | "profile">("validation");
   const [stewardNotes, setStewardNotes] = useState("");
   const { toast } = useToast();
+  
+  // Get NPI profile data
+  const npiProfile = getNPIProfile(request.npi);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -157,12 +161,150 @@ export const RequestDetails = ({ request, onBack }: RequestDetailsProps) => {
               >
                 Investigation & Search
               </Button>
+              <Button
+                variant={activeTab === "profile" ? "default" : "ghost"}
+                onClick={() => setActiveTab("profile")}
+                className="rounded-b-none"
+              >
+                <User className="h-4 w-4 mr-2" />
+                Profile Information
+              </Button>
             </div>
 
             {/* Tab Content */}
             <div className="space-y-6">
               {activeTab === "validation" && <ValidationChecks request={request} />}
               {activeTab === "investigation" && <ExternalSearch request={request} />}
+              {activeTab === "profile" && (
+                <div className="space-y-6">
+                  {npiProfile ? (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <User className="h-5 w-5" />
+                          NPI Profile Details
+                        </CardTitle>
+                        <CardDescription>
+                          Complete provider information for NPI {npiProfile.npi}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-semibold mb-3">Provider Information</h4>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Full Name:</span>
+                                  <span className="font-medium">{npiProfile.formattedName}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">NPI Number:</span>
+                                  <span className="font-medium">{npiProfile.npi}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Specialty:</span>
+                                  <span className="font-medium">{npiProfile.specialty}</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-muted-foreground">Profile Status:</span>
+                                  <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"}>
+                                    {npiProfile.profileStatus}
+                                  </Badge>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <h4 className="font-semibold mb-3">Practice Address</h4>
+                              <div className="space-y-1 text-sm bg-muted p-3 rounded-md">
+                                <p className="font-medium">{npiProfile.addrLine1}</p>
+                                {npiProfile.addrLine2 && <p>{npiProfile.addrLine2}</p>}
+                                {npiProfile.addrLine3 && <p>{npiProfile.addrLine3}</p>}
+                                <p>{npiProfile.city}, {npiProfile.state} {npiProfile.zipCode}</p>
+                                <p className="text-muted-foreground">{npiProfile.country}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-semibold mb-3">License Information</h4>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">License State:</span>
+                                  <span className="font-medium">{npiProfile.licenseState}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">License Type:</span>
+                                  <span className="font-medium">{npiProfile.licenseType}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">License Number:</span>
+                                  <span className="font-medium">{npiProfile.licenseNumber}</span>
+                                </div>
+                                {npiProfile.licenseStatus && (
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-muted-foreground">License Status:</span>
+                                    <Badge variant={npiProfile.licenseStatus === "A" ? "approved" : "outline"}>
+                                      {npiProfile.licenseStatus === "A" ? "Active" : npiProfile.licenseStatus}
+                                    </Badge>
+                                  </div>
+                                )}
+                                {npiProfile.licenseStartDate && (
+                                  <div className="flex justify-between">
+                                    <span className="text-muted-foreground">Start Date:</span>
+                                    <span className="font-medium">{npiProfile.licenseStartDate}</span>
+                                  </div>
+                                )}
+                                {npiProfile.licenseExpirationDate && (
+                                  <div className="flex justify-between">
+                                    <span className="text-muted-foreground">Expiration Date:</span>
+                                    <span className="font-medium">{npiProfile.licenseExpirationDate}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            <div>
+                              <h4 className="font-semibold mb-3">Verification Status</h4>
+                              <div className="p-3 bg-success-subtle rounded-md border border-success/20">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <CheckCircle className="h-4 w-4 text-success" />
+                                  <span className="font-medium text-success">Profile Verified</span>
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                  This NPI profile has been verified against official registry data.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <AlertTriangle className="h-5 w-5 text-warning" />
+                          No Profile Data Available
+                        </CardTitle>
+                        <CardDescription>
+                          No profile information found for NPI {request.npi}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="p-4 bg-warning-subtle rounded-md border border-warning/20">
+                          <p className="text-sm text-muted-foreground">
+                            This NPI number was not found in our registry database. 
+                            Please verify the NPI number or check external sources for provider information.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

@@ -4,8 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Search, ExternalLink, Globe, Database, MapPin, FileText, Building, AlertCircle } from "lucide-react";
+import { Search, ExternalLink, Globe, Database, MapPin, FileText, Building, AlertCircle, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getNPIProfile } from "@/data/npiProfiles";
 
 interface ExternalSearchProps {
   request: {
@@ -35,6 +36,9 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
   const [searchNotes, setSearchNotes] = useState("");
   const [customSearchUrl, setCustomSearchUrl] = useState("");
   const { toast } = useToast();
+  
+  // Get NPI profile data
+  const npiProfile = getNPIProfile(request.npi);
 
   const searchSources = [
     {
@@ -259,6 +263,68 @@ export const ExternalSearch = ({ request }: ExternalSearchProps) => {
 
   return (
     <div className="space-y-6">
+      {/* NPI Profile Information */}
+      {npiProfile && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <User className="h-5 w-5" />
+              Provider Profile Information
+            </CardTitle>
+            <CardDescription>
+              Official NPI registry data for {npiProfile.formattedName}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div>
+                <h4 className="font-medium mb-2">Provider Details</h4>
+                <div className="space-y-1 text-sm">
+                  <p><span className="font-medium">Name:</span> {npiProfile.formattedName}</p>
+                  <p><span className="font-medium">NPI:</span> {npiProfile.npi}</p>
+                  <p><span className="font-medium">Specialty:</span> {npiProfile.specialty}</p>
+                  <p><span className="font-medium">Status:</span> 
+                    <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"} className="ml-2">
+                      {npiProfile.profileStatus}
+                    </Badge>
+                  </p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-medium mb-2">Practice Address</h4>
+                <div className="space-y-1 text-sm">
+                  <p>{npiProfile.addrLine1}</p>
+                  {npiProfile.addrLine2 && <p>{npiProfile.addrLine2}</p>}
+                  {npiProfile.addrLine3 && <p>{npiProfile.addrLine3}</p>}
+                  <p>{npiProfile.city}, {npiProfile.state} {npiProfile.zipCode}</p>
+                  <p>{npiProfile.country}</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-medium mb-2">License Information</h4>
+                <div className="space-y-1 text-sm">
+                  <p><span className="font-medium">State:</span> {npiProfile.licenseState}</p>
+                  <p><span className="font-medium">Type:</span> {npiProfile.licenseType}</p>
+                  <p><span className="font-medium">Number:</span> {npiProfile.licenseNumber}</p>
+                  {npiProfile.licenseStatus && (
+                    <p><span className="font-medium">Status:</span> 
+                      <Badge variant={npiProfile.licenseStatus === "A" ? "approved" : "outline"} className="ml-2">
+                        {npiProfile.licenseStatus === "A" ? "Active" : npiProfile.licenseStatus}
+                      </Badge>
+                    </p>
+                  )}
+                  {npiProfile.licenseExpirationDate && (
+                    <p><span className="font-medium">Expires:</span> {npiProfile.licenseExpirationDate}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Investigation Control */}
       <Card>
         <CardHeader>
