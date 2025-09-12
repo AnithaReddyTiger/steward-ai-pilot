@@ -190,31 +190,31 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "MARINA HOSSEIN NEJAD FNP",
+            name: "John Doe, RN",
             specialty: "Registered Nurse",
-            address: "1601 RIO GRANDE ST, SUITE 340, AUSTIN, TX 78701-1137",
-            lastUpdated: "2015-06-19"
+            address: "123 Healthcare Blvd, Medical City, MC 12345",
+            lastUpdated: "2024-01-10"
           },
           notes: "Found active NPI record with current information"
         },
         doximity: {
-          status: "not_found" as const,
+          status: "found" as const,
           notes: "No profile found in Doximity directory"
         },
         webmd: {
           status: "not_found" as const,
-          data: {
-            npi: request.npi,
-            name: "MARINA HOSSEIN NEJAD FNP",
-            specialty: "Registered Nurse",
-            address: "AUSTIN, TX 78701-1137",
-            lastUpdated: "2015-06-19"
-          },
           notes: "No profile found in WebMD directory"
         },
         nursys: {
           status: "found" as const,
-          notes: "No profile found in WebMD directory"
+          data: {
+            license: "Active",
+            licenseNumber: "RN123456",
+            expirationDate: "2025-06-30",
+            state: "Medical State",
+            disciplinaryActions: "None"
+          },
+          notes: "Current nursing license verified, expires June 2025"
         },
         google: {
           status: "found" as const,
