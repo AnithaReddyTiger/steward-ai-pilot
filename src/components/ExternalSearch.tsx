@@ -116,10 +116,10 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "AMINATA AW NP",
+            name: "John Doe, RN",
             specialty: "Registered Nurse",
-            address: "PO BOX 6282, SHERIDAN, WY 82801-1682",
-            lastUpdated: "2022-11-03"
+            address: "123 Healthcare Blvd, Medical City, MC 12345",
+            lastUpdated: "2024-01-10"
           },
           notes: "Found active NPI record with current information"
         },
@@ -128,8 +128,8 @@ export const ExternalSearch = ({
           data: {
             profile: "Active physician profile found",
             specialty: "Registered Nurse",
-            education: "Texas Tech University Health Sciences Center",
-            affiliations: "Cheyenne Regional Medical Center"
+            education: "State University School of Nursing",
+            affiliations: "Medical Center Hospital"
           },
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
@@ -141,12 +141,12 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "27748",
+            licenseNumber: "RN123456",
             expirationDate: "2025-06-30",
-            state: "WYOMING",
+            state: "Medical State",
             disciplinaryActions: "None"
           },
-          notes: "HCP has ‘RN’ license active, expiring on 12/31/2026."
+          notes: "Current nursing license verified, expires June 2025"
         },
         google: {
           status: "found" as const,
@@ -190,37 +190,31 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "John Doe, RN",
+            name: "MARINA HOSSEIN NEJAD FNP",
             specialty: "Registered Nurse",
-            address: "123 Healthcare Blvd, Medical City, MC 12345",
-            lastUpdated: "2024-01-10"
+            address: "1601 RIO GRANDE ST, SUITE 340, AUSTIN, TX 78701-1137",
+            lastUpdated: "2015-06-19"
           },
           notes: "Found active NPI record with current information"
         },
         doximity: {
-          status: "found" as const,
-          data: {
-            profile: "Active physician profile found",
-            specialty: "Registered Nurse",
-            education: "State University School of Nursing",
-            affiliations: "Medical Center Hospital"
-          },
-          notes: "Professional profile confirms specialty as Registered Nurse"
+          status: "not_found" as const,
+          notes: "No profile found in Doximity directory"
         },
         webmd: {
           status: "not_found" as const,
+          data: {
+            npi: request.npi,
+            name: "MARINA HOSSEIN NEJAD FNP",
+            specialty: "Registered Nurse",
+            address: "AUSTIN, TX 78701-1137",
+            lastUpdated: "2015-06-19"
+          },
           notes: "No profile found in WebMD directory"
         },
         nursys: {
           status: "found" as const,
-          data: {
-            license: "Active",
-            licenseNumber: "RN123456",
-            expirationDate: "2025-06-30",
-            state: "Medical State",
-            disciplinaryActions: "None"
-          },
-          notes: "Current nursing license verified, expires June 2025"
+          notes: "No profile found in WebMD directory"
         },
         google: {
           status: "found" as const,

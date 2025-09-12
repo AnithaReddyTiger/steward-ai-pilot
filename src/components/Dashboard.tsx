@@ -27,9 +27,9 @@ const mockRequests: StewardshipRequest[] = [{
   description: "Current specialty is not correct. It should be updated to 'Registered Nurse'",
   status: "pending",
   requestType: "specialty_update",
-  submittedDate: "2024-01-15T10:30:00Z",
+  submittedDate: "2025-09-10T10:30:00Z",
   priority: "high",
-  currentValue: "Doctor of Medicine",
+  currentValue: "Medical Assistant",
   proposedValue: "Registered Nurse"
 }, {
   id: "2",
@@ -38,7 +38,7 @@ const mockRequests: StewardshipRequest[] = [{
   description: "There is no license information present about expiration. Investigate License status if it's still active & expiration date",
   status: "pending",
   requestType: "license_verification",
-  submittedDate: "2024-01-15T10:35:00Z",
+  submittedDate: "2024-01-11T10:35:00Z",
   priority: "medium"
 }, {
   id: "3",
@@ -47,7 +47,7 @@ const mockRequests: StewardshipRequest[] = [{
   description: "Address needs to be updated to reflect current practice location",
   status: "approved",
   requestType: "address_update",
-  submittedDate: "2024-01-14T14:20:00Z",
+  submittedDate: "2024-01-11T14:20:00Z",
   priority: "low",
   currentValue: "3223 N Broad St, PA 82001",
   proposedValue: "9475 Roosevelt Blvd Ste 9, PA 19114"
