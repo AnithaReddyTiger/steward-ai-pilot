@@ -26,14 +26,13 @@ export const ExternalSearch = ({
 }: ExternalSearchProps) => {
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
-  
+
   // Generate mock results based on NPI and request
   const generateMockResults = useMemo(() => {
     const providerName = npiProfile?.formattedName || "Provider Name";
     const specialty = npiProfile?.specialty || "Healthcare Provider";
     const city = npiProfile?.city || "Unknown City";
     const state = npiProfile?.state || "Unknown State";
-    
     return {
       nppes: {
         source: "NPPES NPI Registry",
@@ -77,9 +76,7 @@ export const ExternalSearch = ({
           state: state.toUpperCase(),
           disciplinaryActions: "None"
         } : undefined,
-        notes: specialty.toLowerCase().includes("nurse") 
-          ? `Current nursing license verified, expires Dec 2025`
-          : "No nursing license found - not applicable for this provider type"
+        notes: specialty.toLowerCase().includes("nurse") ? `Current nursing license verified, expires Dec 2025` : "No nursing license found - not applicable for this provider type"
       },
       google: {
         source: "Google Search",
@@ -92,7 +89,6 @@ export const ExternalSearch = ({
       }
     };
   }, [request.npi, npiProfile]);
-
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>(generateMockResults);
   const [searchNotes, setSearchNotes] = useState("");
   const [customSearchUrl, setCustomSearchUrl] = useState("");
@@ -384,15 +380,7 @@ export const ExternalSearch = ({
               </div>
 
               {/* Search Results */}
-              {searchResults[source.id].status === "found" && searchResults[source.id].data && <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
-                  <h5 className="font-medium text-success mb-2">Search Results</h5>
-                  <div className="text-sm space-y-1">
-                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => <div key={key} className="flex justify-between">
-                        <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                        <span className="font-medium">{String(value)}</span>
-                      </div>)}
-                  </div>
-                </div>}
+              {searchResults[source.id].status === "found" && searchResults[source.id].data}
 
               {/* Search Notes */}
               {searchResults[source.id].notes && <div className="mt-3 text-xs text-muted-foreground">
