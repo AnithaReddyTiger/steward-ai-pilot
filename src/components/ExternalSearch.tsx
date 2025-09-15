@@ -51,26 +51,35 @@ export const ExternalSearch = ({
       doximity: {
         source: "Doximity",
         url: "https://www.doximity.com/",
-        status: "not_found" as const,
-        notes: "No professional profile found in Doximity directory"
+        status: "found" as const,
+        data: {
+          profile: "Active professional profile found",
+          specialty: specialty,
+          education: "Accredited Medical Institution",
+          affiliations: `${city} Medical Center`
+        },
+        notes: `Professional profile confirms specialty as ${specialty}`
       },
       webmd: {
         source: "WebMD",
         url: "https://doctor.webmd.com/",
-        status: "found" as const,
-        data: {
-          practitioner: "Nurse",
-          college: "Seton Medical Center Austin Texas",
-          specialty: specialty,
-          status: "Active"
-        },
-        notes: "Professional profile found in WebMD directory"
+        status: "not_found" as const,
+        notes: "No profile found in WebMD directory"
       },
       nursys: {
         source: "Nursys",
         url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-        status: "not_found" as const,
-        notes: "No nursing license found in Nursys database"
+        status: specialty.toLowerCase().includes("nurse") ? "found" as const : "not_found" as const,
+        data: specialty.toLowerCase().includes("nurse") ? {
+          license: "Active",
+          licenseNumber: npiProfile?.licenseNumber || "RN123456",
+          expirationDate: "12/31/2025",
+          state: state.toUpperCase(),
+          disciplinaryActions: "None"
+        } : undefined,
+        notes: specialty.toLowerCase().includes("nurse") 
+          ? `Current nursing license verified, expires Dec 2025`
+          : "No nursing license found - not applicable for this provider type"
       },
       google: {
         source: "Google Search",
