@@ -51,14 +51,8 @@ export const ExternalSearch = ({
       doximity: {
         source: "Doximity",
         url: "https://www.doximity.com/",
-        status: "found" as const,
-        data: {
-          profile: "Active professional profile found",
-          specialty: specialty,
-          education: "Accredited Medical Institution",
-          affiliations: `${city} Medical Center`
-        },
-        notes: `Professional profile confirms specialty as ${specialty}`
+        status: "not_found" as const,
+        notes: "No professional profile found in Doximity directory"
       },
       webmd: {
         source: "WebMD",
