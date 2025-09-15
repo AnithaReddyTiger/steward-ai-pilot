@@ -363,26 +363,7 @@ export const ExternalSearch = ({
       </div>
 
       {/* Custom Search */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Custom External Search</CardTitle>
-          <CardDescription>Add additional search sources or manual verification</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex gap-2">
-            <Input placeholder="Enter custom search URL..." value={customSearchUrl} onChange={e => setCustomSearchUrl(e.target.value)} className="flex-1" />
-            <Button variant="outline" onClick={() => window.open(customSearchUrl, '_blank')}>
-              <ExternalLink className="h-4 w-4 mr-1" />
-              Open
-            </Button>
-          </div>
-
-          <div>
-            <label className="text-sm font-medium mb-2 block">Investigation Notes</label>
-            <Textarea placeholder="Document your external search findings, cross-references, and verification steps..." value={searchNotes} onChange={e => setSearchNotes(e.target.value)} className="min-h-[120px]" />
-          </div>
-        </CardContent>
-      </Card>
+      
 
       {/* Search Summary */}
       <Card>
