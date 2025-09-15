@@ -278,7 +278,7 @@ export const ExternalSearch = ({
         }
       })
     }
-  }, [npiID])
+  }, [npiID, request])
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = {
