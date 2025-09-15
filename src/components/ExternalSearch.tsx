@@ -311,6 +311,11 @@ export const ExternalSearch = ({
         return <Badge variant="outline" className="text-xs">Not Started</Badge>;
     }
   };
+  const formatValue = (value: unknown) => {
+    if (Array.isArray(value)) return value.join(', ');
+    if (value && typeof value === 'object') return JSON.stringify(value);
+    return String(value ?? '');
+  };
   return <div className="space-y-6">
       {/* NPI Profile Information */}
       
@@ -389,7 +394,7 @@ export const ExternalSearch = ({
                   <div className="text-sm space-y-1">
                     {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => <div key={key} className="flex justify-between">
                         <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                        <span className="font-medium">{String(value)}</span>
+                        <span className="font-medium">{formatValue(value)}</span>
                       </div>)}
                   </div>
                 </div>}
