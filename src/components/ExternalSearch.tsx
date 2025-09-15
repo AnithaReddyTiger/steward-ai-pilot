@@ -196,6 +196,88 @@ export const ExternalSearch = ({
         }
       });
     }
+    else if(npiID===1881902948){
+      setSearchResults({
+        nppes: {
+          status: "found" as const,
+          data: {
+            npi: request.npi,
+            name: "Marina Hossein Nejad",
+            specialty: "Registered Nurse",
+            address: "1601 Reo Grande, ST, SUITE 340",
+            lastUpdated: "2015-06-19"
+          },
+          notes: "Found active NPI record with current information"
+        },
+        doximity: {
+          status: "found" as const,
+          notes: "No profile found in Doximity directory"
+        },
+        webmd: {
+          status: "not_found" as const,
+          notes: "No profile found in WebMD directory"
+        },
+        nursys: {
+          status: "found" as const,
+          data: {
+            license: "Active",
+            licenseNumber: "RN123456",
+            expirationDate: "2025-06-30",
+            state: "Medical State",
+            disciplinaryActions: "None"
+          },
+          notes: "Current nursing license verified, expires June 2025"
+        },
+        google: {
+          status: "found" as const,
+          data: {
+            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+          },
+          notes: "Multiple sources confirm employment and credentials"
+        }
+      })
+    }
+    else if(npiID===1780827816){
+      setSearchResults({
+        nppes: {
+          status: "found" as const,
+          data: {
+            npi: request.npi,
+            name: "Marina Hossein Nejad",
+            specialty: "Registered Nurse",
+            address: "1601 Reo Grande, ST, SUITE 340",
+            lastUpdated: "2015-06-19"
+          },
+          notes: "Found active NPI record with current information"
+        },
+        doximity: {
+          status: "found" as const,
+          notes: "No profile found in Doximity directory"
+        },
+        webmd: {
+          status: "not_found" as const,
+          notes: "No profile found in WebMD directory"
+        },
+        nursys: {
+          status: "found" as const,
+          data: {
+            license: "Active",
+            licenseNumber: "RN123456",
+            expirationDate: "2025-06-30",
+            state: "Medical State",
+            disciplinaryActions: "None"
+          },
+          notes: "Current nursing license verified, expires June 2025"
+        },
+        google: {
+          status: "found" as const,
+          data: {
+            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+          },
+          notes: "Multiple sources confirm employment and credentials"
+        }
+      })
+    }
   }, [npiID])
   const performAllSearches = async () => {
     // Set all sources to searching status
