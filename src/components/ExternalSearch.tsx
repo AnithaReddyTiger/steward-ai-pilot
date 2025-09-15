@@ -69,16 +69,16 @@ export const ExternalSearch = ({
       nursys: {
         source: "Nursys",
         url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-        status: request.npi === "1164037024" ? "found" as const : "not_found" as const,
-        data: request.npi === "1164037024" ? {
+        status: specialty.toLowerCase().includes("nurse") ? "found" as const : "not_found" as const,
+        data: specialty.toLowerCase().includes("nurse") ? {
           license: "Active",
-          licenseNumber: "27748",
-          expirationDate: "12/31/2026",
-          state: "WYOMING",
+          licenseNumber: npiProfile?.licenseNumber || "RN123456",
+          expirationDate: "12/31/2025",
+          state: state.toUpperCase(),
           disciplinaryActions: "None"
         } : undefined,
-        notes: request.npi === "1164037024" 
-          ? "Current RN license verified, expires Dec 2026"
+        notes: specialty.toLowerCase().includes("nurse") 
+          ? `Current nursing license verified, expires Dec 2025`
           : "No nursing license found - not applicable for this provider type"
       },
       google: {
@@ -181,12 +181,12 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "27748",
+            licenseNumber: "RN27748",
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
           },
-          notes: "Current RN license verified, expires Dec 2026"
+          notes: "Current nursing license verified, expires Dec 2026"
         },
         google: {
           status: "found" as const,
@@ -238,7 +238,7 @@ export const ExternalSearch = ({
           notes: "Found active NPI record with current information"
         },
         doximity: {
-          status: "not_found" as const,
+          status: "found" as const,
           notes: "No profile found in Doximity directory"
         },
         webmd: {
@@ -310,11 +310,6 @@ export const ExternalSearch = ({
       default:
         return <Badge variant="outline" className="text-xs">Not Started</Badge>;
     }
-  };
-  const formatValue = (value: unknown) => {
-    if (Array.isArray(value)) return value.join(', ');
-    if (value && typeof value === 'object') return JSON.stringify(value);
-    return String(value ?? '');
   };
   return <div className="space-y-6">
       {/* NPI Profile Information */}
@@ -394,7 +389,7 @@ export const ExternalSearch = ({
                   <div className="text-sm space-y-1">
                     {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => <div key={key} className="flex justify-between">
                         <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                        <span className="font-medium">{formatValue(value)}</span>
+                        <span className="font-medium">{String(value)}</span>
                       </div>)}
                   </div>
                 </div>}
