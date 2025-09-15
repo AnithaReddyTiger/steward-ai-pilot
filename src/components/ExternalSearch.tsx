@@ -1,4 +1,4 @@
-import { useState, useMemo,useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -138,9 +138,12 @@ export const ExternalSearch = ({
     recommended: false
   }];
 
-  useEffect(()=>{
-    npiID==="1164037024" && setSearchResults( {
+  useEffect(() => {
+    if (npiID === "1164037024") {
+      setSearchResults({
         nppes: {
+          source: "NPPES NPI Registry",
+          url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
           data: {
             npi: request.npi,
@@ -152,6 +155,8 @@ export const ExternalSearch = ({
           notes: "Found active NPI record with current information"
         },
         doximity: {
+          source: "Doximity",
+          url: "https://www.doximity.com/",
           status: "found" as const,
           data: {
             profile: "Active physician profile found",
@@ -162,10 +167,14 @@ export const ExternalSearch = ({
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
         webmd: {
+          source: "WebMD",
+          url: "https://doctor.webmd.com/",
           status: "not_found" as const,
           notes: "No profile found in WebMD directory"
         },
         nursys: {
+          source: "Nursys",
+          url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
           data: {
             license: "Active",
@@ -177,16 +186,17 @@ export const ExternalSearch = ({
           notes: "Current nursing license verified, expires Dec 2026"
         },
         google: {
+          source: "Google Search",
+          url: "",
           status: "found" as const,
           data: {
             results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
-      }
-)
-    
-  },[npiId])
+      });
+    }
+  }, [npiID])
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = {
@@ -250,15 +260,8 @@ export const ExternalSearch = ({
       // };
 
       // Update all search results at once
-      const finalResults = {
-        ...searchResults
-      };
-      Object.keys(mockResults).forEach(sourceId => {
-        finalResults[sourceId] = {
-          ...finalResults[sourceId],
-          ...mockResults[sourceId as keyof typeof mockResults]
-        };
-      });
+      const finalResults = generateMockResults();
+      setSearchResults(finalResults);
       setSearchResults(finalResults);
       toast({
         title: "Investigation Completed",
