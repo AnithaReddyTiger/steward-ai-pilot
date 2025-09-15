@@ -16,7 +16,7 @@ interface StewardProfile {
 }
 const mockStewardProfile: StewardProfile = {
   id: "ST001",
-  name: "Dr. Sarah Chen",
+  name: "Sarah Chen",
   email: "sarah.chen@healthcare.org",
   role: "Senior Healthcare Steward",
   department: "Provider Data Management",
