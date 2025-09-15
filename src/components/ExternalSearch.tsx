@@ -167,10 +167,13 @@ export const ExternalSearch = ({
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
         webmd: {
-          source: "WebMD",
-          url: "https://doctor.webmd.com/",
-          status: "not_found" as const,
-          notes: "No profile found in WebMD directory"
+          status: "found" as const,
+          data: {
+            npi: request.npi,
+            name: "Marina Hossein Nejad",
+            specialty: "Registered Nurse"
+          },
+          notes: "Profile found in WebMD directory"
         },
         nursys: {
           source: "Nursys",
@@ -214,24 +217,29 @@ export const ExternalSearch = ({
           notes: "No profile found in Doximity directory"
         },
         webmd: {
-          status: "not_found" as const,
-          notes: "No profile found in WebMD directory"
-        },
-        nursys: {
           status: "found" as const,
           data: {
+            npi: request.npi,
+            name: "Marina Hossein Nejad",
+            specialty: "Registered Nurse"
+          },
+          notes: "Profile found in WebMD directory"
+        },
+        nursys: {
+          status: "not_found" as const,
+          data: {
             license: "Active",
-            licenseNumber: "RN123456",
-            expirationDate: "2025-06-30",
-            state: "Medical State",
+            licenseNumber: "RN27748",
+            expirationDate: "31-12-2026",
+            state: "",
             disciplinaryActions: "None"
           },
-          notes: "Current nursing license verified, expires June 2025"
+          notes: "No profile found in Doximity directory"
         },
         google: {
           status: "found" as const,
           data: {
-            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+            results: ["affiliation to Providence Hospital"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
