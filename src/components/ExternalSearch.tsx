@@ -245,10 +245,10 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "Marina Hossein Nejad",
+            name: "JESSY TOM PATTANIYIL NPC",
             specialty: "Registered Nurse",
-            address: "1601 Reo Grande, ST, SUITE 340",
-            lastUpdated: "2015-06-19"
+            address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
+            lastUpdated: "2022-05-24"
           },
           notes: "Found active NPI record with current information"
         },
