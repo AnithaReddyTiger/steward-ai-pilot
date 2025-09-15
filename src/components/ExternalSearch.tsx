@@ -116,7 +116,7 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "John Doe, RN",
+            name: "John Doe",
             specialty: "Registered Nurse",
             address: "123 Healthcare Blvd, Medical City, MC 12345",
             lastUpdated: "2024-01-10"
