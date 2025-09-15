@@ -26,7 +26,7 @@ export const ExternalSearch = ({
 }: ExternalSearchProps) => {
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
-  
+  const npiID=request.npi
   // Generate mock results based on NPI and request
   const generateMockResults = () => {
     const providerName = npiProfile?.formattedName || "Provider Name";
@@ -100,6 +100,7 @@ export const ExternalSearch = ({
   const {
     toast
   } = useToast();
+  
   const searchSources = [{
     id: "nppes",
     name: "NPPES NPI Registry",
@@ -136,6 +137,10 @@ export const ExternalSearch = ({
     searchType: "Name + City + State",
     recommended: false
   }];
+
+  useEffect(()=>{
+    npiID==="" && setSearchResults()
+  }[npiId])
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = {
@@ -284,6 +289,8 @@ export const ExternalSearch = ({
       window.open(searchResults[sourceId].url, '_blank');
     }
   };
+
+  
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "found":
