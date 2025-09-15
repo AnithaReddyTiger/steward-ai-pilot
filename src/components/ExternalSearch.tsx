@@ -24,62 +24,31 @@ interface SearchResult {
 export const ExternalSearch = ({
   request
 }: ExternalSearchProps) => {
-  // Get NPI profile data
-  const npiProfile = getNPIProfile(request.npi);
-  
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>({
     nppes: {
       source: "NPPES NPI Registry",
       url: "https://npiregistry.cms.hhs.gov/search",
-      status: "found",
-      data: {
-        npi: request.npi,
-        name: npiProfile?.formattedName || "Provider Name",
-        specialty: npiProfile?.specialty || "Healthcare Provider",
-        address: `${npiProfile?.addrLine1 || ""} ${npiProfile?.city || ""}, ${npiProfile?.state || ""} ${npiProfile?.zipCode || ""}`,
-        lastUpdated: "2024-01-15"
-      },
-      notes: "Found active NPI record with current information"
+      status: "not_found"
     },
     doximity: {
       source: "Doximity",
       url: "https://www.doximity.com/",
-      status: "found",
-      data: {
-        profile: "Active physician profile found",
-        specialty: npiProfile?.specialty || "Healthcare Provider",
-        education: "Medical University",
-        affiliations: "Regional Medical Center"
-      },
-      notes: "Professional profile confirms specialty and credentials"
+      status: "not_found"
     },
     webmd: {
       source: "WebMD",
       url: "https://doctor.webmd.com/",
-      status: "not_found",
-      notes: "No profile found in WebMD directory"
+      status: "not_found"
     },
     nursys: {
       source: "Nursys",
       url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-      status: "found",
-      data: {
-        license: "Active",
-        licenseNumber: npiProfile?.licenseNumber || "Unknown",
-        expirationDate: npiProfile?.licenseExpirationDate || "2025-12-31",
-        state: npiProfile?.licenseState || "Unknown",
-        disciplinaryActions: "None"
-      },
-      notes: "Current license verified and active"
+      status: "not_found"
     },
     google: {
       source: "Google Search",
       url: "",
-      status: "found",
-      data: {
-        results: ["Medical center staff directory", "State licensing board", "Professional association listing"]
-      },
-      notes: "Multiple sources confirm employment and credentials"
+      status: "not_found"
     }
   });
   const [searchNotes, setSearchNotes] = useState("");
@@ -87,6 +56,9 @@ export const ExternalSearch = ({
   const {
     toast
   } = useToast();
+
+  // Get NPI profile data
+  const npiProfile = getNPIProfile(request.npi);
   const searchSources = [{
     id: "nppes",
     name: "NPPES NPI Registry",
@@ -330,11 +302,11 @@ export const ExternalSearch = ({
             </div>
           </div>
           
-          <div className="text-center pt-4">
-            <Badge variant="approved" className="text-sm">
+          <div className="flex justify-center pt-4">
+            <Button onClick={performAllSearches} disabled={Object.values(searchResults).some(r => r.status === "searching")} className="px-8 py-2">
               <Search className="h-4 w-4 mr-2" />
-              Investigation Completed
-            </Badge>
+              {Object.values(searchResults).some(r => r.status === "searching") ? "Investigating..." : "Start Investigation"}
+            </Button>
           </div>
         </CardContent>
       </Card>
