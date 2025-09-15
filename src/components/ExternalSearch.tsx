@@ -196,7 +196,7 @@ export const ExternalSearch = ({
         }
       });
     }
-    else if(npiID===1881902948){
+    else if(npiID==="1881902948"){
       setSearchResults({
         nppes: {
           status: "found" as const,
@@ -237,7 +237,7 @@ export const ExternalSearch = ({
         }
       })
     }
-    else if(npiID===1780827816){
+    else if(npiID==="1780827816"){
       setSearchResults({
         nppes: {
           status: "found" as const,
@@ -351,69 +351,69 @@ export const ExternalSearch = ({
       });
     }, 2000);
   };
-  const performSearch = async (sourceId: string) => {
-    setSearchResults(prev => ({
-      ...prev,
-      [sourceId]: {
-        ...prev[sourceId],
-        status: "searching"
-      }
-    }));
+  // const performSearch = async (sourceId: string) => {
+  //   setSearchResults(prev => ({
+  //     ...prev,
+  //     [sourceId]: {
+  //       ...prev[sourceId],
+  //       status: "searching"
+  //     }
+  //   }));
 
-    // Simulate search delay
-    setTimeout(() => {
-      const mockResults = {
-        nppes: {
-          status: "found" as const,
-          data: {
-            npi: request.npi,
-            name: "Marina Hossein Nejad",
-            specialty: "Registered Nurse",
-            address: "1601 Reo Grande, ST, SUITE 340",
-            lastUpdated: "2015-06-19"
-          },
-          notes: "Found active NPI record with current information"
-        },
-        doximity: {
-          status: "found" as const,
-          notes: "No profile found in Doximity directory"
-        },
-        webmd: {
-          status: "not_found" as const,
-          notes: "No profile found in WebMD directory"
-        },
-        nursys: {
-          status: "found" as const,
-          data: {
-            license: "Active",
-            licenseNumber: "RN123456",
-            expirationDate: "2025-06-30",
-            state: "Medical State",
-            disciplinaryActions: "None"
-          },
-          notes: "Current nursing license verified, expires June 2025"
-        },
-        google: {
-          status: "found" as const,
-          data: {
-            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
-          },
-          notes: "Multiple sources confirm employment and credentials"
-        }
-      };
-      setSearchResults(prev => ({
-        ...prev,
-        [sourceId]: {
-          ...prev[sourceId],
-          ...mockResults[sourceId as keyof typeof mockResults]
-        }
-      }));
-      toast({
-        title: "Search Completed",
-        description: `Search completed for ${searchSources.find(s => s.id === sourceId)?.name}`
-      });
-    }, 2000);
-  };
+  //   // Simulate search delay
+  //   setTimeout(() => {
+  //     const mockResults = {
+  //       nppes: {
+  //         status: "found" as const,
+  //         data: {
+  //           npi: request.npi,
+  //           name: "Marina Hossein Nejad",
+  //           specialty: "Registered Nurse",
+  //           address: "1601 Reo Grande, ST, SUITE 340",
+  //           lastUpdated: "2015-06-19"
+  //         },
+  //         notes: "Found active NPI record with current information"
+  //       },
+  //       doximity: {
+  //         status: "found" as const,
+  //         notes: "No profile found in Doximity directory"
+  //       },
+  //       webmd: {
+  //         status: "not_found" as const,
+  //         notes: "No profile found in WebMD directory"
+  //       },
+  //       nursys: {
+  //         status: "found" as const,
+  //         data: {
+  //           license: "Active",
+  //           licenseNumber: "RN123456",
+  //           expirationDate: "2025-06-30",
+  //           state: "Medical State",
+  //           disciplinaryActions: "None"
+  //         },
+  //         notes: "Current nursing license verified, expires June 2025"
+  //       },
+  //       google: {
+  //         status: "found" as const,
+  //         data: {
+  //           results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+  //         },
+  //         notes: "Multiple sources confirm employment and credentials"
+  //       }
+  //     };
+  //     // setSearchResults(prev => ({
+  //     //   ...prev,
+  //     //   [sourceId]: {
+  //     //     ...prev[sourceId],
+  //     //     ...mockResults[sourceId as keyof typeof mockResults]
+  //     //   }
+  //     // }));
+  //     toast({
+  //       title: "Search Completed",
+  //       description: `Search completed for ${searchSources.find(s => s.id === sourceId)?.name}`
+  //     });
+  //   }, 2000);
+  // };
   const openExternalSearch = (sourceId: string) => {
     const source = searchSources.find(s => s.id === sourceId);
     if (source && searchResults[sourceId].url) {
