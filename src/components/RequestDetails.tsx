@@ -124,7 +124,7 @@ export const RequestDetails = ({ request, onBack }: RequestDetailsProps) => {
                     <div>
                       <h4 className="font-medium mb-2 text-destructive">Current Value</h4>
                       <p className="text-sm bg-destructive-subtle p-3 rounded-md border border-destructive/20">
-                        Doctor of Medicine
+                        {request.currentValue}
                       </p>
                     </div>
                     <div>
