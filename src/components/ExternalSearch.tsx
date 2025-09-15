@@ -238,7 +238,7 @@ export const ExternalSearch = ({
           notes: "Found active NPI record with current information"
         },
         doximity: {
-          status: "found" as const,
+          status: "not_found" as const,
           notes: "No profile found in Doximity directory"
         },
         webmd: {
