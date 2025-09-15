@@ -208,6 +208,7 @@ export const ExternalSearch = ({
             name: "Marina Hossein Nejad",
             specialty: "Registered Nurse",
             address: "1601 Reo Grande, ST, SUITE 340",
+            licensenumber: 638707, 
             lastUpdated: "2015-06-19"
           },
           notes: "Found active NPI record with current information"
