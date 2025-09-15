@@ -183,7 +183,7 @@ export const ExternalSearch = ({
           },
           notes: "Multiple sources confirm employment and credentials"
         }
-      };
+      }
 )
     
   },[npiId])
