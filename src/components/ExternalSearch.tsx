@@ -72,12 +72,13 @@ export const ExternalSearch = ({
         status: specialty.toLowerCase().includes("nurse") ? "found" as const : "not_found" as const,
         data: specialty.toLowerCase().includes("nurse") ? {
           license: "Active",
-          licenseNumber: npiProfile?.licenseNumber,
+          licenseNumber: npiProfile?.licenseNumber || "RN123456",
           expirationDate: "12/31/2025",
           state: state.toUpperCase(),
           disciplinaryActions: "None"
         } : undefined,
         notes: specialty.toLowerCase().includes("nurse") 
+          ? `Current nursing license verified, expires Dec 2025`
           : "No nursing license found - not applicable for this provider type"
       },
       google: {
