@@ -63,17 +63,8 @@ export const ExternalSearch = ({
       nursys: {
         source: "Nursys",
         url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-        status: specialty.toLowerCase().includes("nurse") ? "found" as const : "not_found" as const,
-        data: specialty.toLowerCase().includes("nurse") ? {
-          license: "Active",
-          licenseNumber: npiProfile?.licenseNumber || "RN123456",
-          expirationDate: "12/31/2025",
-          state: state.toUpperCase(),
-          disciplinaryActions: "None"
-        } : undefined,
-        notes: specialty.toLowerCase().includes("nurse") 
-          ? `Current nursing license verified, expires Dec 2025`
-          : "No nursing license found - not applicable for this provider type"
+        status: "not_found" as const,
+        notes: "No nursing license found in Nursys database"
       },
       google: {
         source: "Google Search",
