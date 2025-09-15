@@ -228,13 +228,6 @@ export const ExternalSearch = ({
         },
         nursys: {
           status: "not_found" as const,
-          data: {
-            license: "Active",
-            licenseNumber: "RN27748",
-            expirationDate: "31-12-2026",
-            state: "",
-            disciplinaryActions: "None"
-          },
           notes: "No profile found in Doximity directory"
         },
         google: {
