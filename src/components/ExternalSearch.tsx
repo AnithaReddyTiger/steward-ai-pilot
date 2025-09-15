@@ -181,12 +181,12 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "RN27748",
+            licenseNumber: "27748",
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
           },
-          notes: "Current nursing license verified, expires Dec 2026"
+          notes: "Current RN license verified, expires Dec 2026"
         },
         google: {
           status: "found" as const,
