@@ -140,7 +140,7 @@ export const ExternalSearch = ({
 
   useEffect(()=>{
     npiID==="" && setSearchResults()
-  }[npiId])
+  },[npiId])
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = {
