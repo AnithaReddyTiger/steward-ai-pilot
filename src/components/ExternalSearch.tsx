@@ -116,10 +116,10 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "John Doe",
+            name: "AMINATA AW NP",
             specialty: "Registered Nurse",
-            address: "123 Healthcare Blvd, Medical City, MC 12345",
-            lastUpdated: "2024-01-10"
+            address: "PO BOX 6282 SHERIDAN, WY 82801-1682",
+            lastUpdated: "2022-11-03"
           },
           notes: "Found active NPI record with current information"
         },
