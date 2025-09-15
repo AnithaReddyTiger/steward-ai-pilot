@@ -29,7 +29,7 @@ const mockRequests: StewardshipRequest[] = [{
   requestType: "specialty_update",
   submittedDate: "2025-09-10T10:30:00Z",
   priority: "high",
-  currentValue: "Medical Assistant",
+  currentValue: "Doctor of Medicine",
   proposedValue: "Registered Nurse"
 }, {
   id: "2",
@@ -47,7 +47,7 @@ const mockRequests: StewardshipRequest[] = [{
   description: "Address needs to be updated to reflect current practice location",
   status: "approved",
   requestType: "address_update",
-  submittedDate: "2024-01-11T14:20:00Z",
+  submittedDate: "2025-09-09T14:20:00Z",
   priority: "low",
   currentValue: "3223 N Broad St, PA 82001",
   proposedValue: "9475 Roosevelt Blvd Ste 9, PA 19114"
