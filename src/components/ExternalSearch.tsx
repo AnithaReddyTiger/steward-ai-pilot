@@ -28,7 +28,7 @@ export const ExternalSearch = ({
   const npiProfile = getNPIProfile(request.npi);
   
   // Generate mock results based on NPI and request
-  const generateMockResults = useMemo(() => {
+  const generateMockResults = () => {
     const providerName = npiProfile?.formattedName || "Provider Name";
     const specialty = npiProfile?.specialty || "Healthcare Provider";
     const city = npiProfile?.city || "Unknown City";
@@ -91,7 +91,8 @@ export const ExternalSearch = ({
         notes: "Multiple sources confirm employment and credentials"
       }
     };
-  }, [request.npi, npiProfile]);
+  }
+    // , [request.npi, npiProfile]);
 
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>(generateMockResults);
   const [searchNotes, setSearchNotes] = useState("");
