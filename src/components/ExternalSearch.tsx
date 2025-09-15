@@ -139,25 +139,7 @@ export const ExternalSearch = ({
   }];
 
   useEffect(()=>{
-    npiID==="" && setSearchResults()
-  },[npiId])
-  const performAllSearches = async () => {
-    // Set all sources to searching status
-    const updatedResults = {
-      ...searchResults
-    };
-    Object.keys(updatedResults).forEach(sourceId => {
-      updatedResults[sourceId] = {
-        ...updatedResults[sourceId],
-        status: "searching"
-      };
-    });
-    setSearchResults(updatedResults);
-
-    // Simulate search delay for all sources
-    setTimeout(() => {
-      // Mock search results
-      const mockResults = {
+    npiID==="1164037024" && setSearchResults( {
         nppes: {
           status: "found" as const,
           data: {
@@ -202,6 +184,70 @@ export const ExternalSearch = ({
           notes: "Multiple sources confirm employment and credentials"
         }
       };
+)
+    
+  },[npiId])
+  const performAllSearches = async () => {
+    // Set all sources to searching status
+    const updatedResults = {
+      ...searchResults
+    };
+    Object.keys(updatedResults).forEach(sourceId => {
+      updatedResults[sourceId] = {
+        ...updatedResults[sourceId],
+        status: "searching"
+      };
+    });
+    setSearchResults(updatedResults);
+
+    // Simulate search delay for all sources
+    setTimeout(() => {
+      // Mock search results
+      // const mockResults = {
+      //   nppes: {
+      //     status: "found" as const,
+      //     data: {
+      //       npi: request.npi,
+      //       name: "AMINATA AW NP",
+      //       specialty: "Registered Nurse",
+      //       address: "PO BOX 6282 SHERIDAN, WY 82801-1682",
+      //       lastUpdated: "2022-11-03"
+      //     },
+      //     notes: "Found active NPI record with current information"
+      //   },
+      //   doximity: {
+      //     status: "found" as const,
+      //     data: {
+      //       profile: "Active physician profile found",
+      //       specialty: "Registered Nurse",
+      //       education: "Texas Tech University Health Sciences Center",
+      //       affiliations: "Cheyenne Regional Medical Center"
+      //     },
+      //     notes: "Professional profile confirms specialty as Registered Nurse"
+      //   },
+      //   webmd: {
+      //     status: "not_found" as const,
+      //     notes: "No profile found in WebMD directory"
+      //   },
+      //   nursys: {
+      //     status: "found" as const,
+      //     data: {
+      //       license: "Active",
+      //       licenseNumber: "RN27748",
+      //       expirationDate: "12/31/2026",
+      //       state: "WYOMING",
+      //       disciplinaryActions: "None"
+      //     },
+      //     notes: "Current nursing license verified, expires Dec 2026"
+      //   },
+      //   google: {
+      //     status: "found" as const,
+      //     data: {
+      //       results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+      //     },
+      //     notes: "Multiple sources confirm employment and credentials"
+      //   }
+      // };
 
       // Update all search results at once
       const finalResults = {
