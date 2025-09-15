@@ -128,8 +128,8 @@ export const ExternalSearch = ({
           data: {
             profile: "Active physician profile found",
             specialty: "Registered Nurse",
-            education: "State University School of Nursing",
-            affiliations: "Medical Center Hospital"
+            education: "Texas Tech University Health Sciences Center",
+            affiliations: "Cheyenne Regional Medical Center"
           },
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
