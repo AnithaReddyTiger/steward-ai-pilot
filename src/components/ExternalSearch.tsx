@@ -57,8 +57,14 @@ export const ExternalSearch = ({
       webmd: {
         source: "WebMD",
         url: "https://doctor.webmd.com/",
-        status: "not_found" as const,
-        notes: "No profile found in WebMD directory"
+        status: "found" as const,
+        data: {
+          practitioner: "Nurse",
+          college: "Seton Medical Center Austin Texas",
+          specialty: specialty,
+          status: "Active"
+        },
+        notes: "Professional profile found in WebMD directory"
       },
       nursys: {
         source: "Nursys",
