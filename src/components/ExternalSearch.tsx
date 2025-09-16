@@ -177,7 +177,7 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "Marina Hossein Nejad",
+            name: "AMINATA AW",
             specialty: "Registered Nurse"
           },
           notes: "Profile found in WebMD directory"
@@ -188,7 +188,7 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "RN27748",
+            licenseNumber: "27748",
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
@@ -242,7 +242,7 @@ export const ExternalSearch = ({
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "not_found" as const,
-          notes: "No profile found in Doximity directory"
+          notes: "No profile found in Nursys directory"
         },
         google: {
           source: "Google Search",
@@ -251,7 +251,7 @@ export const ExternalSearch = ({
           data: {
             results: ["affiliation to Providence Hospital"]
           },
-          notes: "Multiple sources confirm employment and credentials"
+          notes: "Not much information could be retrieved regarding the license."
         }
       });
     } else if (npiID === "1780827816") {
