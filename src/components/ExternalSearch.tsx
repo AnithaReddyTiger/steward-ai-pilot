@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Search, ExternalLink, Globe, Database, MapPin, FileText, Building, AlertCircle, User, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getNPIProfile } from "@/data/npiProfiles";
+
 interface ExternalSearchProps {
   request: {
     npi: string;
@@ -14,6 +15,7 @@ interface ExternalSearchProps {
     description: string;
   };
 }
+
 interface SearchResult {
   source: string;
   url: string;
@@ -21,18 +23,21 @@ interface SearchResult {
   data?: any;
   notes?: string;
 }
+
 export const ExternalSearch = ({
   request
 }: ExternalSearchProps) => {
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
   const npiID = request.npi;
+
   // Generate mock results based on NPI and request
   const generateMockResults = () => {
     const providerName = npiProfile?.formattedName || "Provider Name";
     const specialty = npiProfile?.specialty || "Healthcare Provider";
     const city = npiProfile?.city || "Unknown City";
     const state = npiProfile?.state || "Unknown State";
+
     return {
       nppes: {
         source: "NPPES NPI Registry",
@@ -89,50 +94,55 @@ export const ExternalSearch = ({
       }
     };
   };
-  // , [request.npi, npiProfile]);
 
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>(generateMockResults);
   const [searchNotes, setSearchNotes] = useState("");
   const [customSearchUrl, setCustomSearchUrl] = useState("");
-  const {
-    toast
-  } = useToast();
-  const searchSources = [{
-    id: "nppes",
-    name: "NPPES NPI Registry",
-    description: "Official CMS NPI database search",
-    icon: <Database className="h-4 w-4" />,
-    searchType: "NPI",
-    recommended: true
-  }, {
-    id: "doximity",
-    name: "Doximity",
-    description: "Professional medical network",
-    icon: <Building className="h-4 w-4" />,
-    searchType: "Name + Location",
-    recommended: true
-  }, {
-    id: "webmd",
-    name: "WebMD Doctor Directory",
-    description: "Healthcare provider directory",
-    icon: <FileText className="h-4 w-4" />,
-    searchType: "Name + Location",
-    recommended: false
-  }, {
-    id: "nursys",
-    name: "Nursys License Verification",
-    description: "Nursing license verification system",
-    icon: <FileText className="h-4 w-4" />,
-    searchType: "License Verification",
-    recommended: request.requestType === "license_verification"
-  }, {
-    id: "google",
-    name: "Google Search",
-    description: "General web search for provider information",
-    icon: <Globe className="h-4 w-4" />,
-    searchType: "Name + City + State",
-    recommended: false
-  }];
+  const { toast } = useToast();
+
+  const searchSources = [
+    {
+      id: "nppes",
+      name: "NPPES NPI Registry",
+      description: "Official CMS NPI database search",
+      icon: <Database className="h-4 w-4" />,
+      searchType: "NPI",
+      recommended: true
+    },
+    {
+      id: "doximity",
+      name: "Doximity",
+      description: "Professional medical network",
+      icon: <Building className="h-4 w-4" />,
+      searchType: "Name + Location",
+      recommended: true
+    },
+    {
+      id: "webmd",
+      name: "WebMD Doctor Directory",
+      description: "Healthcare provider directory",
+      icon: <FileText className="h-4 w-4" />,
+      searchType: "Name + Location",
+      recommended: false
+    },
+    {
+      id: "nursys",
+      name: "Nursys License Verification",
+      description: "Nursing license verification system",
+      icon: <FileText className="h-4 w-4" />,
+      searchType: "License Verification",
+      recommended: request.requestType === "license_verification"
+    },
+    {
+      id: "google",
+      name: "Google Search",
+      description: "General web search for provider information",
+      icon: <Globe className="h-4 w-4" />,
+      searchType: "Name + City + State",
+      recommended: false
+    }
+  ];
+
   useEffect(() => {
     if (npiID === "1164037024") {
       setSearchResults({
@@ -296,11 +306,10 @@ export const ExternalSearch = ({
       });
     }
   }, [npiID, request]);
+
   const performAllSearches = async () => {
     // Set all sources to searching status
-    const updatedResults = {
-      ...searchResults
-    };
+    const updatedResults = { ...searchResults };
     Object.keys(updatedResults).forEach(sourceId => {
       updatedResults[sourceId] = {
         ...updatedResults[sourceId],
@@ -311,56 +320,8 @@ export const ExternalSearch = ({
 
     // Simulate search delay for all sources
     setTimeout(() => {
-      // Mock search results
-      // const mockResults = {
-      //   nppes: {
-      //     status: "found" as const,
-      //     data: {
-      //       npi: request.npi,
-      //       name: "AMINATA AW NP",
-      //       specialty: "Registered Nurse",
-      //       address: "PO BOX 6282 SHERIDAN, WY 82801-1682",
-      //       lastUpdated: "2022-11-03"
-      //     },
-      //     notes: "Found active NPI record with current information"
-      //   },
-      //   doximity: {
-      //     status: "found" as const,
-      //     data: {
-      //       profile: "Active physician profile found",
-      //       specialty: "Registered Nurse",
-      //       education: "Texas Tech University Health Sciences Center",
-      //       affiliations: "Cheyenne Regional Medical Center"
-      //     },
-      //     notes: "Professional profile confirms specialty as Registered Nurse"
-      //   },
-      //   webmd: {
-      //     status: "not_found" as const,
-      //     notes: "No profile found in WebMD directory"
-      //   },
-      //   nursys: {
-      //     status: "found" as const,
-      //     data: {
-      //       license: "Active",
-      //       licenseNumber: "RN27748",
-      //       expirationDate: "12/31/2026",
-      //       state: "WYOMING",
-      //       disciplinaryActions: "None"
-      //     },
-      //     notes: "Current nursing license verified, expires Dec 2026"
-      //   },
-      //   google: {
-      //     status: "found" as const,
-      //     data: {
-      //       results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
-      //     },
-      //     notes: "Multiple sources confirm employment and credentials"
-      //   }
-      // };
-
       // Update all search results at once
       const finalResults = generateMockResults();
-      setSearchResults(finalResults);
       setSearchResults(finalResults);
       toast({
         title: "Investigation Completed",
@@ -368,75 +329,14 @@ export const ExternalSearch = ({
       });
     }, 2000);
   };
-  // const performSearch = async (sourceId: string) => {
-  //   setSearchResults(prev => ({
-  //     ...prev,
-  //     [sourceId]: {
-  //       ...prev[sourceId],
-  //       status: "searching"
-  //     }
-  //   }));
 
-  //   // Simulate search delay
-  //   setTimeout(() => {
-  //     const mockResults = {
-  //       nppes: {
-  //         status: "found" as const,
-  //         data: {
-  //           npi: request.npi,
-  //           name: "Marina Hossein Nejad",
-  //           specialty: "Registered Nurse",
-  //           address: "1601 Reo Grande, ST, SUITE 340",
-  //           lastUpdated: "2015-06-19"
-  //         },
-  //         notes: "Found active NPI record with current information"
-  //       },
-  //       doximity: {
-  //         status: "found" as const,
-  //         notes: "No profile found in Doximity directory"
-  //       },
-  //       webmd: {
-  //         status: "not_found" as const,
-  //         notes: "No profile found in WebMD directory"
-  //       },
-  //       nursys: {
-  //         status: "found" as const,
-  //         data: {
-  //           license: "Active",
-  //           licenseNumber: "RN123456",
-  //           expirationDate: "2025-06-30",
-  //           state: "Medical State",
-  //           disciplinaryActions: "None"
-  //         },
-  //         notes: "Current nursing license verified, expires June 2025"
-  //       },
-  //       google: {
-  //         status: "found" as const,
-  //         data: {
-  //           results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
-  //         },
-  //         notes: "Multiple sources confirm employment and credentials"
-  //       }
-  //     };
-  //     // setSearchResults(prev => ({
-  //     //   ...prev,
-  //     //   [sourceId]: {
-  //     //     ...prev[sourceId],
-  //     //     ...mockResults[sourceId as keyof typeof mockResults]
-  //     //   }
-  //     // }));
-  //     toast({
-  //       title: "Search Completed",
-  //       description: `Search completed for ${searchSources.find(s => s.id === sourceId)?.name}`
-  //     });
-  //   }, 2000);
-  // };
   const openExternalSearch = (sourceId: string) => {
     const source = searchSources.find(s => s.id === sourceId);
     if (source && searchResults[sourceId].url) {
       window.open(searchResults[sourceId].url, '_blank');
     }
   };
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "found":
@@ -451,6 +351,7 @@ export const ExternalSearch = ({
         return <div className="w-2 h-2 bg-muted-foreground rounded-full"></div>;
     }
   };
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "found":
@@ -465,7 +366,9 @@ export const ExternalSearch = ({
         return <Badge variant="outline" className="text-xs">Not Started</Badge>;
     }
   };
-  return <div className="space-y-6">
+
+  return (
+    <div className="space-y-6">
       {/* NPI Profile Information */}
       
 
@@ -495,9 +398,33 @@ export const ExternalSearch = ({
               <div>
                 <h4 className="font-medium mb-2">Key Findings</h4>
                 <div className="text-sm text-muted-foreground">
-                  {request.npi === "1164037024" && "Requestor submitted request to update Specialty. Multiple specialties found in current data systems. TASteward.ai found NPI matches on reference data-sources and determined request is valid. TASteward.ai recommendation – update Specialty to ‘Registered Nurse’. Confidence:  Very High"}
-                  {request.npi === "1881902948" && "Requestor submitted request to investigate ‘license active status and expiration dates’. TASteward.ai found found outdated license information for NPI but could not fully validate current status and license expiration dates for this HCP. TASteward.ai recommendation – due to limited information available, no change should be done on license status and expiration dates. Confidence:  Low"}
-                  {request.npi === "1780827816" && "Requestor submitted request to update ‘Address’. 1 linked address was identified in current data systems. TASteward.ai found multiple addresses for this. HCP on reference data-sources and determined request is valid. TASteward.ai recommendation – update Address to ‘6501 Harbison Ave, Philadelphia, PA 19149-2912’. Confidence:  Very High"}
+                  {request.npi === "1164037024" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Requestor submitted request to update Specialty</li>
+                      <li>Multiple specialties found in current data systems</li>
+                      <li>TASteward.ai found NPI matches on reference data-sources and determined request is valid</li>
+                      <li>TASteward.ai recommendation – update Specialty to 'Registered Nurse'</li>
+                      <li>Confidence: Very High</li>
+                    </ul>
+                  )}
+                  {request.npi === "1881902948" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Requestor submitted request to investigate 'license active status and expiration dates'</li>
+                      <li>TASteward.ai found outdated license information for NPI</li>
+                      <li>Could not fully validate current status and license expiration dates for this HCP</li>
+                      <li>TASteward.ai recommendation – due to limited information available, no change should be done on license status and expiration dates</li>
+                      <li>Confidence: Low</li>
+                    </ul>
+                  )}
+                  {request.npi === "1780827816" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Requestor submitted request to update 'Address'</li>
+                      <li>1 linked address was identified in current data systems</li>
+                      <li>TASteward.ai found multiple addresses for this HCP on reference data-sources and determined request is valid</li>
+                      <li>TASteward.ai recommendation – update Address to '6501 Harbison Ave, Philadelphia, PA 19149-2912'</li>
+                      <li>Confidence: Very High</li>
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
@@ -532,14 +459,29 @@ export const ExternalSearch = ({
             <div className="space-y-2">
               <h4 className="font-medium mb-2">Sources Found:</h4>
               <ul className="space-y-1">
-                {Object.entries(searchResults).filter(([_, result]) => result.status === "found").map(([sourceId, result]) => <li key={sourceId} className="flex items-center gap-2 text-sm">
+                {Object.entries(searchResults)
+                  .filter(([_, result]) => result.status === "found")
+                  .map(([sourceId, result]) => (
+                    <li key={sourceId} className="flex items-center gap-2 text-sm">
                       <div className="w-1.5 h-1.5 bg-success rounded-full"></div>
-                      {result.url ? <a href={result.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                      {result.url ? (
+                        <a
+                          href={result.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
                           {result.source}
-                        </a> : <span>{result.source}</span>}
-                    </li>)}
+                        </a>
+                      ) : (
+                        <span>{result.source}</span>
+                      )}
+                    </li>
+                  ))}
               </ul>
-              {Object.values(searchResults).filter(r => r.status === "found").length === 0 && <p className="text-sm text-muted-foreground">No sources found</p>}
+              {Object.values(searchResults).filter(r => r.status === "found").length === 0 && (
+                <p className="text-sm text-muted-foreground">No sources found</p>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -549,7 +491,8 @@ export const ExternalSearch = ({
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">External Data Sources</h3>
         
-        {searchSources.map(source => <Card key={source.id} className="transition-all hover:shadow-md">
+        {searchSources.map(source => (
+          <Card key={source.id} className="transition-all hover:shadow-md">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3 flex-1">
@@ -560,7 +503,9 @@ export const ExternalSearch = ({
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-1">
                       <h4 className="font-medium">{source.name}</h4>
-                      {source.recommended && <Badge variant="medical" className="text-xs">Recommended</Badge>}
+                      {source.recommended && (
+                        <Badge variant="medical" className="text-xs">Recommended</Badge>
+                      )}
                       {getStatusBadge(searchResults[source.id].status)}
                     </div>
                     <p className="text-sm text-muted-foreground">{source.description}</p>
@@ -571,33 +516,49 @@ export const ExternalSearch = ({
                 </div>
                 
                 <div className="flex gap-2">
-                  {searchResults[source.id].url && <Button variant="ghost" size="sm" onClick={() => openExternalSearch(source.id)}>
+                  {searchResults[source.id].url && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => openExternalSearch(source.id)}
+                    >
                       <ExternalLink className="h-4 w-4" />
-                    </Button>}
+                    </Button>
+                  )}
                 </div>
               </div>
 
               {/* Search Results */}
-              {searchResults[source.id].status === "found" && searchResults[source.id].data && <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+              {searchResults[source.id].status === "found" && searchResults[source.id].data && (
+                <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                   <h5 className="font-medium text-success mb-2">Search Results</h5>
                   <div className="text-sm space-y-1">
-                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => <div key={key} className="flex justify-between">
-                        <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
+                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => (
+                      <div key={key} className="flex justify-between">
+                        <span className="text-muted-foreground capitalize">
+                          {key.replace(/([A-Z])/g, ' $1')}:
+                        </span>
                         <span className="font-medium">{String(value)}</span>
-                      </div>)}
+                      </div>
+                    ))}
                   </div>
-                </div>}
+                </div>
+              )}
 
               {/* Search Notes */}
-              {searchResults[source.id].notes && <div className="mt-3 text-xs text-muted-foreground">
+              {searchResults[source.id].notes && (
+                <div className="mt-3 text-xs text-muted-foreground">
                   <span className="font-medium">Notes:</span> {searchResults[source.id].notes}
-                </div>}
+                </div>
+              )}
             </CardContent>
-          </Card>)}
+          </Card>
+        ))}
       </div>
 
       {/* Custom Search */}
       
 
-    </div>;
+    </div>
+  );
 };
