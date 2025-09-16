@@ -28,7 +28,7 @@ export const RequestDetails = ({
   request,
   onBack
 }: RequestDetailsProps) => {
-  const [activeTab, setActiveTab] = useState<"validation" | "investigation" | "profile">("validation");
+  const [activeTab, setActiveTab] = useState<"investigation" | "profile">("investigation");
   const [stewardNotes, setStewardNotes] = useState("");
   const {
     toast
@@ -143,9 +143,6 @@ export const RequestDetails = ({
 
             {/* Tabs */}
             <div className="flex gap-2 border-b">
-              <Button variant={activeTab === "validation" ? "default" : "ghost"} onClick={() => setActiveTab("validation")} className="rounded-b-none">
-                Validation
-              </Button>
               <Button variant={activeTab === "investigation" ? "default" : "ghost"} onClick={() => setActiveTab("investigation")} className="rounded-b-none">
                 Investigation & Search
               </Button>
@@ -157,7 +154,6 @@ export const RequestDetails = ({
 
             {/* Tab Content */}
             <div className="space-y-6">
-              {activeTab === "validation" && <ValidationChecks request={request} />}
               {activeTab === "investigation" && <ExternalSearch request={request} />}
               {activeTab === "profile" && <div className="space-y-6">
                   {npiProfile ? <Card>
