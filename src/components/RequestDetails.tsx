@@ -324,31 +324,7 @@ export const RequestDetails = ({
             </Card>
 
             {/* Quick Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Quick Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Request Type:</span>
-                  <span className="font-medium capitalize">
-                    {request.requestType.replace('_', ' ')}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Priority:</span>
-                  <span className="font-medium capitalize">{request.priority}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">NPI Number:</span>
-                  <span className="font-medium">{request.npi}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Status:</span>
-                  <span className="font-medium capitalize">{request.status}</span>
-                </div>
-              </CardContent>
-            </Card>
+            
           </div>
         </div>
       </div>
