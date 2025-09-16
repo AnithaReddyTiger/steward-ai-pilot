@@ -1,38 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { 
-  Database,
-  Wifi,
-  Activity,
-  CheckCircle2
-} from "lucide-react";
-
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Database, Wifi, Activity, CheckCircle2 } from "lucide-react";
 export const ConnectorPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+  return <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="flex items-center gap-2 bg-success-subtle text-success border-success/20 hover:bg-success/10"
-        >
-          <Database className="h-4 w-4" />
-          <span className="hidden sm:inline">Informatica</span>
-          <Badge variant="secondary" className="bg-success text-success-foreground px-1.5 py-0.5 text-xs">
-            Connected
-          </Badge>
-        </Button>
+        
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
@@ -107,6 +82,5 @@ export const ConnectorPopup = () => {
           </div>
         </div>
       </DialogContent>
-    </Dialog>
-  );
+    </Dialog>;
 };
