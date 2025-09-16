@@ -35,7 +35,7 @@ export const StewardshipTopBar = () => {
                 <User className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Healthcare Stewardship</h1>
+                <h1 className="text-xl font-bold text-foreground">TA Steward.AI</h1>
                 <p className="text-sm text-muted-foreground">Provider Data Validation System</p>
               </div>
             </div>
