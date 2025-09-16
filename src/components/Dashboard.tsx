@@ -192,17 +192,13 @@ export const Dashboard = () => {
                       <div className="space-y-2 flex-1">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-2">
-                            {getRequestTypeIcon(request.requestType)}
                             <span className="font-semibold">Request #{request.requestNumber}</span>
                           </div>
                           <Badge variant="outline" className="text-xs">
                             NPI: {request.npi}
                           </Badge>
                           <Badge variant={request.status === "pending" ? "pending" : request.status === "approved" ? "approved" : "rejected"} className="text-xs">
-                            <div className="flex items-center gap-1">
-                              {getStatusIcon(request.status)}
-                              {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-                            </div>
+                            {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
                           </Badge>
                           <div className={`px-2 py-1 rounded-full text-xs font-medium border ${getPriorityColor(request.priority)}`}>
                             {request.priority.charAt(0).toUpperCase() + request.priority.slice(1)} Priority
