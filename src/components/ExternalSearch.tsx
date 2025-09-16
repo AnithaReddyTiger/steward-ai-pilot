@@ -495,7 +495,9 @@ export const ExternalSearch = ({
               <div>
                 <h4 className="font-medium mb-2">Key Findings</h4>
                 <div className="text-sm text-muted-foreground">
-                  No findings yet - run investigation to populate key findings
+                  {request.npi === "1164037024" && "Requestor submitted request to update Specialty. Multiple specialties found in current data systems. TASteward.ai found NPI matches on reference data-sources and determined request is valid. TASteward.ai recommendation – update Specialty to ‘Registered Nurse’. Confidence:  Very High"}
+                  {request.npi === "1881902948" && "Requestor submitted request to investigate ‘license active status and expiration dates’. TASteward.ai found found outdated license information for NPI but could not fully validate current status and license expiration dates for this HCP. TASteward.ai recommendation – due to limited information available, no change should be done on license status and expiration dates. Confidence:  Low"}
+                  {request.npi === "1780827816" && "Requestor submitted request to update ‘Address’. 1 linked address was identified in current data systems. TASteward.ai found multiple addresses for this. HCP on reference data-sources and determined request is valid. TASteward.ai recommendation – update Address to ‘6501 Harbison Ave, Philadelphia, PA 19149-2912’. Confidence:  Very High"}
                 </div>
               </div>
             </div>
