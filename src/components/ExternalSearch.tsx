@@ -400,7 +400,6 @@ export const ExternalSearch = ({
                 <div className="text-sm text-muted-foreground">
                   {request.npi === "1164037024" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Requestor submitted request to update Specialty</li>
                       <li>Multiple specialties found in current data systems</li>
                       <li>TASteward.ai found NPI matches on reference data-sources and determined request is valid</li>
                       <li>TASteward.ai recommendation – update Specialty to 'Registered Nurse'</li>
@@ -409,7 +408,6 @@ export const ExternalSearch = ({
                   )}
                   {request.npi === "1881902948" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Requestor submitted request to investigate 'license active status and expiration dates'</li>
                       <li>TASteward.ai found outdated license information for NPI</li>
                       <li>Could not fully validate current status and license expiration dates for this HCP</li>
                       <li>TASteward.ai recommendation – due to limited information available, no change should be done on license status and expiration dates</li>
@@ -418,7 +416,6 @@ export const ExternalSearch = ({
                   )}
                   {request.npi === "1780827816" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>Requestor submitted request to update 'Address'</li>
                       <li>1 linked address was identified in current data systems</li>
                       <li>TASteward.ai found multiple addresses for this HCP on reference data-sources and determined request is valid</li>
                       <li>TASteward.ai recommendation – update Address to '6501 Harbison Ave, Philadelphia, PA 19149-2912'</li>
