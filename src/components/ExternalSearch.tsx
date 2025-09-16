@@ -475,7 +475,7 @@ export const ExternalSearch = ({
           <CardHeader>
             <CardTitle className="text-lg">TA Steward.ai Summary</CardTitle>
             <CardDescription>
-              Search multiple trusted healthcare data sources to corroborate findings
+              Verify NPI provider information across multiple trusted healthcare databases
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
