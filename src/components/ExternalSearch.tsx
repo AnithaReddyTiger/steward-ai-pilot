@@ -26,13 +26,14 @@ export const ExternalSearch = ({
 }: ExternalSearchProps) => {
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
-  const npiID = request.npi;
+  const npiID=request.npi
   // Generate mock results based on NPI and request
   const generateMockResults = () => {
     const providerName = npiProfile?.formattedName || "Provider Name";
     const specialty = npiProfile?.specialty || "Healthcare Provider";
     const city = npiProfile?.city || "Unknown City";
     const state = npiProfile?.state || "Unknown State";
+    
     return {
       nppes: {
         source: "NPPES NPI Registry",
@@ -76,7 +77,9 @@ export const ExternalSearch = ({
           state: state.toUpperCase(),
           disciplinaryActions: "None"
         } : undefined,
-        notes: specialty.toLowerCase().includes("nurse") ? `Current nursing license verified, expires Dec 2025` : "No nursing license found - not applicable for this provider type"
+        notes: specialty.toLowerCase().includes("nurse") 
+          ? `Current nursing license verified, expires Dec 2025`
+          : "No nursing license found - not applicable for this provider type"
       },
       google: {
         source: "Google Search",
@@ -88,8 +91,8 @@ export const ExternalSearch = ({
         notes: "Multiple sources confirm employment and credentials"
       }
     };
-  };
-  // , [request.npi, npiProfile]);
+  }
+    // , [request.npi, npiProfile]);
 
   const [searchResults, setSearchResults] = useState<Record<string, SearchResult>>(generateMockResults);
   const [searchNotes, setSearchNotes] = useState("");
@@ -97,6 +100,7 @@ export const ExternalSearch = ({
   const {
     toast
   } = useToast();
+  
   const searchSources = [{
     id: "nppes",
     name: "NPPES NPI Registry",
@@ -133,6 +137,7 @@ export const ExternalSearch = ({
     searchType: "Name + City + State",
     recommended: false
   }];
+
   useEffect(() => {
     if (npiID === "1164037024") {
       setSearchResults({
@@ -195,7 +200,8 @@ export const ExternalSearch = ({
           notes: "Multiple sources confirm employment and credentials"
         }
       });
-    } else if (npiID === "1881902948") {
+    }
+    else if(npiID==="1881902948"){
       setSearchResults({
         nppes: {
           source: "NPPES NPI Registry",
@@ -206,7 +212,7 @@ export const ExternalSearch = ({
             name: "Marina Hossein Nejad",
             specialty: "Registered Nurse",
             address: "1601 Reo Grande, ST, SUITE 340",
-            licensenumber: 638707,
+            licensenumber: 638707, 
             lastUpdated: "2015-06-19"
           },
           notes: "Found active NPI record with current information"
@@ -243,8 +249,9 @@ export const ExternalSearch = ({
           },
           notes: "Multiple sources confirm employment and credentials"
         }
-      });
-    } else if (npiID === "1780827816") {
+      })
+    }
+    else if(npiID==="1780827816"){
       setSearchResults({
         nppes: {
           source: "NPPES NPI Registry",
@@ -293,9 +300,9 @@ export const ExternalSearch = ({
           },
           notes: "Multiple sources confirm employment and credentials"
         }
-      });
+      })
     }
-  }, [npiID, request]);
+  }, [npiID, request])
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = {
@@ -437,6 +444,8 @@ export const ExternalSearch = ({
       window.open(searchResults[sourceId].url, '_blank');
     }
   };
+
+  
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "found":
@@ -469,39 +478,95 @@ export const ExternalSearch = ({
       {/* NPI Profile Information */}
       
 
-      {/* Investigation Control */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">External Investigation</CardTitle>
-          <CardDescription>TA Steward.AI summary</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h4 className="font-medium mb-2">Primary Identifiers</h4>
-              <div className="space-y-1 text-sm">
-                <p><span className="font-medium">NPI:</span> {request.npi}</p>
-                <p><span className="font-medium">Search Type:</span> {request.requestType.replace('_', ' ')}</p>
+      {/* Investigation Control and Summary Side by Side */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">External Investigation</CardTitle>
+            <CardDescription>
+              Search multiple trusted healthcare data sources to corroborate findings
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium mb-2">Primary Identifiers</h4>
+                <div className="space-y-1 text-sm">
+                  <p><span className="font-medium">NPI:</span> {request.npi}</p>
+                  <p><span className="font-medium">Search Type:</span> {request.requestType.replace('_', ' ')}</p>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium mb-2">Search Focus</h4>
+                <div className="text-sm text-muted-foreground">
+                  {request.requestType === "specialty_update" && "Verify specialty credentials and qualifications"}
+                  {request.requestType === "license_verification" && "Check license status and expiration dates"}
+                  {request.requestType === "address_update" && "Validate current practice addresses"}
+                </div>
               </div>
             </div>
-            <div>
-              <h4 className="font-medium mb-2">Search Focus</h4>
-              <div className="text-sm text-muted-foreground">
-                {request.requestType === "specialty_update" && "Verify specialty credentials and qualifications"}
-                {request.requestType === "license_verification" && "Check license status and expiration dates"}
-                {request.requestType === "address_update" && "Validate current practice addresses"}
+            
+            <div className="flex justify-center pt-4">
+              <Badge variant="approved" className="px-4 py-2 text-sm">
+                <CheckCircle className="h-4 w-4 mr-2" />
+                Investigation Completed
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Search Summary */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Search Summary</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-success">
+                  {Object.values(searchResults).filter(r => r.status === "found").length}
+                </div>
+                <div className="text-sm text-muted-foreground">Sources Found</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-muted-foreground">
+                  {Object.values(searchResults).filter(r => r.status === "not_found").length}
+                </div>
+                <div className="text-sm text-muted-foreground">Not Found</div>
               </div>
             </div>
-          </div>
-          
-          <div className="flex justify-center pt-4">
-            <Badge variant="approved" className="px-4 py-2 text-sm">
-              <CheckCircle className="h-4 w-4 mr-2" />
-              Investigation Completed
-            </Badge>
-          </div>
-        </CardContent>
-      </Card>
+
+            <div className="space-y-2">
+              <h4 className="font-medium mb-2">Sources Found:</h4>
+              <ul className="space-y-1">
+                {Object.entries(searchResults)
+                  .filter(([_, result]) => result.status === "found")
+                  .map(([sourceId, result]) => (
+                    <li key={sourceId} className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 bg-success rounded-full"></div>
+                      {result.url ? (
+                        <a 
+                          href={result.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          {result.source}
+                        </a>
+                      ) : (
+                        <span>{result.source}</span>
+                      )}
+                    </li>
+                  ))
+                }
+              </ul>
+              {Object.values(searchResults).filter(r => r.status === "found").length === 0 && (
+                <p className="text-sm text-muted-foreground">No sources found</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Search Sources */}
       <div className="space-y-4">
@@ -557,47 +622,5 @@ export const ExternalSearch = ({
       {/* Custom Search */}
       
 
-      {/* Search Summary */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Search Summary</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-success">
-                {Object.values(searchResults).filter(r => r.status === "found").length}
-              </div>
-              <div className="text-sm text-muted-foreground">Sources Found</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-muted-foreground">
-                {Object.values(searchResults).filter(r => r.status === "not_found").length}
-              </div>
-              <div className="text-sm text-muted-foreground">Not Found</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-warning">
-                {Object.values(searchResults).filter(r => r.status === "searching").length}
-              </div>
-              <div className="text-sm text-muted-foreground">In Progress</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-destructive">
-                {Object.values(searchResults).filter(r => r.status === "error").length}
-              </div>
-              <div className="text-sm text-muted-foreground">Errors</div>
-            </div>
-          </div>
-
-          <div className="text-sm text-muted-foreground">
-            <p className="font-medium mb-1">Recommendation:</p>
-            <p>
-              Based on search results, the information appears to be 
-              {Object.values(searchResults).filter(r => r.status === "found").length >= 2 ? " consistent across multiple sources and can be verified." : " limited. Additional investigation may be required."}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
     </div>;
 };
