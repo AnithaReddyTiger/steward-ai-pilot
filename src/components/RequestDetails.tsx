@@ -96,7 +96,6 @@ export const RequestDetails = ({
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {getRequestTypeIcon(request.requestType)}
                     <div>
                       <CardTitle>Request #{request.requestNumber}</CardTitle>
                       <CardDescription>NPI: {request.npi}</CardDescription>
