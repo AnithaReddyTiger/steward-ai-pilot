@@ -474,9 +474,6 @@ export const ExternalSearch = ({
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">TA Steward.ai Summary</CardTitle>
-            <CardDescription>
-              Search multiple trusted healthcare data sources to corroborate findings
-            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-4">
@@ -493,6 +490,12 @@ export const ExternalSearch = ({
                   {request.requestType === "specialty_update" && "Verify specialty credentials and qualifications"}
                   {request.requestType === "license_verification" && "Check license status and expiration dates"}
                   {request.requestType === "address_update" && "Validate current practice addresses"}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium mb-2">Key Findings</h4>
+                <div className="text-sm text-muted-foreground">
+                  No findings yet - run investigation to populate key findings
                 </div>
               </div>
             </div>
