@@ -568,10 +568,10 @@ export const ExternalSearch = ({
                   {/* Search Results */}
                   {searchResults[source.id].status === "found" && searchResults[source.id].data && <div className="p-3 bg-success-subtle rounded-md border border-success/20">
                       <h5 className="font-medium text-success mb-2 text-sm">Results</h5>
-                      <div className="text-xs space-y-1">
-                        {Object.entries(searchResults[source.id].data || {}).slice(0, 3).map(([key, value]) => <div key={key} className="flex justify-between">
-                            <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                            <span className="font-medium truncate ml-2">{String(value).length > 15 ? String(value).substring(0, 15) + '...' : String(value)}</span>
+                      <div className="text-xs space-y-2">
+                        {Object.entries(searchResults[source.id].data || {}).slice(0, 4).map(([key, value]) => <div key={key} className="space-y-1">
+                            <span className="text-muted-foreground capitalize font-medium block">{key.replace(/([A-Z])/g, ' $1')}:</span>
+                            <span className="font-medium text-foreground block break-words">{String(value).length > 50 ? String(value).substring(0, 50) + "..." : String(value)}</span>
                           </div>)}
                       </div>
                     </div>}
