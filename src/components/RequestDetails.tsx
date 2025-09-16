@@ -28,7 +28,7 @@ export const RequestDetails = ({
   request,
   onBack
 }: RequestDetailsProps) => {
-  const [activeTab, setActiveTab] = useState<"investigation" | "profile">("investigation");
+  const [activeTab, setActiveTab] = useState<"investigation" | "profile">("profile");
   const [stewardNotes, setStewardNotes] = useState("");
   const {
     toast
@@ -143,12 +143,12 @@ export const RequestDetails = ({
 
             {/* Tabs */}
             <div className="flex gap-2 border-b">
-              <Button variant={activeTab === "investigation" ? "default" : "ghost"} onClick={() => setActiveTab("investigation")} className="rounded-b-none">
-                Investigation & Search
-              </Button>
               <Button variant={activeTab === "profile" ? "default" : "ghost"} onClick={() => setActiveTab("profile")} className="rounded-b-none">
                 <User className="h-4 w-4 mr-2" />
                 Profile Information
+              </Button>
+              <Button variant={activeTab === "investigation" ? "default" : "ghost"} onClick={() => setActiveTab("investigation")} className="rounded-b-none">
+                Investigation & Search
               </Button>
             </div>
 
