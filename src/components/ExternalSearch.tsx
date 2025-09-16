@@ -545,9 +545,10 @@ export const ExternalSearch = ({
         <h3 className="text-lg font-semibold">External Data Sources</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {searchSources.map(source => <Card key={source.id} className="transition-all hover:shadow-md h-fit">
-              <CardContent className="p-4">
-                <div className="space-y-3">
+          {searchSources.map(source => <Card key={source.id} className="transition-all hover:shadow-md h-[280px] flex flex-col">
+              <CardContent className="p-4 flex flex-col h-full">
+                <div className="space-y-3 flex-1">
+                  {/* Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       {source.icon}
@@ -557,35 +558,67 @@ export const ExternalSearch = ({
                     {source.recommended && <Badge variant="medical" className="text-xs">Recommended</Badge>}
                   </div>
                   
+                  {/* Description and Status */}
                   <div className="space-y-2">
-                    <p className="text-xs text-muted-foreground">{source.description}</p>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{source.description}</p>
                     <p className="text-xs text-muted-foreground">
-                      Search method: {source.searchType}
+                      Search: {source.searchType}
                     </p>
                     <div>{getStatusBadge(searchResults[source.id].status)}</div>
                   </div>
 
-                  {/* Search Results */}
-                  {searchResults[source.id].status === "found" && searchResults[source.id].data && <div className="p-3 bg-success-subtle rounded-md border border-success/20">
-                      <h5 className="font-medium text-success mb-2 text-sm">Results</h5>
-                      <div className="text-xs space-y-2">
-                        {Object.entries(searchResults[source.id].data || {}).slice(0, 4).map(([key, value]) => <div key={key} className="space-y-1">
-                            <span className="text-muted-foreground capitalize font-medium block">{key.replace(/([A-Z])/g, ' $1')}:</span>
-                            <span className="font-medium text-foreground block break-words">{String(value).length > 50 ? String(value).substring(0, 50) + "..." : String(value)}</span>
-                          </div>)}
+                  {/* Search Results - Fixed Height Container */}
+                  <div className="flex-1 min-h-[100px]">
+                    {searchResults[source.id].status === "found" && searchResults[source.id].data ? (
+                      <div className="p-3 bg-success-subtle rounded-md border border-success/20 h-full">
+                        <h5 className="font-medium text-success mb-2 text-sm">Results</h5>
+                        <div className="text-xs space-y-2 overflow-y-auto max-h-[60px]">
+                          {Object.entries(searchResults[source.id].data || {}).slice(0, 3).map(([key, value]) => (
+                            <div key={key} className="space-y-1">
+                              <span className="text-muted-foreground capitalize font-medium block text-xs">
+                                {key.replace(/([A-Z])/g, ' $1')}:
+                              </span>
+                              <span className="font-medium text-foreground block break-words text-xs leading-relaxed">
+                                {String(value).length > 40 ? String(value).substring(0, 40) + "..." : String(value)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>}
+                    ) : (
+                      <div className="p-3 bg-muted/50 rounded-md border border-muted h-full flex items-center justify-center">
+                        <span className="text-xs text-muted-foreground text-center">
+                          {searchResults[source.id].status === "not_found" ? "No data found" : 
+                           searchResults[source.id].status === "searching" ? "Searching..." : "Ready to search"}
+                        </span>
+                      </div>
+                    )}
+                  </div>
 
-                  {/* Search Notes */}
-                  {searchResults[source.id].notes && <div className="text-xs text-muted-foreground">
-                      <span className="font-medium">Notes:</span> {searchResults[source.id].notes.length > 60 ? searchResults[source.id].notes?.substring(0, 60) + '...' : searchResults[source.id].notes}
-                    </div>}
+                  {/* Search Notes - Fixed Height */}
+                  <div className="h-[40px] flex items-start">
+                    {searchResults[source.id].notes && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Notes:</span> {
+                          searchResults[source.id].notes && searchResults[source.id].notes.length > 50 
+                            ? searchResults[source.id].notes?.substring(0, 50) + "..." 
+                            : searchResults[source.id].notes
+                        }
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                  {/* External Link Button */}
-                  {searchResults[source.id].url && <Button variant="ghost" size="sm" onClick={() => openExternalSearch(source.id)} className="w-full">
+                {/* External Link Button - Always at bottom */}
+                <div className="mt-auto pt-3">
+                  {searchResults[source.id].url ? (
+                    <Button variant="ghost" size="sm" onClick={() => openExternalSearch(source.id)} className="w-full">
                       <ExternalLink className="h-3 w-3 mr-2" />
                       Open Source
-                    </Button>}
+                    </Button>
+                  ) : (
+                    <div className="h-8"></div>
+                  )}
                 </div>
               </CardContent>
             </Card>)}
