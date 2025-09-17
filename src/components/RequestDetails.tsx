@@ -177,33 +177,60 @@ export const RequestDetails = ({
                               <div className="space-y-2 text-sm">
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">Full Name:</span>
-                                  <span className="font-medium">{npiProfile.formattedName}</span>
+                                  <span className="font-medium">{npiProfile.formattedName || "null"}</span>
                                 </div>
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">NPI Number:</span>
-                                  <span className="font-medium">{npiProfile.npi}</span>
+                                  <span className="font-medium">{npiProfile.npi || "null"}</span>
                                 </div>
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">Specialty:</span>
-                                  <span className="font-medium">{npiProfile.specialty}</span>
+                                  <span className="font-medium">{npiProfile.specialty || "null"}</span>
                                 </div>
                                 <div className="flex justify-between items-center">
                                   <span className="text-muted-foreground">Profile Status:</span>
-                                  <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"}>
-                                    {npiProfile.profileStatus}
-                                  </Badge>
+                                  {npiProfile.profileStatus ? (
+                                    <Badge variant={npiProfile.profileStatus === "Active" ? "approved" : "outline"}>
+                                      {npiProfile.profileStatus}
+                                    </Badge>
+                                  ) : (
+                                    <span className="font-medium text-muted-foreground">null</span>
+                                  )}
                                 </div>
                               </div>
                             </div>
 
                             <div>
                               <h4 className="font-semibold mb-3">Practice Address</h4>
-                              <div className="space-y-1 text-sm bg-muted p-3 rounded-md">
-                                <p className="font-medium">{npiProfile.addrLine1}</p>
-                                {npiProfile.addrLine2 && <p>{npiProfile.addrLine2}</p>}
-                                {npiProfile.addrLine3 && <p>{npiProfile.addrLine3}</p>}
-                                <p>{npiProfile.city}, {npiProfile.state} {npiProfile.zipCode}</p>
-                                <p className="text-muted-foreground">{npiProfile.country}</p>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Address Line 1:</span>
+                                  <span className="font-medium">{npiProfile.addrLine1 || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Address Line 2:</span>
+                                  <span className="font-medium">{npiProfile.addrLine2 || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Address Line 3:</span>
+                                  <span className="font-medium">{npiProfile.addrLine3 || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">City:</span>
+                                  <span className="font-medium">{npiProfile.city || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">State:</span>
+                                  <span className="font-medium">{npiProfile.state || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Zip Code:</span>
+                                  <span className="font-medium">{npiProfile.zipCode || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">Country:</span>
+                                  <span className="font-medium">{npiProfile.country || "null"}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -214,36 +241,35 @@ export const RequestDetails = ({
                               <div className="space-y-2 text-sm">
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">License State:</span>
-                                  <span className="font-medium">{npiProfile.licenseState}</span>
+                                  <span className="font-medium">{npiProfile.licenseState || "null"}</span>
                                 </div>
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">License Type:</span>
-                                  <span className="font-medium">{npiProfile.licenseType}</span>
+                                  <span className="font-medium">{npiProfile.licenseType || "null"}</span>
                                 </div>
                                 <div className="flex justify-between">
                                   <span className="text-muted-foreground">License Number:</span>
-                                  <span className="font-medium">{npiProfile.licenseNumber}</span>
+                                  <span className="font-medium">{npiProfile.licenseNumber || "null"}</span>
                                 </div>
-                                {npiProfile.licenseStatus && <div className="flex justify-between items-center">
-                                    <span className="text-muted-foreground">License Status:</span>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-muted-foreground">License Status:</span>
+                                  {npiProfile.licenseStatus ? (
                                     <Badge variant={npiProfile.licenseStatus === "A" ? "approved" : "outline"}>
                                       {npiProfile.licenseStatus === "A" ? "Active" : npiProfile.licenseStatus}
                                     </Badge>
-                                  </div>}
-                                {npiProfile.licenseStartDate && <div className="flex justify-between">
-                                    <span className="text-muted-foreground">Start Date:</span>
-                                    <span className="font-medium">{npiProfile.licenseStartDate}</span>
-                                  </div>}
-                                {npiProfile.licenseExpirationDate && <div className="flex justify-between">
-                                    <span className="text-muted-foreground">Expiration Date:</span>
-                                    <span className="font-medium">{npiProfile.licenseExpirationDate}</span>
-                                  </div>}
+                                  ) : (
+                                    <span className="font-medium text-muted-foreground">null</span>
+                                  )}
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">License Start Date:</span>
+                                  <span className="font-medium">{npiProfile.licenseStartDate || "null"}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-muted-foreground">License Expiration Date:</span>
+                                  <span className="font-medium">{npiProfile.licenseExpirationDate || "null"}</span>
+                                </div>
                               </div>
-                            </div>
-
-                            <div>
-                              
-                              
                             </div>
                           </div>
                         </div>
