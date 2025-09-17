@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ValidationChecks } from "./ValidationChecks";
 import { ExternalSearch } from "./ExternalSearch";
 import { ArrowLeft, UserCheck, FileText, Search, Clock, CheckCircle, XCircle, AlertTriangle, User } from "lucide-react";
@@ -30,6 +32,7 @@ export const RequestDetails = ({
 }: RequestDetailsProps) => {
   const [activeTab, setActiveTab] = useState<"investigation" | "profile">("profile");
   const [stewardNotes, setStewardNotes] = useState("");
+  const [finalValue, setFinalValue] = useState("");
   const {
     toast
   } = useToast();
@@ -278,8 +281,24 @@ export const RequestDetails = ({
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Steward Notes</label>
-                  <Textarea placeholder="Add your validation notes and findings..." value={stewardNotes} onChange={e => setStewardNotes(e.target.value)} className="min-h-[100px]" />
+                  <Label htmlFor="steward-notes" className="text-sm font-medium">Steward Notes</Label>
+                  <Textarea 
+                    id="steward-notes"
+                    placeholder="Add your validation notes and findings..." 
+                    value={stewardNotes} 
+                    onChange={e => setStewardNotes(e.target.value)} 
+                    className="min-h-[100px]" 
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="final-value" className="text-sm font-medium">Final Value</Label>
+                  <Input 
+                    id="final-value"
+                    placeholder="Enter the approved final value..." 
+                    value={finalValue} 
+                    onChange={e => setFinalValue(e.target.value)} 
+                  />
                 </div>
 
                 <div className="space-y-2">
