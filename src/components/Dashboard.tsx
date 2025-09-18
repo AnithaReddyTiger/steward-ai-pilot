@@ -50,7 +50,7 @@ const mockRequests: StewardshipRequest[] = [{
   submittedDate: "2025-09-09T14:20:00Z",
   priority: "low",
   currentValue: "3223 N Broad St, PA 82001",
-  proposedValue: "9475 Roosevelt Blvd Ste 9, PA 19114"
+  proposedValue: "	6501 Haribson Ave, Philadelphia, PA 19149-2912"
 }];
 export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
