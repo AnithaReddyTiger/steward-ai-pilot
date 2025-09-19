@@ -200,7 +200,7 @@ export const ExternalSearch = ({
           url: "",
           status: "found" as const,
           data: {
-            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+            results: ["Nurse Practitioner in Cheyenne, WY", "affiliated with Cheyenne Regional Medical Center"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
@@ -272,7 +272,7 @@ export const ExternalSearch = ({
         doximity: {
           source: "Doximity",
           url: "https://www.doximity.com/",
-          status: "found" as const,
+          status: "not_found" as const,
           notes: "No profile found in Doximity directory"
         },
         webmd: {
@@ -299,7 +299,7 @@ export const ExternalSearch = ({
           url: "",
           status: "found" as const,
           data: {
-            results: ["Medical Center Hospital staff directory", "State nursing board website", "Professional association listing"]
+            results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
           },
           notes: "Multiple sources confirm employment and credentials"
         }
