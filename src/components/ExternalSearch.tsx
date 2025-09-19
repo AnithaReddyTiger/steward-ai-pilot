@@ -189,7 +189,7 @@ export const ExternalSearch = ({
           data: {
             license: "Active",
             licenseNumber: "27748",
-            licenseType: "RN"
+            licenseType: "RN",
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
