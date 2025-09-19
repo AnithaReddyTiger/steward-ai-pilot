@@ -189,6 +189,7 @@ export const ExternalSearch = ({
           data: {
             license: "Active",
             licenseNumber: "27748",
+            licenseType: "RN"
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
@@ -287,12 +288,12 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             license: "Active",
-            licenseNumber: "RN123456",
-            expirationDate: "2025-06-30",
-            state: "Medical State",
+            licenseNumber: "RN534583",
+            expirationDate: "2027-04-30",
+            state: "PENNSYLVANIA",
             disciplinaryActions: "None"
           },
-          notes: "Current nursing license verified, expires June 2025"
+          notes: "Current nursing license verified, expires April 2027"
         },
         google: {
           source: "Google Search",
