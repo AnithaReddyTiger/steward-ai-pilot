@@ -38,25 +38,6 @@ export const npiProfiles: Record<string, NPIProfile> = {
     licenseStartDate: "",
     licenseExpirationDate: ""
   },
-  "1881902948": {
-    npi: "1881902948",
-    formattedName: "Marina Hossein Nejad",
-    addrLine1: "1201 W 38th St",
-    addrLine2: "",
-    addrLine3: "",
-    city: "Austin",
-    state: "TX",
-    zipCode: "78705",
-    country: "United States",
-    specialty: "Nurse Practitioner",
-    profileStatus: "Active",
-    licenseState: "TX",
-    licenseType: "NP",
-    licenseNumber: "638707",
-    licenseStatus: "",
-    licenseStartDate: "",
-    licenseExpirationDate: ""
-  },
   "1356035752": {
     npi: "1356035752",
     formattedName: "DENA KENDRICK LOWE",
@@ -74,6 +55,25 @@ export const npiProfiles: Record<string, NPIProfile> = {
     licenseNumber: "112760",
     licenseStatus: "A",
     licenseStartDate: "2005-07-18",
+    licenseExpirationDate: ""
+  },
+  "1780827816": {
+    npi: "1780827816",
+    formattedName: "Jessy Pattaniyil",
+    addrLine1:"3223 N Broad St",
+    addrLine2: "",
+    addrLine3: "",
+    city: "Philadelphia",
+    state: "PA",
+    zipCode: "19140",
+    country: "United States",
+    specialty: "Nurse Practitioner",
+    profileStatus: "Active",
+    licenseState: "",
+    licenseType: "",
+    licenseNumber: "",
+    licenseStatus: "A",
+    licenseStartDate: "",
     licenseExpirationDate: ""
   }
 };
