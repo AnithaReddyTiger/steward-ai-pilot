@@ -398,7 +398,7 @@ export const ExternalSearch = ({
                     <ul className="list-disc list-inside space-y-1">
                       <li>Requestor submitted a request to investigate‘expired license and associate a new active license’</li>
                       <li>TASteward.ai found license information for NPI on Nursys which shows license is still active till Jan 2026</li>
-                      <li>TASteward.ai recommends to Reject request to inactive license as current expiration date is valid</li>
+                      <li>TASteward.ai recommends rejecting the request to inactive license as current expiration date is valid</li>
                       <li>Confidence: High</li>
                     </ul>
                   )}
