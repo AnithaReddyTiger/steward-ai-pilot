@@ -206,7 +206,7 @@ export const ExternalSearch = ({
           notes: "Multiple sources confirm employment and credentials"
         }
       });
-    } else if (npiID === "1881902948") {
+    } else if (npiID === "1356035752") {
       setSearchResults({
         nppes: {
           source: "NPPES NPI Registry",
@@ -214,13 +214,11 @@ export const ExternalSearch = ({
           status: "found" as const,
           data: {
             npi: request.npi,
-            name: "Marina Hossein Nejad",
-            specialty: "Registered Nurse",
-            address: "1601 Reo Grande, ST, SUITE 340",
-            licensenumber: "638707",
-            lastUpdated: "2015-06-19"
+            name: "DENA KENDRICK LOWE FNP",
+            specialty: "Nurse Practitioner",
+            address: "2309 E MAIN ST NEW IBERIA, LA 70560"
           },
-          notes: "Found active NPI record with current information"
+          notes: "Found NPI record with current information"
         },
         doximity: {
           source: "Doximity",
@@ -231,19 +229,21 @@ export const ExternalSearch = ({
         webmd: {
           source: "WebMD",
           url: "https://doctor.webmd.com/",
-          status: "found" as const,
-          data: {
-            npi: request.npi,
-            name: "Marina Hossein Nejad",
-            specialty: "Registered Nurse"
-          },
-          notes: "Profile found in WebMD directory"
+          status: "not_found" as const,
+          notes: "No Profile found in WebMD directory"
         },
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-          status: "not_found" as const,
-          notes: "No profile found in Nursys directory"
+          status: "found" as const,
+          data: {
+           license: "Active",
+           "license Number": "RN112760",
+           "State": "LOUISIANA-RN",
+           "Expiration Date": "2026-01-31",
+           "Disciplinary Actions": "None"
+          },
+          notes: "Current nursing license verified, expires Jan 2026"
         },
         google: {
           source: "Google Search",
