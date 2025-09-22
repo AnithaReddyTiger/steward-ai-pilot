@@ -82,15 +82,6 @@ export const ExternalSearch = ({
           disciplinaryActions: "None"
         } : undefined,
         notes: specialty.toLowerCase().includes("nurse") ? `Current nursing license verified, expires Dec 2025` : "No nursing license found - not applicable for this provider type"
-      },
-      google: {
-        source: "Google Search",
-        url: "",
-        status: "found" as const,
-        data: {
-          results: [`${city} Medical Center staff directory`, `${state} medical board website`, "Professional association listing"]
-        },
-        notes: "Multiple sources confirm employment and credentials"
       }
     };
   };
