@@ -485,69 +485,74 @@ export const ExternalSearch = ({
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">External Data Sources</h3>
         
-        {searchSources.map(source => (
-          <Card key={source.id} className="transition-all hover:shadow-md">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="flex items-center gap-2">
-                    {source.icon}
-                    {getStatusIcon(searchResults[source.id].status)}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h4 className="font-medium">{source.name}</h4>
-                      {source.recommended && (
-                        <Badge variant="medical" className="text-xs">Recommended</Badge>
-                      )}
-                      {getStatusBadge(searchResults[source.id].status)}
+        {searchSources.map(source => {
+          const result = searchResults[source.id];
+          if (!result) return null;
+          
+          return (
+            <Card key={source.id} className="transition-all hover:shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="flex items-center gap-2">
+                      {source.icon}
+                      {getStatusIcon(result.status)}
                     </div>
-                    <p className="text-sm text-muted-foreground">{source.description}</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Search method: {source.searchType}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex gap-2">
-                  {searchResults[source.id].url && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => openExternalSearch(source.id)}
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  )}
-                </div>
-              </div>
-
-              {/* Search Results */}
-              {searchResults[source.id].status === "found" && searchResults[source.id].data && (
-                <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
-                  <h5 className="font-medium text-success mb-2">Search Results</h5>
-                  <div className="text-sm space-y-1">
-                    {Object.entries(searchResults[source.id].data || {}).map(([key, value]) => (
-                      <div key={key} className="flex justify-between">
-                        <span className="text-muted-foreground capitalize">
-                          {key.replace(/([A-Z])/g, ' $1')}:
-                        </span>
-                        <span className="font-medium">{String(value)}</span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1">
+                        <h4 className="font-medium">{source.name}</h4>
+                        {source.recommended && (
+                          <Badge variant="medical" className="text-xs">Recommended</Badge>
+                        )}
+                        {getStatusBadge(result.status)}
                       </div>
-                    ))}
+                      <p className="text-sm text-muted-foreground">{source.description}</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Search method: {source.searchType}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    {result.url && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => openExternalSearch(source.id)}
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    )}
                   </div>
                 </div>
-              )}
 
-              {/* Search Notes */}
-              {searchResults[source.id].notes && (
-                <div className="mt-3 text-xs text-muted-foreground">
-                  <span className="font-medium">Notes:</span> {searchResults[source.id].notes}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+                {/* Search Results */}
+                {result.status === "found" && result.data && (
+                  <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+                    <h5 className="font-medium text-success mb-2">Search Results</h5>
+                    <div className="text-sm space-y-1">
+                      {Object.entries(result.data || {}).map(([key, value]) => (
+                        <div key={key} className="flex justify-between">
+                          <span className="text-muted-foreground capitalize">
+                            {key.replace(/([A-Z])/g, ' $1')}:
+                          </span>
+                          <span className="font-medium">{String(value)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Search Notes */}
+                {result.notes && (
+                  <div className="mt-3 text-xs text-muted-foreground">
+                    <span className="font-medium">Notes:</span> {result.notes}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
       {/* Custom Search */}
