@@ -229,15 +229,20 @@ export const ExternalSearch = ({
         webmd: {
           source: "WebMD",
           url: "https://doctor.webmd.com/",
-          status: "not_found" as const,
-          notes: "No Profile found in WebMD directory"
+          data: {
+            name: "DENA KENDRICK LOWE FNP",
+            specialty: "NP",
+            address: ""
+          },
+          status: "found" as const,
+          notes: "Profile found in WebMD directory"
         },
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
           data: {
-           license: "Active",
+           "license": "Active",
            "license Number": "RN112760",
            "State": "LOUISIANA-RN",
            "Expiration Date": "2026-01-31",
