@@ -41,7 +41,7 @@ export const npiProfiles: Record<string, NPIProfile> = {
   "1356035752": {
     npi: "1356035752",
     formattedName: "DENA KENDRICK LOWE",
-    addrLine1:"",
+    addrLine1:"2309 E Main St",
     addrLine2: "",
     addrLine3: "",
     city: "New Iberia",
@@ -55,7 +55,7 @@ export const npiProfiles: Record<string, NPIProfile> = {
     licenseNumber: "112760",
     licenseStatus: "A",
     licenseStartDate: "2005-07-18",
-    licenseExpirationDate: ""
+    licenseExpirationDate: "2026-01-31"
   },
   "1780827816": {
     npi: "1780827816",
