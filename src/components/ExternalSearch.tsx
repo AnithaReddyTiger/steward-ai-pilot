@@ -407,7 +407,7 @@ export const ExternalSearch = ({
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
-                  {request.npi === "1881902948" && (
+                  {request.npi === "1356035752" && (
                     <ul className="list-disc list-inside space-y-1">
                       <li>TASteward.ai found outdated license information for NPI</li>
                       <li>Could not fully validate current status and license expiration dates for this HCP</li>
