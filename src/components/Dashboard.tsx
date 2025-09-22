@@ -35,7 +35,7 @@ const mockRequests: StewardshipRequest[] = [{
   id: "2",
   npi: "1881902948",
   requestNumber: 2,
-  description: "There is no license information present about expiration. Investigate License status if it's still active & expiration date",
+  description: "License for Dr Lowe expired on Jan 2025. Please inactivate the current license and associate a new active one.",
   status: "pending",
   requestType: "license_verification",
   submittedDate: "2024-01-11T10:35:00Z",
