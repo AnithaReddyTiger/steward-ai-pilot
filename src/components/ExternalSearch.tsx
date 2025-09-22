@@ -414,10 +414,10 @@ export const ExternalSearch = ({
                   )}
                   {request.npi === "1356035752" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>TASteward.ai found outdated license information for NPI</li>
-                      <li>Could not fully validate current status and license expiration dates for this HCP</li>
-                      <li>TASteward.ai recommendation – due to limited information available, no change should be done on license status and expiration dates</li>
-                      <li>Confidence: Low</li>
+                      <li>Requestor submitted a request to investigate‘expired license and associate a new active license’</li>
+                      <li>TASteward.ai found license information for NPI on Nursys which shows license is still active till Jan 2026</li>
+                      <li>Reject request to inactive license as current expiration date is valid</li>
+                      <li>Confidence: High</li>
                     </ul>
                   )}
                   {request.npi === "1780827816" && (
