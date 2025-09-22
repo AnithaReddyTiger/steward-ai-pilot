@@ -240,15 +240,6 @@ export const ExternalSearch = ({
            "Disciplinary Actions": "None"
           },
           notes: "Current nursing license verified, expires Jan 2026"
-        },
-        google: {
-          source: "Google Search",
-          url: "",
-          status: "found" as const,
-          data: {
-            results: ["affiliation to Providence Hospital"]
-          },
-          notes: "Not much information could be retrieved regarding the license."
         }
       });
     } else if (npiID === "1780827816") {
