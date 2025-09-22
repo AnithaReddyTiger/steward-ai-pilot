@@ -57,23 +57,23 @@ export const npiProfiles: Record<string, NPIProfile> = {
     licenseStartDate: "",
     licenseExpirationDate: ""
   },
-  "1780827816": {
-    npi: "1780827816",
-    formattedName: "Jessy Pattaniyil",
-    addrLine1:"3223 N Broad St",
+  "1356035752": {
+    npi: "1356035752",
+    formattedName: "DENA KENDRICK LOWE",
+    addrLine1:"",
     addrLine2: "",
     addrLine3: "",
-    city: "Philadelphia",
-    state: "PA",
-    zipCode: "19140",
+    city: "New Iberia",
+    state: "LA",
+    zipCode: "70560",
     country: "United States",
     specialty: "Nurse Practitioner",
     profileStatus: "Active",
-    licenseState: "",
-    licenseType: "",
-    licenseNumber: "",
+    licenseState: "LA",
+    licenseType: "RN",
+    licenseNumber: "112760",
     licenseStatus: "A",
-    licenseStartDate: "",
+    licenseStartDate: "2005-07-18",
     licenseExpirationDate: ""
   }
 };
