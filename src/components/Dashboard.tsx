@@ -51,6 +51,18 @@ const mockRequests: StewardshipRequest[] = [{
   priority: "low",
   currentValue: "3223 N Broad St, PA 82001",
   proposedValue: "	6501 Haribson Ave, Philadelphia, PA 19149-2912"
+},
+ {
+  id: "4",
+  npi: "NA",
+  requestNumber: 4,
+  description: "Please create this HCP profile",
+  status: "approved",
+  requestType: "profile_update",
+  submittedDate: "2025-09-09T14:20:00Z",
+  priority: "low",
+  currentValue: "NA",
+  proposedValue: "NA"
 }];
 export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
