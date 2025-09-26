@@ -463,10 +463,10 @@ export const ExternalSearch = ({
                 <div className="text-sm text-muted-foreground">
                   {request.npi === "1164037024" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>5 matching profiles are identified in external data systems.</li>
-                      <li>TASteward.ai found multiple profiles for this HCP on reference data-sources and listed the relavent ones.</li>
-                      <li>TASteward.ai recommendation – 4/5 profiles seem to match based on name & state, steward can choose appropriate profile to be created.</li>
-                      <li>Confidence: Low</li>
+                      <li>Multiple specialties found in current data systems</li>
+                      <li>TASteward.ai found NPI matches on reference data-sources and determined request is valid</li>
+                      <li>TASteward.ai recommendation – update Specialty to 'Registered Nurse'</li>
+                      <li>Confidence: Very High</li>
                     </ul>
                   )}
                   {request.npi === "1356035752" && (
@@ -487,10 +487,10 @@ export const ExternalSearch = ({
                   )}
                     {request.npi === "NA" && (
                     <ul className="list-disc list-inside space-y-1">
-                      <li>5 profiles are identified in current data systems</li>
+                      <li>5 matching profiles are identified in external data systems.</li>
                       <li>TASteward.ai found multiple profiles for this HCP on reference data-sources and listed the relavent ones.</li>
-                      <li>TASteward.ai recommendation – 4/5 seems to be matching, steward can choose one</li>
-                      <li>Confidence: Very High</li>
+                      <li>TASteward.ai recommendation – 4/5 profiles seem to match based on name & state, steward can choose appropriate profile to be created.</li>
+                      <li>Confidence: Low</li>
                     </ul>
                   )}
                 </div>
