@@ -485,6 +485,14 @@ export const ExternalSearch = ({
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
+                    {request.npi === "NA" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>5 profiles are identified in current data systems</li>
+                      <li>TASteward.ai found multiple profiles for this HCP on reference data-sources and listed the relavent ones.</li>
+                      <li>TASteward.ai recommendation – 4/5 seems to be matching, steward can choose one</li>
+                      <li>Confidence: Very High</li>
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
