@@ -298,15 +298,15 @@ export const ExternalSearch = ({
         nppes: {
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
-          status: "not_found" as const,
+          status: "found" as const,
           data:  [
-  {
+        {
     "npi": "1659184745",
     "name": "ALEXA BAILY",
     "specialty": "Counselor",
     "address": "95 E HIGH ST STE 407, WAYNESBURG, PA 15370-1853",
     "phone": "614-325-6384"
-  },
+      },
   {
     "npi": "1720662828",
     "name": "ALEX GREEN",
@@ -353,14 +353,14 @@ export const ExternalSearch = ({
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-          status: "found" as const,
+          status: "not_found" as const,
           data:[],
           notes: "Multiple licenses found - one active, one inactive"
         },
         google: {
           source: "Google Search",
           url: "",
-          status: "found" as const,
+          status: "not_found" as const,
           data: [{
             results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
           }],
