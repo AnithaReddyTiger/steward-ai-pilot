@@ -298,8 +298,8 @@ export const ExternalSearch = ({
         nppes: {
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
-          status: "found" as const,
-          data: [
+          status: "not_found" as const,
+          data:  [
   {
     "npi": "1659184745",
     "name": "ALEXA BAILY",
@@ -353,14 +353,14 @@ export const ExternalSearch = ({
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-          status: "not_found" as const,
-          data: []
+          status: "found" as const,
+          data:[],
           notes: "Multiple licenses found - one active, one inactive"
         },
         google: {
           source: "Google Search",
           url: "",
-          status: "not_found" as const,
+          status: "found" as const,
           data: [{
             results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
           }],
