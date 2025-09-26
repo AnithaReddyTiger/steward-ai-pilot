@@ -462,6 +462,7 @@ export const ExternalSearch = ({
                   {request.requestType === "specialty_update" && "Verify specialty credentials and qualifications"}
                   {request.requestType === "license_verification" && "Check license status and expiration dates"}
                   {request.requestType === "address_update" && "Validate current practice addresses"}
+                  {request.requestType === "new_profile_creation" && "Create New HCP Profile"}
                 </div>
               </div>
               <div>
