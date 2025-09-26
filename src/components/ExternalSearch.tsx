@@ -298,31 +298,6 @@ export const ExternalSearch = ({
         nppes: {
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
-          status: "not_found" as const,
-          data: [{
-            npi: request.npi,
-            name: "JESSY TOM PATTANIYIL NPC",
-            specialty: "Registered Nurse",
-            address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
-            lastUpdated: "2022-05-24"
-          }],
-          notes: "Found active NPI record with current information"
-        },
-        doximity: {
-          source: "Doximity",
-          url: "https://www.doximity.com/",
-          status: "not_found" as const,
-          notes: "No profile found in Doximity directory"
-        },
-        webmd: {
-          source: "WebMD",
-          url: "https://doctor.webmd.com/",
-          status: "not_found" as const,
-          notes: "No profile found in WebMD directory"
-        },
-        nursys: {
-          source: "Nursys",
-          url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
           data: [
   {
@@ -360,13 +335,32 @@ export const ExternalSearch = ({
     "address": "1905 OREGON PIKE APT F9, LANCASTER, PA 17601-6446",
     "phone": "717-406-9952"
   }
-],
+],,
+          notes: "Found active NPI record with current information"
+        },
+        doximity: {
+          source: "Doximity",
+          url: "https://www.doximity.com/",
+          status: "not_found" as const,
+          notes: "No profile found in Doximity directory"
+        },
+        webmd: {
+          source: "WebMD",
+          url: "https://doctor.webmd.com/",
+          status: "not_found" as const,
+          notes: "No profile found in WebMD directory"
+        },
+        nursys: {
+          source: "Nursys",
+          url: "https://www.nursys.com/LQC/LQCSearch.aspx",
+          status: "not_found" as const,
+          data: []
           notes: "Multiple licenses found - one active, one inactive"
         },
         google: {
           source: "Google Search",
           url: "",
-          status: "found" as const,
+          status: "not_found" as const,
           data: [{
             results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
           }],
@@ -488,14 +482,6 @@ export const ExternalSearch = ({
                       <li>1 linked address was identified in current data systems</li>
                       <li>TASteward.ai found multiple addresses for this HCP on reference data-sources and determined request is valid</li>
                       <li>TASteward.ai recommendation – update Address to '6501 Harbison Ave, Philadelphia, PA 19149-2912'</li>
-                      <li>Confidence: Very High</li>
-                    </ul>
-                  )}
-                   {request.npi === "NA" && (
-                    <ul className="list-disc list-inside space-y-1">
-                      {/* <li>1 linked address was identified in current data systems</li> */}
-                      <li>TASteward.ai found 5 relatvant HCP profiles with refernce to data-sources and determined these profiles</li>
-                      <li>TASteward.ai recommendation – </li>
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
