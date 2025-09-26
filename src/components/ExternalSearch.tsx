@@ -248,8 +248,8 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data: [
-  {
+          data:[
+            {
     "npi": "1659184745",
     "name": "ALEXA BAILY",
     "specialty": "Counselor",
@@ -284,7 +284,7 @@ export const ExternalSearch = ({
     "address": "1905 OREGON PIKE APT F9, LANCASTER, PA 17601-6446",
     "phone": "717-406-9952"
   }
-]
+          ],
           // {
           //   npi: request.npi,
           //   name: "JESSY TOM PATTANIYIL NPC",
