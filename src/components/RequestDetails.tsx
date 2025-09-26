@@ -284,14 +284,6 @@ export const RequestDetails = ({
                           No profile information found for NPI {request.npi}
                         </CardDescription>
                       </CardHeader>
-                      <CardContent>
-                        <div className="p-4 bg-warning-subtle rounded-md border border-warning/20">
-                          <p className="text-sm text-muted-foreground">
-                            This NPI number was not found in our registry database. 
-                            Please verify the NPI number or check external sources for provider information.
-                          </p>
-                        </div>
-                      </CardContent>
                     </Card>}
                 </div>}
             </div>

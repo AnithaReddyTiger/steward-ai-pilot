@@ -148,7 +148,7 @@ export const ExternalSearch = ({
             address: "PO BOX 6282 SHERIDAN, WY 82801-1682",
             lastUpdated: "2022-11-03"
           }],
-          notes: "Found active NPI record with current information"
+          notes: "Found multiple active NPI profiles"
         },
         doximity: {
           source: "Doximity",
@@ -310,7 +310,7 @@ export const ExternalSearch = ({
   {
     "npi": "1720662828",
     "name": "ALEX GREEN",
-    "specialty": "Student in an Organized Health Care Education/Training Program",
+    "specialty": "Student",
     "address": "20 YORK ST, NEW HAVEN, CT 06510-3220",
     "phone": "203-688-4242"
   },
@@ -331,7 +331,7 @@ export const ExternalSearch = ({
   {
     "npi": "1629730619",
     "name": "ALEXANDRA GREEN",
-    "specialty": "Student in an Organized Health Care Education/Training Program",
+    "specialty": "Student",
     "address": "1905 OREGON PIKE APT F9, LANCASTER, PA 17601-6446",
     "phone": "717-406-9952"
   }
@@ -355,7 +355,7 @@ export const ExternalSearch = ({
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "not_found" as const,
           data:[],
-          notes: "Multiple licenses found - one active, one inactive"
+          notes: "No profile found in Nursys directory"
         },
         google: {
           source: "Google Search",
@@ -364,7 +364,7 @@ export const ExternalSearch = ({
           data: [{
             results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
           }],
-          notes: "Multiple sources confirm employment and credentials"
+          notes: "No profile found through Google Search"
         }
       });
     }
