@@ -616,7 +616,7 @@ export const ExternalSearch = ({
                           </span>
                           <span className="font-medium">{String(value)}</span>
                         </div>
-                         </div>
+                        </div>
                        </div>
                                )
                         })) 
