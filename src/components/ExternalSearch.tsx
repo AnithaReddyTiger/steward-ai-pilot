@@ -582,7 +582,7 @@ export const ExternalSearch = ({
 
                       {
                         result.data.map((dataset)=>{
-                        {Object.entries(dataset || {}).map(([key, value]) => {
+                       return {Object.entries(dataset || {}).map(([key, value]) => {
                         return(
                           <div key={key} className="flex justify-between">
                           <span className="text-muted-foreground capitalize">
