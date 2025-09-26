@@ -410,6 +410,14 @@ export const ExternalSearch = ({
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
+                         {request.npi === "NA" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      {/* <li>1 linked address was identified in current data systems</li> */}
+                      <li>TASteward.ai found out 5 results (4 out of 5 are from PA)</li>
+                      <li>TASteward.ai recommendation – choose any one out of 4 results</li>
+                      <li>Confidence: Very High</li>
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
