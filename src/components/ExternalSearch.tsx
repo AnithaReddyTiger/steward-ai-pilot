@@ -335,7 +335,7 @@ export const ExternalSearch = ({
     "address": "1905 OREGON PIKE APT F9, LANCASTER, PA 17601-6446",
     "phone": "717-406-9952"
   }
-],,
+],
           notes: "Found active NPI record with current information"
         },
         doximity: {
