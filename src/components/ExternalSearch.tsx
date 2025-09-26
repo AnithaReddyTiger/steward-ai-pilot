@@ -293,6 +293,57 @@ export const ExternalSearch = ({
         }
       });
     }
+    else if (npiID === "NA") {
+      setSearchResults({
+        nppes: {
+          source: "NPPES NPI Registry",
+          url: "https://npiregistry.cms.hhs.gov/search",
+          status: "found" as const,
+          data: {
+            npi: request.npi,
+            name: "JESSY TOM PATTANIYIL NPC",
+            specialty: "Registered Nurse",
+            address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
+            lastUpdated: "2022-05-24"
+          },
+          notes: "Found active NPI record with current information"
+        },
+        doximity: {
+          source: "Doximity",
+          url: "https://www.doximity.com/",
+          status: "not_found" as const,
+          notes: "No profile found in Doximity directory"
+        },
+        webmd: {
+          source: "WebMD",
+          url: "https://doctor.webmd.com/",
+          status: "not_found" as const,
+          notes: "No profile found in WebMD directory"
+        },
+        nursys: {
+          source: "Nursys",
+          url: "https://www.nursys.com/LQC/LQCSearch.aspx",
+          status: "not_found" as const,
+          data: {
+            license: "Active",
+            licenseNumber: "RN534583",
+            expirationDate: "2027-04-30",
+            state: "PENNSYLVANIA",
+            disciplinaryActions: "None"
+          },
+          notes: "Current nursing license verified, expires April 2027"
+        },
+        google: {
+          source: "Google Search",
+          url: "",
+          status: "not_found" as const,
+          data: {
+            results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
+          },
+          notes: "Multiple sources confirm employment and credentials"
+        }
+      });
+    }
   }, [npiID, request]);
 
   const performAllSearches = async () => {
@@ -414,7 +465,7 @@ export const ExternalSearch = ({
                     <ul className="list-disc list-inside space-y-1">
                       {/* <li>1 linked address was identified in current data systems</li> */}
                       <li>TASteward.ai found out 5 results (4 out of 5 are from PA)</li>
-                      <li>TASteward.ai recommendation – choose any one out of 4 results</li>
+                      <li>TASteward.ai recommendation – choose any one out of 4</li>
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
