@@ -287,7 +287,7 @@ export const ExternalSearch = ({
           url: "",
           status: "found" as const,
           data: [{
-            results: " Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner); Practice location: 6501 Haribson Ave, Philadelphia, PA 19149"
+            results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner); Practice location: 6501 Haribson Ave, Philadelphia, PA 19149"
           }],
           notes: "Multiple sources confirm employment and credentials"
         }
