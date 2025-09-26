@@ -43,25 +43,25 @@ export const ExternalSearch = ({
         source: "NPPES NPI Registry",
         url: "https://npiregistry.cms.hhs.gov/search",
         status: "found" as const,
-        data: {
+        data: [{
           npi: request.npi,
           name: providerName.toUpperCase(),
           specialty: specialty,
           address: `${npiProfile?.addrLine1 || "Address"}, ${city}, ${state} ${npiProfile?.zipCode || "00000"}`,
           lastUpdated: "2024-01-15"
-        },
+        }],
         notes: "Found active NPI record with current information"
       },
       doximity: {
         source: "Doximity",
         url: "https://www.doximity.com/",
         status: "found" as const,
-        data: {
+        data: [{
           profile: "Active professional profile found",
           specialty: specialty,
           education: "Accredited Medical Institution",
           affiliations: `${city} Medical Center`
-        },
+        }],
         notes: `Professional profile confirms specialty as ${specialty}`
       },
       webmd: {
@@ -74,13 +74,13 @@ export const ExternalSearch = ({
         source: "Nursys",
         url: "https://www.nursys.com/LQC/LQCSearch.aspx",
         status: specialty.toLowerCase().includes("nurse") ? "found" as const : "not_found" as const,
-        data: specialty.toLowerCase().includes("nurse") ? {
+        data: specialty.toLowerCase().includes("nurse") ? [{
           license: "Active",
           licenseNumber: npiProfile?.licenseNumber || "RN123456",
           expirationDate: "12/31/2025",
           state: state.toUpperCase(),
           disciplinaryActions: "None"
-        } : undefined,
+        }] : undefined,
         notes: specialty.toLowerCase().includes("nurse") ? `Current nursing license verified, expires Dec 2025` : "No nursing license found - not applicable for this provider type"
       }
     };
@@ -141,59 +141,59 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data: {
+          data: [{
             npi: request.npi,
             name: "AMINATA AW NP",
             specialty: "Registered Nurse",
             address: "PO BOX 6282 SHERIDAN, WY 82801-1682",
             lastUpdated: "2022-11-03"
-          },
+          }],
           notes: "Found active NPI record with current information"
         },
         doximity: {
           source: "Doximity",
           url: "https://www.doximity.com/",
           status: "found" as const,
-          data: {
+          data: [{
             profile: "Active physician profile found",
             specialty: "Registered Nurse",
             education: "Texas Tech University Health Sciences Center",
             affiliations: "Cheyenne Regional Medical Center"
-          },
+          }],
           notes: "Professional profile confirms specialty as Registered Nurse"
         },
         webmd: {
           source: "WebMD",
           url: "https://doctor.webmd.com/",
           status: "found" as const,
-          data: {
+          data: [{
             npi: request.npi,
             name: "AMINATA AW",
             specialty: "Registered Nurse"
-          },
+          }],
           notes: "Profile found in WebMD directory"
         },
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
-          data: {
+          data: [{
             license: "Active",
             licenseNumber: "27748",
             licenseType: "RN",
             expirationDate: "12/31/2026",
             state: "WYOMING",
             disciplinaryActions: "None"
-          },
+          }],
           notes: "Current nursing license verified, expires Dec 2026"
         },
         google: {
           source: "Google Search",
           url: "",
           status: "found" as const,
-          data: {
-            results: ["Nurse Practitioner in Cheyenne, WY", "affiliated with Cheyenne Regional Medical Center"]
-          },
+          data: [{
+            results: "Nurse Practitioner in Cheyenne, WY, affiliated with Cheyenne Regional Medical Center"
+          }],
           notes: "Multiple sources confirm employment and credentials"
         }
       });
@@ -203,12 +203,12 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data: {
+          data: [{
             npi: request.npi,
             name: "DENA KENDRICK LOWE FNP",
             specialty: "Nurse Practitioner",
             address: "2309 E MAIN ST NEW IBERIA, LA 70560"
-          },
+          }],
           notes: "Found NPI record with current information"
         },
         doximity: {
@@ -220,11 +220,11 @@ export const ExternalSearch = ({
         webmd: {
           source: "WebMD",
           url: "https://doctor.webmd.com/",
-          data: {
+          data: [{
             name: "DENA KENDRICK LOWE FNP",
             specialty: "NP",
             address: ""
-          },
+          }],
           status: "found" as const,
           notes: "Profile found in WebMD directory"
         },
@@ -232,13 +232,13 @@ export const ExternalSearch = ({
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
-          data: {
+          data: [{
            "license": "Active",
            "license Number": "RN112760",
            "State": "LOUISIANA-RN",
            "Expiration Date": "2026-01-31",
            "Disciplinary Actions": "None"
-          },
+          }],
           notes: "Current nursing license verified, expires Jan 2026"
         }
       });
@@ -248,13 +248,13 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data:{
+          data: [{
             npi: request.npi,
             name: "JESSY TOM PATTANIYIL NPC",
             specialty: "Registered Nurse",
             address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
             lastUpdated: "2022-05-24"
-          },
+          }],
           notes: "Found active NPI record with current information"
         },
         doximity: {
@@ -273,22 +273,22 @@ export const ExternalSearch = ({
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "found" as const,
-          data: {
+          data: [{
             license: "Active",
             licenseNumber: "RN534583",
             expirationDate: "2027-04-30",
             state: "PENNSYLVANIA",
             disciplinaryActions: "None"
-          },
+          }],
           notes: "Current nursing license verified, expires April 2027"
         },
         google: {
           source: "Google Search",
           url: "",
           status: "found" as const,
-          data: {
-            results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
-          },
+          data: [{
+            results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
+          }],
           notes: "Multiple sources confirm employment and credentials"
         }
       });
@@ -299,13 +299,13 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data:{
+          data: [{
             npi: request.npi,
             name: "JESSY TOM PATTANIYIL NPC",
             specialty: "Registered Nurse",
             address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
             lastUpdated: "2022-05-24"
-          },
+          }],
           notes: "Found active NPI record with current information"
         },
         doximity: {
@@ -323,30 +323,29 @@ export const ExternalSearch = ({
         nursys: {
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-          status: "not_found" as const,
-          data:[ {
+          status: "found" as const,
+          data: [{
             license: "Active",
             licenseNumber: "RN534583",
             expirationDate: "2027-04-30",
             state: "PENNSYLVANIA",
             disciplinaryActions: "None"
-          },
-          notes: "Current nursing license verified, expires April 2027"
-        },
-               {
-            license: "inActive",
-            licenseNumber: "RN534583",
-            expirationDate: "2027-04-30",
+          }, {
+            license: "Inactive",
+            licenseNumber: "RN534584",
+            expirationDate: "2025-04-30",
             state: "PENNSYLVANIA",
             disciplinaryActions: "None"
-          },],
+          }],
+          notes: "Multiple licenses found - one active, one inactive"
+        },
         google: {
           source: "Google Search",
           url: "",
-          status: "not_found" as const,
-          data: {
-            results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
-          },
+          status: "found" as const,
+          data: [{
+            results: "Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"
+          }],
           notes: "Multiple sources confirm employment and credentials"
         }
       });

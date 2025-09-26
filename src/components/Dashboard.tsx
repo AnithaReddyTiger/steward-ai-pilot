@@ -58,7 +58,7 @@ const mockRequests: StewardshipRequest[] = [{
   requestNumber: 4,
   description: "Please create this HCP profile",
   status: "approved",
-  requestType: "profile_update",
+  requestType: "specialty_update",
   submittedDate: "2025-09-09T14:20:00Z",
   priority: "low",
   currentValue: "NA",
