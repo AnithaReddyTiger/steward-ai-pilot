@@ -462,7 +462,6 @@ export const ExternalSearch = ({
                   {request.requestType === "specialty_update" && "Verify specialty credentials and qualifications"}
                   {request.requestType === "license_verification" && "Check license status and expiration dates"}
                   {request.requestType === "address_update" && "Validate current practice addresses"}
-                  {request.requestType === "new_profile_creation" && "Create New HCP Profile"}
                 </div>
               </div>
               <div>
@@ -489,6 +488,14 @@ export const ExternalSearch = ({
                       <li>1 linked address was identified in current data systems</li>
                       <li>TASteward.ai found multiple addresses for this HCP on reference data-sources and determined request is valid</li>
                       <li>TASteward.ai recommendation – update Address to '6501 Harbison Ave, Philadelphia, PA 19149-2912'</li>
+                      <li>Confidence: Very High</li>
+                    </ul>
+                  )}
+                   {request.npi === "NA" && (
+                    <ul className="list-disc list-inside space-y-1">
+                      {/* <li>1 linked address was identified in current data systems</li> */}
+                      <li>TASteward.ai found 5 relatvant HCP profiles with refernce to data-sources and determined these profiles</li>
+                      <li>TASteward.ai recommendation – </li>
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
