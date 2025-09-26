@@ -583,12 +583,12 @@ export const ExternalSearch = ({
                       {
                         result.data.map((dataset)=>{
                         {Object.entries(dataset || {}).map(([key, value]) => (
-                        <div key={key} className="flex justify-between">
+                      return(  <div key={key} className="flex justify-between">
                           <span className="text-muted-foreground capitalize">
                             {key.replace(/([A-Z])/g, ' $1')}:
                           </span>
                           <span className="font-medium">{String(value)}</span>
-                        </div>
+                        </div>)
                       ))}  
                         })
                       }
