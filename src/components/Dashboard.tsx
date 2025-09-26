@@ -56,7 +56,7 @@ const mockRequests: StewardshipRequest[] = [{
   id: "4",
   npi: "NA",
   requestNumber: 4,
-  description: "Please create this HCP profile",
+  description: " Please create this HCP profile.  FirstName: Alexandra , LastName: Green, State: Pennsylvania",
   status: "pending",
   requestType: "new_profile_creation",
   submittedDate: "2025-09-09T14:20:00Z",
