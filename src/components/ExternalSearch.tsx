@@ -589,14 +589,14 @@ export const ExternalSearch = ({
                         </div>
                       ))}
                       })}
-                      {Object.entries(result.data || {}).map(([key, value]) => (
+                      /* {Object.entries(result.data || {}).map(([key, value]) => (
                         <div key={key} className="flex justify-between">
                           <span className="text-muted-foreground capitalize">
                             {key.replace(/([A-Z])/g, ' $1')}:
                           </span>
                           <span className="font-medium">{String(value)}</span>
                         </div>
-                      ))}
+                      ))} */
                     </div>
                   </div>
                 )}
