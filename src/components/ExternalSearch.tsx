@@ -579,6 +579,16 @@ export const ExternalSearch = ({
                   <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                     <h5 className="font-medium text-success mb-2">Search Results</h5>
                     <div className="text-sm space-y-1">
+                      {result.data.map((data)=>{
+                    {Object.entries(data || {}).map(([key, value]) => (
+                        <div key={key} className="flex justify-between">
+                          <span className="text-muted-foreground capitalize">
+                            {key.replace(/([A-Z])/g, ' $1')}:
+                          </span>
+                          <span className="font-medium">{String(value)}</span>
+                        </div>
+                      ))}
+                      })}
                       {Object.entries(result.data || {}).map(([key, value]) => (
                         <div key={key} className="flex justify-between">
                           <span className="text-muted-foreground capitalize">
