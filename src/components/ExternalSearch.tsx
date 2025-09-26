@@ -599,14 +599,10 @@ export const ExternalSearch = ({
                 </div>
 
                 {/* Search Results */}
-                {result.status === "found" && result.data && (
-                  
-
-                      {
-                        result.data.map((dataset)=>{
+                {result.status === "found" && result.data &&  result.data.map((dataset)=>{
                         return (Object.entries(dataset || {}).map(([key, value]) => {
                         return(
-                          <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+                           <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                            <h5 className="font-medium text-success mb-2">Search Results</h5>
                    
                            <div className="text-sm space-y-1">
@@ -616,18 +612,14 @@ export const ExternalSearch = ({
                           </span>
                           <span className="font-medium">{String(value)}</span>
                         </div>
-                        </div>
-                       </div>
+                         </div>
+                               </div>
                                )
                         })) 
                           
                         })
-                      }
-
-
-                   
-                 
-                )}
+                      
+}
 
                 {/* Search Notes */}
                 {result.notes && (
