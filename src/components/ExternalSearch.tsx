@@ -324,7 +324,7 @@ export const ExternalSearch = ({
           source: "Nursys",
           url: "https://www.nursys.com/LQC/LQCSearch.aspx",
           status: "not_found" as const,
-          data: {
+          data:[ {
             license: "Active",
             licenseNumber: "RN534583",
             expirationDate: "2027-04-30",
@@ -333,6 +333,13 @@ export const ExternalSearch = ({
           },
           notes: "Current nursing license verified, expires April 2027"
         },
+               {
+            license: "inActive",
+            licenseNumber: "RN534583",
+            expirationDate: "2027-04-30",
+            state: "PENNSYLVANIA",
+            disciplinaryActions: "None"
+          },],
         google: {
           source: "Google Search",
           url: "",
