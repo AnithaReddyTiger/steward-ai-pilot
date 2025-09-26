@@ -600,12 +600,10 @@ export const ExternalSearch = ({
 
                 {/* Search Results */}
                 {result.status === "found" && result.data &&  result.data.map((dataset)=>{
-                  return ( <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
-                           <h5 className="font-medium text-success mb-2">Search Results</h5>
-                        
                         return (Object.entries(dataset || {}).map(([key, value]) => {
-                          return(
-                          
+                        return(
+                           <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+                           <h5 className="font-medium text-success mb-2">Search Results</h5>
                    
                            <div className="text-sm space-y-1">
                           <div key={key} className="flex justify-between">
@@ -615,13 +613,9 @@ export const ExternalSearch = ({
                           <span className="font-medium">{String(value)}</span>
                         </div>
                          </div>
-                              
+                               </div>
                                )
-                             
-                        })
-                  </div>
-                                )
-                 ) 
+                        })) 
                           
                         })
                       
