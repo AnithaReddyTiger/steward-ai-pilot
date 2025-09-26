@@ -248,13 +248,50 @@ export const ExternalSearch = ({
           source: "NPPES NPI Registry",
           url: "https://npiregistry.cms.hhs.gov/search",
           status: "found" as const,
-          data: {
-            npi: request.npi,
-            name: "JESSY TOM PATTANIYIL NPC",
-            specialty: "Registered Nurse",
-            address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
-            lastUpdated: "2022-05-24"
-          },
+          data: [
+  {
+    "npi": "1659184745",
+    "name": "ALEXA BAILY",
+    "specialty": "Counselor",
+    "address": "95 E HIGH ST STE 407, WAYNESBURG, PA 15370-1853",
+    "phone": "614-325-6384"
+  },
+  {
+    "npi": "1720662828",
+    "name": "ALEX GREEN",
+    "specialty": "Student in an Organized Health Care Education/Training Program",
+    "address": "20 YORK ST, NEW HAVEN, CT 06510-3220",
+    "phone": "203-688-4242"
+  },
+  {
+    "npi": "1356087407",
+    "name": "ALEXANDRA GREEN",
+    "specialty": "Nurse Practitioner",
+    "address": "3401 N BROAD ST, PHILADELPHIA, PA 19140-5189",
+    "phone": "215-707-8484"
+  },
+  {
+    "npi": "1396336608",
+    "name": "ALEXANDRA GREEN",
+    "specialty": "Physician Assistant",
+    "address": "300 HALKET ST STE 2601, PITTSBURGH, PA 15213-3108",
+    "phone": "412-641-4274"
+  },
+  {
+    "npi": "1629730619",
+    "name": "ALEXANDRA GREEN",
+    "specialty": "Student in an Organized Health Care Education/Training Program",
+    "address": "1905 OREGON PIKE APT F9, LANCASTER, PA 17601-6446",
+    "phone": "717-406-9952"
+  }
+]
+          // {
+          //   npi: request.npi,
+          //   name: "JESSY TOM PATTANIYIL NPC",
+          //   specialty: "Registered Nurse",
+          //   address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
+          //   lastUpdated: "2022-05-24"
+          // },
           notes: "Found active NPI record with current information"
         },
         doximity: {
@@ -286,57 +323,6 @@ export const ExternalSearch = ({
           source: "Google Search",
           url: "",
           status: "found" as const,
-          data: {
-            results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
-          },
-          notes: "Multiple sources confirm employment and credentials"
-        }
-      });
-    }
-    else if (npiID === "NA") {
-      setSearchResults({
-        nppes: {
-          source: "NPPES NPI Registry",
-          url: "https://npiregistry.cms.hhs.gov/search",
-          status: "found" as const,
-          data: {
-            npi: request.npi,
-            name: "JESSY TOM PATTANIYIL NPC",
-            specialty: "Registered Nurse",
-            address: "6501 HARBISON AVE, PHILADELPHIA, PA 19149-2912",
-            lastUpdated: "2022-05-24"
-          },
-          notes: "Found active NPI record with current information"
-        },
-        doximity: {
-          source: "Doximity",
-          url: "https://www.doximity.com/",
-          status: "not_found" as const,
-          notes: "No profile found in Doximity directory"
-        },
-        webmd: {
-          source: "WebMD",
-          url: "https://doctor.webmd.com/",
-          status: "not_found" as const,
-          notes: "No profile found in WebMD directory"
-        },
-        nursys: {
-          source: "Nursys",
-          url: "https://www.nursys.com/LQC/LQCSearch.aspx",
-          status: "not_found" as const,
-          data: {
-            license: "Active",
-            licenseNumber: "RN534583",
-            expirationDate: "2027-04-30",
-            state: "PENNSYLVANIA",
-            disciplinaryActions: "None"
-          },
-          notes: "Current nursing license verified, expires April 2027"
-        },
-        google: {
-          source: "Google Search",
-          url: "",
-          status: "not_found" as const,
           data: {
             results: ["Family nurse practitioner; Studied MSN at Holy Family University; Specialties: Nursing (Nurse Practitioner)"]
           },
@@ -458,14 +444,6 @@ export const ExternalSearch = ({
                       <li>1 linked address was identified in current data systems</li>
                       <li>TASteward.ai found multiple addresses for this HCP on reference data-sources and determined request is valid</li>
                       <li>TASteward.ai recommendation – update Address to '6501 Harbison Ave, Philadelphia, PA 19149-2912'</li>
-                      <li>Confidence: Very High</li>
-                    </ul>
-                  )}
-                         {request.npi === "NA" && (
-                    <ul className="list-disc list-inside space-y-1">
-                      {/* <li>1 linked address was identified in current data systems</li> */}
-                      <li>TASteward.ai found out 5 results (4 out of 5 are from PA)</li>
-                      <li>TASteward.ai recommendation – choose any one out of 4</li>
                       <li>Confidence: Very High</li>
                     </ul>
                   )}
