@@ -371,26 +371,7 @@ export const ExternalSearch = ({
   }, [npiID, request]);
 
 
-  const [activeKey, setActiveKey] = useState(null);
-
-
-  const handleAddClick = (key) => {
-    setActiveKey(key);
-  };
-
-
-  const handleSaveClick = () => {
-    console.log(`Saving data for: ${activeKey}`);
-    // Add your actual save logic here (e.g., API call)
-    setActiveKey(null); // Exit "add mode" after saving
-  };
-
-  const handleCancelClick = () => {
-    console.log('Cancelled');
-    setActiveKey(null); // Exit "add mode"
-  };
-
-
+  
 
   const performAllSearches = async () => {
     // Set all sources to searching status
@@ -628,59 +609,35 @@ export const ExternalSearch = ({
                            <div className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                            <h5 className="font-medium text-success mb-2">Search Results</h5>
                                
-              {
-                (Object.entries(dataset || {}).map(([key, value]) => {
-                        return(
-                          
-<div className="space-y-4"> {/* Added for spacing between items */}
-      {Object.entries(dataset || {}).map(([key, value]) => {
-        // 2. Check if the current item is the one being added/edited
-        const isCurrentlyActive = activeKey === key;
-        
-        // 3. Determine if any item is active, to disable others
-        const isAnyItemActive = activeKey !== null;
+    {
 
-        return (
-          <div key={key} className="text-sm space-y-2 p-3 border rounded-md"> {/* Added padding and border */}
-            <div className="flex justify-between">
-              <span className="text-muted-foreground capitalize">
-                {key.replace(/([A-Z])/g, ' $1')}:
-              </span>
-              <span className="font-medium">{String(value)}</span>
-            </div>
+                (Object.entries(dataset || {}).map(([key, value]) => {
 
-            {/* 4. Conditional Rendering for Buttons */}
-            <div className="flex justify-end space-x-2 mt-2"> {/* Button container */}
-              {isCurrentlyActive ? (
-                // If this item is active, show "Save" and "Cancel"
-                <>
-                  <button
-                    onClick={handleSaveClick}
-                    className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={handleCancelClick}
-                    className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
-                  >
-                    Cancel
-                  </button>
-                </>
-              ) : (
-                // Otherwise, show the "Add" button
-                <button
-                  onClick={() => handleAddClick(key)}
-                  // Disable this button if any other item is active
-                  disabled={isAnyItemActive}
-                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                >
-                  Add
-                </button>
-              )}
-            </div>
-          </div>
-        );
+                        return(
+
+                          
+
+                           <div className="text-sm space-y-1">
+
+                          <div key={key} className="flex justify-between">
+
+                          <span className="text-muted-foreground capitalize">
+
+                            {key.replace(/([A-Z])/g, ' $1')}:
+
+                          </span>
+
+                          <span className="font-medium">{String(value)}</span>
+
+                        </div>
+
+                         </div>
+
+                               )
+
+                        })) 
+
+              }
       })}
     </div>
                                )
