@@ -14,7 +14,7 @@ interface StewardshipRequest {
   requestNumber: number;
   description: string;
   status: "pending" | "approved" | "rejected";
-  requestType: "specialty_update" | "license_verification" | "address_update";
+  requestType: "specialty_update" | "license_verification" | "address_update" | "new_profile_creation";
   submittedDate: string;
   priority: "high" | "medium" | "low";
   currentValue?: string;
