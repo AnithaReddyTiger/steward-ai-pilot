@@ -692,6 +692,15 @@ export const ExternalSearch = ({
                 );
             })}
 
+                   {selectedDataset && (
+                 <div className="mt-8 p-4 bg-gray-100 rounded-lg border border-gray-200">
+                    <h4 className="font-bold text-gray-800">Current Selection:</h4>
+                    <p className="text-sm text-gray-600 mt-2">
+                        {selectedDataset.firstName} {selectedDataset.lastName}
+                    </p>
+                 </div>
+            )}
+
                 {/* Search Notes */}
                 {result.notes && (
                   <div className="mt-3 text-xs text-muted-foreground">
