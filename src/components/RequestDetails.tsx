@@ -157,7 +157,7 @@ export const RequestDetails = ({
 
             {/* Tab Content */}
             <div className="space-y-6">
-              {activeTab === "investigation" && <ExternalSearch request={request} />}
+              {activeTab === "investigation" && <ExternalSearch request={request} setFinalValue={setFinalValue}/>}
               {activeTab === "profile" && <div className="space-y-6">
                   {npiProfile ? <Card>
                       <CardHeader>
