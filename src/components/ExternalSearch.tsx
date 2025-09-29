@@ -370,6 +370,28 @@ export const ExternalSearch = ({
     }
   }, [npiID, request]);
 
+
+  const [activeKey, setActiveKey] = useState(null);
+
+
+  const handleAddClick = (key) => {
+    setActiveKey(key);
+  };
+
+
+  const handleSaveClick = () => {
+    console.log(`Saving data for: ${activeKey}`);
+    // Add your actual save logic here (e.g., API call)
+    setActiveKey(null); // Exit "add mode" after saving
+  };
+
+  const handleCancelClick = () => {
+    console.log('Cancelled');
+    setActiveKey(null); // Exit "add mode"
+  };
+
+
+
   const performAllSearches = async () => {
     // Set all sources to searching status
     const updatedResults = { ...searchResults };
@@ -609,6 +631,7 @@ export const ExternalSearch = ({
               {
                 (Object.entries(dataset || {}).map(([key, value]) => {
                         return(
+                          
 div className="space-y-4"> {/* Added for spacing between items */}
       {Object.entries(dataset || {}).map(([key, value]) => {
         // 2. Check if the current item is the one being added/edited
