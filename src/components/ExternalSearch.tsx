@@ -371,7 +371,22 @@ export const ExternalSearch = ({
   }, [npiID, request]);
 
 
+  const [selectedDataset, setSelectedDataset] = useState(null);
   
+   const handleAdd = (dataset) => {
+    console.log("Dataset added:", dataset);
+    setSelectedDataset(dataset);
+  };
+
+  /**
+   * Handles the click event for the "Cancel" button.
+   * It clears the current selection.
+   */
+  const handleCancel = () => {
+    console.log("Selection cancelled for:", selectedDataset);
+    setSelectedDataset(null);
+  };
+
 
   const performAllSearches = async () => {
     // Set all sources to searching status
@@ -604,7 +619,7 @@ export const ExternalSearch = ({
                 </div>
 
                 {/* Search Results */}
-                {result.status === "found" && result.data && result.data.map((dataset, datasetIndex) => (
+                /* {result.status === "found" && result.data && result.data.map((dataset, datasetIndex) => (
                   <div key={datasetIndex} className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
                     <h5 className="font-medium text-success mb-2">Search Results</h5>
                     <div className="text-sm space-y-1">
@@ -618,7 +633,64 @@ export const ExternalSearch = ({
                       ))}
                     </div>
                   </div>
-                ))}
+                ))} */
+
+                 {result.status === "found" && result.data && result.data.map((dataset) => {
+                // Determine if the current item is the one that's selected
+                const isSelected = selectedDataset && selectedDataset.id === dataset.id;
+                // Determine if other items should be disabled
+                const isButtonDisabled = selectedDataset !== null && !isSelected;
+
+                return (
+                    <div 
+                        key={dataset.id} 
+                        // Dynamically change styling if the item is selected
+                        className={`mt-4 p-4 rounded-lg border transition-all duration-300 ${
+                            isSelected 
+                                ? 'bg-blue-100 border-blue-400 shadow-lg' 
+                                : 'bg-green-50 border-green-200'
+                        }`}
+                    >
+                        <h5 className={`font-medium mb-2 ${isSelected ? 'text-blue-800' : 'text-green-800'}`}>
+                            Search Result
+                        </h5>
+                        <div className="text-sm space-y-1.5 text-gray-700">
+                            {Object.entries(dataset || {}).map(([key, value]) => {
+                                // Don't render the 'id' field in the UI
+                                if (key === 'id') return null;
+                                return (
+                                    <div key={key} className="flex justify-between items-center">
+                                        <span className="text-gray-500 capitalize">
+                                            {/* A simple regex to add space before capital letters for display */}
+                                            {key.replace(/([A-Z])/g, ' $1')}:
+                                        </span>
+                                        <span className="font-medium text-gray-800">{String(value)}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        {/* Button container */}
+                        <div className="flex justify-end mt-4 space-x-3">
+                           {isSelected ? (
+                               <button
+                                    onClick={handleCancel}
+                                    className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                           ) : (
+                                <button
+                                    onClick={() => handleAdd(dataset)}
+                                    disabled={isButtonDisabled}
+                                    className="px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                >
+                                    Add
+                                </button>
+                           )}
+                        </div>
+                    </div>
+                );
+            })}
 
                 {/* Search Notes */}
                 {result.notes && (
