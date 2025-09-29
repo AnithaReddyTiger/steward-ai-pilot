@@ -379,7 +379,11 @@ export const ExternalSearch = ({
    const handleAdd = (dataset) => {
     console.log("Dataset added:", dataset);
     setSelectedDataset(dataset);
-    setFinalValue(dataset);
+        const formatted = Object.entries(dataset)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n');
+      
+    setFinalValue(formatted);
     
   };
 
