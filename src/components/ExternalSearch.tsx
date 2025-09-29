@@ -622,23 +622,12 @@ export const ExternalSearch = ({
                 </div>
 
                 {/* Search Results */}
-                /* {result.status === "found" && result.data && result.data.map((dataset, datasetIndex) => (
-                  <div key={datasetIndex} className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
-                    <h5 className="font-medium text-success mb-2">Search Results</h5>
-                    <div className="text-sm space-y-1">
-                      {Object.entries(dataset || {}).map(([key, value]) => (
-                        <div key={key} className="flex justify-between">
-                          <span className="text-muted-foreground capitalize">
-                            {key.replace(/([A-Z])/g, ' $1')}:
-                          </span>
-                          <span className="font-medium">{String(value)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))} */
 
-                 {result.status === "found" && result.data && result.data.map((dataset) => {
+                {
+                  source.name==="NPPES NPI Registry"?
+
+                  <>
+                  {result.status === "found" && result.data && result.data.map((dataset) => {
                 // Determine if the current item is the one that's selected
                 const isSelected = selectedDataset && selectedDataset.id === dataset.id;
                 // Determine if other items should be disabled
@@ -704,6 +693,31 @@ export const ExternalSearch = ({
                  </div>
             )}
 
+                  </>
+
+                  :
+
+                  <>
+                  {result.status === "found" && result.data && result.data.map((dataset, datasetIndex) => (
+                  <div key={datasetIndex} className="mt-4 p-3 bg-success-subtle rounded-md border border-success/20">
+                    <h5 className="font-medium text-success mb-2">Search Results</h5>
+                    <div className="text-sm space-y-1">
+                      {Object.entries(dataset || {}).map(([key, value]) => (
+                        <div key={key} className="flex justify-between">
+                          <span className="text-muted-foreground capitalize">
+                            {key.replace(/([A-Z])/g, ' $1')}:
+                          </span>
+                          <span className="font-medium">{String(value)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                  </>
+                }
+                
+
+                 
                 {/* Search Notes */}
                 {result.notes && (
                   <div className="mt-3 text-xs text-muted-foreground">
