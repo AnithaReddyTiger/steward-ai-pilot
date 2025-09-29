@@ -632,7 +632,7 @@ export const ExternalSearch = ({
                 (Object.entries(dataset || {}).map(([key, value]) => {
                         return(
                           
-div className="space-y-4"> {/* Added for spacing between items */}
+<div className="space-y-4"> {/* Added for spacing between items */}
       {Object.entries(dataset || {}).map(([key, value]) => {
         // 2. Check if the current item is the one being added/edited
         const isCurrentlyActive = activeKey === key;
