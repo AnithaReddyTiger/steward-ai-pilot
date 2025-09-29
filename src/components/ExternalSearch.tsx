@@ -609,15 +609,57 @@ export const ExternalSearch = ({
               {
                 (Object.entries(dataset || {}).map(([key, value]) => {
                         return(
-                          
-                           <div className="text-sm space-y-1">
-                          <div key={key} className="flex justify-between">
-                          <span className="text-muted-foreground capitalize">
-                            {key.replace(/([A-Z])/g, ' $1')}:
-                          </span>
-                          <span className="font-medium">{String(value)}</span>
-                        </div>
-                         </div>
+div className="space-y-4"> {/* Added for spacing between items */}
+      {Object.entries(dataset || {}).map(([key, value]) => {
+        // 2. Check if the current item is the one being added/edited
+        const isCurrentlyActive = activeKey === key;
+        
+        // 3. Determine if any item is active, to disable others
+        const isAnyItemActive = activeKey !== null;
+
+        return (
+          <div key={key} className="text-sm space-y-2 p-3 border rounded-md"> {/* Added padding and border */}
+            <div className="flex justify-between">
+              <span className="text-muted-foreground capitalize">
+                {key.replace(/([A-Z])/g, ' $1')}:
+              </span>
+              <span className="font-medium">{String(value)}</span>
+            </div>
+
+            {/* 4. Conditional Rendering for Buttons */}
+            <div className="flex justify-end space-x-2 mt-2"> {/* Button container */}
+              {isCurrentlyActive ? (
+                // If this item is active, show "Save" and "Cancel"
+                <>
+                  <button
+                    onClick={handleSaveClick}
+                    className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={handleCancelClick}
+                    className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                // Otherwise, show the "Add" button
+                <button
+                  onClick={() => handleAddClick(key)}
+                  // Disable this button if any other item is active
+                  disabled={isAnyItemActive}
+                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                >
+                  Add
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
                                )
                         })) 
               }
