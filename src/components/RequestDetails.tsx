@@ -68,6 +68,7 @@ export const RequestDetails = ({
       title: "Request Approved",
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
+    
   };
   const handleReject = () => {
     toast({

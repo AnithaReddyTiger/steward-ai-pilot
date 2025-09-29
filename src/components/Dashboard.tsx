@@ -74,6 +74,9 @@ export const Dashboard = () => {
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+  const handleUpdate=(status,message)=>{
+    console.log(status, message)
+  }
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "pending":
@@ -111,7 +114,7 @@ export const Dashboard = () => {
     }
   };
   if (selectedRequest) {
-    return <RequestDetails request={selectedRequest} onBack={() => setSelectedRequest(null)} />;
+    return <RequestDetails request={selectedRequest} onBack={() => setSelectedRequest(null)} handleUpdate={handleUpdate} />;
   }
   return <div className="min-h-screen bg-background">
       <StewardshipTopBar />
