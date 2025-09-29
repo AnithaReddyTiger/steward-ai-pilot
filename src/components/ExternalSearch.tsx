@@ -301,6 +301,7 @@ export const ExternalSearch = ({
           status: "found" as const,
           data:  [
         {
+          "id":1,
     "npi": "1659184745",
     "name": "ALEXA BAILY",
     "specialty": "Counselor",
@@ -308,13 +309,14 @@ export const ExternalSearch = ({
     "phone": "614-325-6384"
       },
   {
+    "id":2,
     "npi": "1720662828",
     "name": "ALEX GREEN",
     "specialty": "Student",
     "address": "20 YORK ST, NEW HAVEN, CT 06510-3220",
     "phone": "203-688-4242"
   },
-  {
+  {"id":3,
     "npi": "1356087407",
     "name": "ALEXANDRA GREEN",
     "specialty": "Nurse Practitioner",
@@ -322,13 +324,14 @@ export const ExternalSearch = ({
     "phone": "215-707-8484"
   },
   {
+      "id":4,
     "npi": "1396336608",
     "name": "ALEXANDRA GREEN",
     "specialty": "Physician Assistant",
     "address": "300 HALKET ST STE 2601, PITTSBURGH, PA 15213-3108",
     "phone": "412-641-4274"
   },
-  {
+  {"id":5,
     "npi": "1629730619",
     "name": "ALEXANDRA GREEN",
     "specialty": "Student",
