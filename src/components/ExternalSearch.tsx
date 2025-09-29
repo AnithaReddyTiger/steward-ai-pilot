@@ -25,7 +25,7 @@ interface SearchResult {
 }
 
 export const ExternalSearch = ({
-  request
+  request, setFinalValue,
 }: ExternalSearchProps) => {
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
@@ -379,6 +379,7 @@ export const ExternalSearch = ({
    const handleAdd = (dataset) => {
     console.log("Dataset added:", dataset);
     setSelectedDataset(dataset);
+    setFinalValue(dataset);
     
   };
 
@@ -389,6 +390,7 @@ export const ExternalSearch = ({
   const handleCancel = () => {
     console.log("Selection cancelled for:", selectedDataset);
     setSelectedDataset(null);
+    setFinalValue(null);
   };
 
 
