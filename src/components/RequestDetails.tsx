@@ -311,7 +311,7 @@ export const RequestDetails = ({
 
                 <div className="space-y-2">
                   <Label htmlFor="final-value" className="text-sm font-medium">Final Value</Label>
-                  <Input 
+                  <Textarea 
                     id="final-value"
                     placeholder="Enter the approved final value..." 
                     value={finalValue} 
