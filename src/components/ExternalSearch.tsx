@@ -379,6 +379,7 @@ export const ExternalSearch = ({
    const handleAdd = (dataset) => {
     console.log("Dataset added:", dataset);
     setSelectedDataset(dataset);
+    
   };
 
   /**
