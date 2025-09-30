@@ -83,7 +83,7 @@ export const Dashboard = () => {
         return {
         
           el.status:status,
-          el...,
+          el...
         }
       }
       else{
