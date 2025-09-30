@@ -239,7 +239,8 @@ export const Dashboard = () => {
                         
                         {request.currentValue && request.proposedValue && <div className="text-xs text-muted-foreground">
                             <span className="font-medium">Current:</span> {request.currentValue} → 
-                            <span className="font-medium"> Proposed:</span> {request.proposedValue}
+                            <span className="font-medium"> Proposed:</span> {request.proposedValue} → 
+                          <span className="font-medium"> Final:</span> {request.npi==="NA"? final: request.proposedValue} 
                           </div>}
                       </div>
                       
