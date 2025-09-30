@@ -68,14 +68,27 @@ export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const filteredRequests = mockRequests.filter(request => {
+  const [mockedResults,setMockedResults]=useState(mockRequests)
+  const [final,setFinal]=useState("")
+  const filteredRequests = mockedResults.filter(request => {
     const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
-  const handleUpdate=(status,message,npi)=>{
+  const handleUpdate=(status,message)=>{
     console.log(status, message)
-    
+    setFinal(message)
+    mockedResults.map((el)=>{
+      if(el.npi==="NA"){
+        return {
+          el...,
+          el.status:status
+        }
+      }
+      else{
+        return el
+      }
+    })
   }
   const getStatusIcon = (status: string) => {
     switch (status) {
