@@ -68,7 +68,6 @@ export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  
   const filteredRequests = mockRequests.filter(request => {
     const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
