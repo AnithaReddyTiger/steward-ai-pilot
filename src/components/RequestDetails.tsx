@@ -69,7 +69,7 @@ export const RequestDetails = ({
       title: "Request Approved",
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
-    handleUpdate("Approved",finalValue)
+    handleUpdate("Approved",finalValue,)
   };
   const handleReject = () => {
     toast({
@@ -77,7 +77,7 @@ export const RequestDetails = ({
       description: `Request #${request.requestNumber} has been rejected.`,
       variant: "destructive"
     });
-    handleUpdate("Rejected",finalValue)
+    handleUpdate("Rejected",finalValue,)
   };
   return <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-6">
