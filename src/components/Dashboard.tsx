@@ -81,8 +81,9 @@ export const Dashboard = () => {
     mockedResults.map((el)=>{
       if(el.npi==="NA"){
         return {
+        
+          el.status:status,
           el...,
-          el.status:status
         }
       }
       else{
