@@ -161,7 +161,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {mockRequests.filter(r => r.status === "approved").length}
+                {mockedResults.filter(r => r.status === "approved").length}
               </div>
             </CardContent>
           </Card>
@@ -172,7 +172,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {mockRequests.filter(r => r.status === "rejected").length}
+                {mockedResults.filter(r => r.status === "rejected").length}
               </div>
             </CardContent>
           </Card>
@@ -182,7 +182,7 @@ export const Dashboard = () => {
               <CardTitle className="text-sm font-medium">Total Requests</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{mockRequests.length}</div>
+              <div className="text-2xl font-bold">{mockedResults.length}</div>
             </CardContent>
           </Card>
         </div>
