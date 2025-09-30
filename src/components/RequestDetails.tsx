@@ -69,7 +69,7 @@ export const RequestDetails = ({
       title: "Request Approved",
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
-    handleUpdate("Approved",finalValue,)
+    handleUpdate("approved",finalValue,)
   };
   const handleReject = () => {
     toast({
