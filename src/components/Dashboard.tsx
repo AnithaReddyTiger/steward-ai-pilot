@@ -150,7 +150,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {mockRequests.filter(r => r.status === "pending").length}
+                {mockedResults.filter(r => r.status === "pending").length}
               </div>
             </CardContent>
           </Card>
