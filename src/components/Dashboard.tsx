@@ -78,18 +78,19 @@ export const Dashboard = () => {
   const handleUpdate=(status,message)=>{
     console.log(status, message)
     setFinal(message)
-    mockedResults.map((el)=>{
-      if(el.npi==="NA"){
-        return {
-        
-          el.status:status,
-          el...
-        }
-      }
-      else{
-        return el
-      }
-    })
+  const updatedResults = mockedResults.map((el) => {
+    if (el.npi === "NA") {
+     
+      return {
+        ...el, 
+        status: status 
+      };
+    } else {
+      
+      return el;
+    }
+  });
+    setMockedResults(updatedResults)
   }
   const getStatusIcon = (status: string) => {
     switch (status) {
