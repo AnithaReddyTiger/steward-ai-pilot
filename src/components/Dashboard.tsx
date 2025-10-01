@@ -159,13 +159,14 @@ export const Dashboard = (status,message) => {
   }
   return <div className="min-h-screen bg-background">
       <StewardshipTopBar />
-    <div>{status} {JSON.strigify(message)}</div>
+   
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between space-y-2">
           <p className="text-muted-foreground">
             Manage and validate healthcare provider information requests
           </p>
+           <div>{status} {JSON.strigify(message)}</div>
           <ConnectorPopup />
         </div>
 
