@@ -65,6 +65,7 @@ const mockRequests: StewardshipRequest[] = [{
   proposedValue: "NA"
 }];
 export const Dashboard = (status,message) => {
+  
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -158,6 +159,7 @@ export const Dashboard = (status,message) => {
   }
   return <div className="min-h-screen bg-background">
       <StewardshipTopBar />
+    <div>{status} {JSON.strigify(message)}</div>
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between space-y-2">
