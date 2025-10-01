@@ -64,29 +64,21 @@ const mockRequests: StewardshipRequest[] = [{
   currentValue: "NA",
   proposedValue: "NA"
 }];
-export const Dashboard = (status,message) => {
-  
+export const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  // const [mockedResults,setMockedResults]=useState(mockRequests)
+  const [mockedResults,setMockedResults]=useState(mockRequests)
   const [final,setFinal]=useState("")
-  const [filteredRequests,setFilteredRequest]=useState(
-    mockedResults.filter(request => {
+  const filteredRequests = mockedResults.filter(request => {
     const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
-  )
-  // const filteredRequests = mockedResults.filter(request => {
-  //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
-  //   const matchesStatus = statusFilter === "all" || request.status === statusFilter;
-  //   return matchesSearch && matchesStatus;
-  // });
-
-    useEfffect(()=>{
-       setFinal(message)
-  const updatedResults = mockRequests.map((el) => {
+  const handleUpdate=(status,message)=>{
+    console.log(status, message)
+    setFinal(message)
+  const updatedResults = mockedResults.map((el) => {
     if (el.npi === "NA") {
      
       return {
@@ -98,26 +90,8 @@ export const Dashboard = (status,message) => {
       return el;
     }
   });
-    setFilteredRequest(updatedResults)
-  },[status,message])
-
-  // const handleUpdate=(status,message)=>{
-  //   console.log(status, message)
-  //   setFinal(message)
-  // const updatedResults = mockedResults.map((el) => {
-  //   if (el.npi === "NA") {
-     
-  //     return {
-  //       ...el, 
-  //       status: status 
-  //     };
-  //   } else {
-      
-  //     return el;
-  //   }
-  // });
-  //   setMockedResults(updatedResults)
-  // }
+    setMockedResults(updatedResults)
+  }
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "pending":
@@ -159,14 +133,12 @@ export const Dashboard = (status,message) => {
   }
   return <div className="min-h-screen bg-background">
       <StewardshipTopBar />
-   
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between space-y-2">
           <p className="text-muted-foreground">
             Manage and validate healthcare provider information requests
           </p>
-           <div>{status} {JSON.strigify(message)}</div>
           <ConnectorPopup />
         </div>
 
