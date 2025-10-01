@@ -323,11 +323,11 @@ export const RequestDetails = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Button variant="success" className="w-full" onClick={handleApprove}   disabled={request.status==="approved"|| request.status==="rejected"} >
+                  <Button variant="success" className="w-full" onClick={handleApprove}   disabled={request.status!=="pending"} >
                     <CheckCircle className="h-4 w-4 mr-2" />
                     Approve Request
                   </Button>
-                  <Button variant="destructive" className="w-full" onClick={handleReject}   disabled={request.status==="approved"|| request.status==="rejected"} >
+                  <Button variant="destructive" className="w-full" onClick={handleReject}   disabled={request.status!=="pending"} >
                     <XCircle className="h-4 w-4 mr-2" />
                     Reject Request
                   </Button>
