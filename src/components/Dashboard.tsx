@@ -71,11 +71,11 @@ export const Dashboard = (status,message) => {
   // const [mockedResults,setMockedResults]=useState(mockRequests)
   const [final,setFinal]=useState("")
   const [filteredRequests,setFilteredRequest]=useState(
-  //   mockedResults.filter(request => {
-  //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
-  //   const matchesStatus = statusFilter === "all" || request.status === statusFilter;
-  //   return matchesSearch && matchesStatus;
-  // });
+    mockedResults.filter(request => {
+    const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === "all" || request.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
   )
   // const filteredRequests = mockedResults.filter(request => {
   //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -100,23 +100,23 @@ export const Dashboard = (status,message) => {
     setFilteredRequest(updatedResults)
   },[status,message])
 
-  const handleUpdate=(status,message)=>{
-    console.log(status, message)
-    setFinal(message)
-  const updatedResults = mockedResults.map((el) => {
-    if (el.npi === "NA") {
+  // const handleUpdate=(status,message)=>{
+  //   console.log(status, message)
+  //   setFinal(message)
+  // const updatedResults = mockedResults.map((el) => {
+  //   if (el.npi === "NA") {
      
-      return {
-        ...el, 
-        status: status 
-      };
-    } else {
+  //     return {
+  //       ...el, 
+  //       status: status 
+  //     };
+  //   } else {
       
-      return el;
-    }
-  });
-    setMockedResults(updatedResults)
-  }
+  //     return el;
+  //   }
+  // });
+  //   setMockedResults(updatedResults)
+  // }
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "pending":
