@@ -71,6 +71,7 @@ export const RequestDetails = ({
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
     handleUpdate("approved",finalValue,)
+    onBack()
       };
   const handleReject = () => {
     toast({
@@ -79,6 +80,7 @@ export const RequestDetails = ({
       variant: "destructive"
     });
     handleUpdate("rejected",finalValue,)
+    onBack()
 
   };
   return <div className="min-h-screen bg-background p-6">
