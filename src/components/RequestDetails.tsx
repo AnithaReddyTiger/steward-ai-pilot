@@ -25,6 +25,7 @@ interface StewardshipRequest {
 interface RequestDetailsProps {
   request: StewardshipRequest;
   onBack: () => void;
+  handleUpdate: (status: any, message: any) => void;
 }
 export const RequestDetails = ({
   request,

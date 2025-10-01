@@ -14,6 +14,7 @@ interface ExternalSearchProps {
     requestType: string;
     description: string;
   };
+  setFinalValue: (value: string) => void;
 }
 
 interface SearchResult {
