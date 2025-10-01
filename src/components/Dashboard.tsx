@@ -68,7 +68,7 @@ export const Dashboard = (status,message) => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [mockedResults,setMockedResults]=useState(mockRequests)
+  // const [mockedResults,setMockedResults]=useState(mockRequests)
   const [final,setFinal]=useState("")
   const [filteredRequests,setFilteredRequest]=useState(
   //   mockedResults.filter(request => {
@@ -85,7 +85,7 @@ export const Dashboard = (status,message) => {
 
     useEfffect(()=>{
        setFinal(message)
-  const updatedResults = mockedResults.map((el) => {
+  const updatedResults = mockRequests.map((el) => {
     if (el.npi === "NA") {
      
       return {
