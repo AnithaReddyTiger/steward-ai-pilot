@@ -70,13 +70,20 @@ export const Dashboard = (status,message) => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [mockedResults,setMockedResults]=useState(mockRequests)
   const [final,setFinal]=useState("")
-  const filteredRequests = mockedResults.filter(request => {
+  const [filteredRequests,setFilteredRequest]=useState(
+    mockedResults.filter(request => {
     const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+  )
+  // const filteredRequests = mockedResults.filter(request => {
+  //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
+  //   const matchesStatus = statusFilter === "all" || request.status === statusFilter;
+  //   return matchesSearch && matchesStatus;
+  // });
 
-  useEfffect(()=>{
+    useEfffect(()=>{
        setFinal(message)
   const updatedResults = mockedResults.map((el) => {
     if (el.npi === "NA") {
@@ -90,8 +97,9 @@ export const Dashboard = (status,message) => {
       return el;
     }
   });
-    setMockedResults(updatedResults)
+    setFilteredRequest(updatedResults)
   },[status,message])
+
   const handleUpdate=(status,message)=>{
     console.log(status, message)
     setFinal(message)
