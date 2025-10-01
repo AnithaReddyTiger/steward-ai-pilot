@@ -71,11 +71,11 @@ export const Dashboard = (status,message) => {
   const [mockedResults,setMockedResults]=useState(mockRequests)
   const [final,setFinal]=useState("")
   const [filteredRequests,setFilteredRequest]=useState(
-    mockedResults.filter(request => {
-    const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || request.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
+  //   mockedResults.filter(request => {
+  //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
+  //   const matchesStatus = statusFilter === "all" || request.status === statusFilter;
+  //   return matchesSearch && matchesStatus;
+  // });
   )
   // const filteredRequests = mockedResults.filter(request => {
   //   const matchesSearch = request.npi.includes(searchTerm) || request.description.toLowerCase().includes(searchTerm.toLowerCase());
