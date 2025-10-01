@@ -64,7 +64,7 @@ const mockRequests: StewardshipRequest[] = [{
   currentValue: "NA",
   proposedValue: "NA"
 }];
-export const Dashboard = () => {
+export const Dashboard = (status,message) => {
   const [selectedRequest, setSelectedRequest] = useState<StewardshipRequest | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -75,6 +75,23 @@ export const Dashboard = () => {
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+
+  useEfffect(()=>{
+       setFinal(message)
+  const updatedResults = mockedResults.map((el) => {
+    if (el.npi === "NA") {
+     
+      return {
+        ...el, 
+        status: status 
+      };
+    } else {
+      
+      return el;
+    }
+  });
+    setMockedResults(updatedResults)
+  },[status,message])
   const handleUpdate=(status,message)=>{
     console.log(status, message)
     setFinal(message)

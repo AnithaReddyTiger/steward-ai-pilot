@@ -39,7 +39,7 @@ export const RequestDetails = ({
   const {
     toast
   } = useToast();
-
+const [statusChange,setStatusChange]=useState("")
   // Get NPI profile data
   const npiProfile = getNPIProfile(request.npi);
   const getStatusIcon = (status: string) => {
@@ -72,7 +72,9 @@ export const RequestDetails = ({
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
     handleUpdate("approved",finalValue,)
+    setStatusChange("rejected")
     setChangeUI(true)
+    
       };
   const handleReject = () => {
     toast({
@@ -81,11 +83,13 @@ export const RequestDetails = ({
       variant: "destructive"
     });
     handleUpdate("rejected",finalValue,)
+    setStatusChange("rejected")
     setChangeUI(true)
+    
 
   };
   if(changeUI){
-    return <Dashboard/>
+    return <Dashboard status={statusChange} message={finalValue}/>
   }
   return <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-6">
