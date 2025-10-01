@@ -10,6 +10,7 @@ import { ExternalSearch } from "./ExternalSearch";
 import { ArrowLeft, UserCheck, FileText, Search, Clock, CheckCircle, XCircle, AlertTriangle, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getNPIProfile } from "@/data/npiProfiles";
+import { Dashboard } from "@/components/Dashboard";
 interface StewardshipRequest {
   id: string;
   npi: string;
@@ -70,6 +71,7 @@ export const RequestDetails = ({
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
     handleUpdate("approved",finalValue,)
+    return <Dashboard/>
   };
   const handleReject = () => {
     toast({
@@ -78,6 +80,7 @@ export const RequestDetails = ({
       variant: "destructive"
     });
     handleUpdate("rejected",finalValue,)
+        return <Dashboard/>
   };
   return <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-6">
