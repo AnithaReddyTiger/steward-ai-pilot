@@ -75,11 +75,11 @@ export const Dashboard = () => {
     const matchesStatus = statusFilter === "all" || request.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
-  const handleUpdate=(status,message, npi)=>{
+  const handleUpdate=(status,message, id)=>{
     console.log(status, message)
     setFinal(message)
   const updatedResults = mockedResults.map((el) => {
-    if (el.npi == npi) {
+    if (el.id == id) {
      
       return {
         ...el, 
