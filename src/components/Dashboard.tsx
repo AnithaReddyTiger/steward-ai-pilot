@@ -77,7 +77,7 @@ export const Dashboard = () => {
   });
   const handleUpdate=(status,message, id)=>{
     console.log(status, message)
-    setFinal(message)
+    setFinal(id==="4"?message:"")
   const updatedResults = mockedResults.map((el) => {
     if (el.id == id) {
      
