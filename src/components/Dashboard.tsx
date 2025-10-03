@@ -79,7 +79,7 @@ export const Dashboard = () => {
     console.log(status, message)
     setFinal(message)
   const updatedResults = mockedResults.map((el) => {
-    if (el.npi == npi {
+    if (el.npi == npi) {
      
       return {
         ...el, 
