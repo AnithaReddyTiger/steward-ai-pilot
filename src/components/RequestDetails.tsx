@@ -70,7 +70,7 @@ export const RequestDetails = ({
       title: "Request Approved",
       description: `Request #${request.requestNumber} has been approved successfully.`
     });
-    handleUpdate("approved",finalValue,)
+    handleUpdate("approved",finalValue,npiProfile)
     onBack()
       };
   const handleReject = () => {
@@ -79,7 +79,7 @@ export const RequestDetails = ({
       description: `Request #${request.requestNumber} has been rejected.`,
       variant: "destructive"
     });
-    handleUpdate("rejected",finalValue,)
+    handleUpdate("rejected",finalValue,npiProfile)
     onBack()
 
   };
